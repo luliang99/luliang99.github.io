@@ -10,9 +10,13 @@
 <hr>
 <h2 id="2-下载Git工具"><a href="#2-下载Git工具" class="headerlink" title="[2]下载Git工具"></a>[2]下载Git工具</h2><p> Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，它可以将服务器端的数据库克隆到单机上<br>   网址：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>   进入后点击红框位置即可下载<br>（注：直接下载可能速度较慢，通过右键红框位置复制地址到迅雷下载可高速完成下载）</p>
 <a id="more"></a>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/1.jpg" title="git">
+
+<p>   安装过程较简单，一路点击next即可，安装路径随意<br>   安装好后，若可以通过git version指令来查看版本信息，说明已经成功安装</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/2.png" title="git2">
 
 
-<p>   安装过程较简单，一路点击next即可，安装路径随意<br>   安装好后，若可以通过git version指令来查看版本信息，说明已经成功安装<br><img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/2.png" title="git2}<br>{%asset_img 1.png git}</p>"></p>]]></content>
+]]></content>
       
         
         <tags>
