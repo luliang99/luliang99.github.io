@@ -14,9 +14,11 @@
 
 <p>   安装过程较简单，一路点击next即可，安装路径随意<br>   安装好后，若可以通过git version指令来查看版本信息，说明已经成功安装</p>
 <img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/2.png" title="git2">
-<p>   接着配置SSH公钥：打开git-bash，如下图所示配置SSH公钥</p>
+<p>   接着配置SSH公钥：打开git-bash，输入：</p>
+<blockquote>
+<p>$ git config –global user.name “your_name”<br>$ git config –global user.email “<a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a>“</p>
+</blockquote>
 <img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/2_1.png" title="git3">
-
 <hr>
 <h2 id="3-下载node-js运行环境"><a href="#3-下载node-js运行环境" class="headerlink" title="[3]下载node.js运行环境"></a>[3]下载node.js运行环境</h2><p>   node.js是一款基于Chrome V8引擎的JavaScript运行环境，使得JavaScript也能在web服务器端运行<br>   下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
 <img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/3.png" title="node">
@@ -53,6 +55,22 @@
 <h1 id="第三章：将本地hexo博客布署到github上"><a href="#第三章：将本地hexo博客布署到github上" class="headerlink" title="第三章：将本地hexo博客布署到github上"></a>第三章：将本地hexo博客布署到github上</h1><hr>
 <h2 id="完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo-s来启动稍显麻烦，因此我们需要将其布署到远端公开"><a href="#完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo-s来启动稍显麻烦，因此我们需要将其布署到远端公开" class="headerlink" title="   完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo s来启动稍显麻烦，因此我们需要将其布署到远端公开"></a>   完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo s来启动稍显麻烦，因此我们需要将其布署到远端公开</h2><h2 id="1-在Github上创建一个仓库"><a href="#1-在Github上创建一个仓库" class="headerlink" title="[1]在Github上创建一个仓库"></a>[1]在Github上创建一个仓库</h2><p>   进入Github官网：<a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> 登录后在左侧的Respositories处点击new新建仓库，仓库名一定是：账户名.github.io,否则无效！然后点击创建按钮即可</p>
 <img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/13.png" title="github">
+
+<hr>
+<h2 id="2-安装deployer插件"><a href="#2-安装deployer插件" class="headerlink" title="[2]安装deployer插件"></a>[2]安装deployer插件</h2><p>   输入命令：cnpm install –save hexo-deployer-git,若出现如下结果则表示安装成功</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/14.png" title="github2">
+
+<hr>
+<h2 id="3-配置-config-yml文件"><a href="#3-配置-config-yml文件" class="headerlink" title="[3]配置_config.yml文件"></a>[3]配置_config.yml文件</h2><p>   右键_config.yml文件，使用Subline打开进行编写，在文件的最底部做如下修改：<br>   <em>deploy:<br>   type: git<br>   repo: <a href="https://github.com/luliang99/luliang99.github.io.git" target="_blank" rel="noopener">https://github.com/luliang99/luliang99.github.io.git</a><br>   branch: master</em><br>   其中，repo后面填写的即是我们的仓库地址，可进入github中名为[用户名.github.io]仓库中找到<br>   修改好后，ctrl+s保存</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/15.png" title="config">
+
+<hr>
+<h2 id="4-布署到远端"><a href="#4-布署到远端" class="headerlink" title="[4]布署到远端"></a>[4]布署到远端</h2><p>   前面都做好后，这一步就比较简单，在命令行处输入hexo d，可将本地博客推至远端，若出现Deployer Done字样，表示部署完成</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/16.png" title="github3">
+
+<hr>
+<h2 id="5-检验部署效果"><a href="#5-检验部署效果" class="headerlink" title="[5]检验部署效果"></a>[5]检验部署效果</h2><p>   输入域名地址：用户名.github.io，即可进入个人博客：当显示与localhost:4000上的页面一致时，表明部署成功！</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/17.png" title="github4">
 
 
 
