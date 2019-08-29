@@ -10,10 +10,57 @@
 <hr>
 <h2 id="2-下载Git工具"><a href="#2-下载Git工具" class="headerlink" title="[2]下载Git工具"></a>[2]下载Git工具</h2><p> Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目，它可以将服务器端的数据库克隆到单机上<br>   网址：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">https://git-scm.com/downloads</a><br>   进入后点击红框位置即可下载<br>（注：直接下载可能速度较慢，通过右键红框位置复制地址到迅雷下载可高速完成下载）</p>
 <a id="more"></a>
-<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/1.jpg" title="git">
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/1.png" title="git">
 
 <p>   安装过程较简单，一路点击next即可，安装路径随意<br>   安装好后，若可以通过git version指令来查看版本信息，说明已经成功安装</p>
 <img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/2.png" title="git2">
+<p>   接着配置SSH公钥：打开git-bash，如下图所示配置SSH公钥</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/2_1.png" title="git3">
+
+<hr>
+<h2 id="3-下载node-js运行环境"><a href="#3-下载node-js运行环境" class="headerlink" title="[3]下载node.js运行环境"></a>[3]下载node.js运行环境</h2><p>   node.js是一款基于Chrome V8引擎的JavaScript运行环境，使得JavaScript也能在web服务器端运行<br>   下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a></p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/3.png" title="node">
+<p>   点击红框位置进行下载，也是一路点击next即可，路径自选<br>   下载好后，进入cmd，键入node -v以及npm -v,查看node和npm的版本信息，版本信息正常显示，则表明安装成功</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/4.png" title="node2">
+<p>   其中npm是node.js提供的JavaScript的包管理工具，类似于python里面的pip，用它可以安装各种包，如jquery、bootstrap、underscore等，但是npm是从国外的服务器上下载各种包的，因此速度较慢，于是我国的淘宝团队研发了cnmp，是一个完整的npmjs.org镜像，与npm基本保持同步，拥有除public以外的各种命令，重点是下载速度提升显著<br>   安装方法：输入指令npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a> 如下图所示</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/5.png" title="node3">
+<p>   cmd中输入cnpm -v查看本本信息</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/6.png" title="node4">
+<hr>
+<h2 id="4-下载Subline编辑器"><a href="#4-下载Subline编辑器" class="headerlink" title="[4]下载Subline编辑器"></a>[4]下载Subline编辑器</h2><p>   若使用常规的记事本等编辑器写博客，容易遇到中文无法显示，乱码等问题，原因是没有使用utf-8编码。推荐使用Subline进行文本编辑（也可使用VScode，atom等），该编辑器支持utf-8编码<br>   Subline下载地址：<a href="http://www.sublimetext.com/3" target="_blank" rel="noopener">http://www.sublimetext.com/3</a></p>
+<hr>
+<h1 id="第二章：搭建本地hexo个人博客"><a href="#第二章：搭建本地hexo个人博客" class="headerlink" title="第二章：搭建本地hexo个人博客"></a>第二章：搭建本地hexo个人博客</h1><hr>
+<h2 id="1-安装hexo"><a href="#1-安装hexo" class="headerlink" title="[1]安装hexo"></a>[1]安装hexo</h2><p>   输入命令：cnpm install -g hexo-cli</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/7.png" title="hexo">
+<p>   同理，安装好后键入hexo -v检验版本信息以确保安装至PC</p>
+<hr>
+<h2 id="2-创建博客目录"><a href="#2-创建博客目录" class="headerlink" title="[2]创建博客目录"></a>[2]创建博客目录</h2><p>   在命令行中切换到某一路径下创建博客存放目录，输入指令：mkdir myblog (文件夹名可自取)<br>   接着cd myblog进入到文件夹中</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/8.png" title="hexo2">
+<hr>
+<h2 id="3-初始化hexo"><a href="#3-初始化hexo" class="headerlink" title="[3]初始化hexo"></a>[3]初始化hexo</h2><p>   输入命令：hexo init，若底端显示start blogging with hexo！字样则初始化成功</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/9.png" title="hexo3">
+<hr>
+<h2 id="4-查看搭建效果"><a href="#4-查看搭建效果" class="headerlink" title="[4]查看搭建效果"></a>[4]查看搭建效果</h2><p>   我们打开myblog文件夹，就可以看到hexo搭建的初始目录</p>
+<blockquote>
+<p><em>node_modules: 依赖包<br>   public：存放生成的页面<br>   scaffolds：生成文章的一些模板<br>   source：用来存放你的文章<br>   themes：主题<br>   _config.yml: 博客的配置文件</em></p>
+</blockquote>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/10.png" title="hexo3">
+<p>   cmd上输入hexo s，之后在浏览器中输入网址：localhost:4000则可看见初始化的界面</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/11.png" title="hexo4">
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/12.png" title="hexo5">
+
+<hr>
+<h1 id="第三章：将本地hexo博客布署到github上"><a href="#第三章：将本地hexo博客布署到github上" class="headerlink" title="第三章：将本地hexo博客布署到github上"></a>第三章：将本地hexo博客布署到github上</h1><hr>
+<h2 id="完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo-s来启动稍显麻烦，因此我们需要将其布署到远端公开"><a href="#完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo-s来启动稍显麻烦，因此我们需要将其布署到远端公开" class="headerlink" title="   完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo s来启动稍显麻烦，因此我们需要将其布署到远端公开"></a>   完成了上一步后我们只能在本地查看个人博客，一旦换一台电脑则无法看见，并且每次都要通过键入hexo s来启动稍显麻烦，因此我们需要将其布署到远端公开</h2><h2 id="1-在Github上创建一个仓库"><a href="#1-在Github上创建一个仓库" class="headerlink" title="[1]在Github上创建一个仓库"></a>[1]在Github上创建一个仓库</h2><p>   进入Github官网：<a href="https://github.com" target="_blank" rel="noopener">https://github.com</a> 登录后在左侧的Respositories处点击new新建仓库，仓库名一定是：账户名.github.io,否则无效！然后点击创建按钮即可</p>
+<img src="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/13.png" title="github">
+
+
+
+
+
+
+
+
 
 
 ]]></content>
