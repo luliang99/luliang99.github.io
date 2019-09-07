@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="如今随着hexo博客的兴起，越来越多的主题随之诞生，我们可以到https://hexo.io/themes/ 上选择自己感兴趣的主题，比较经典的比如next、yilia、melody、mellow等，但是有些主题配置非常繁琐或者简单但界面一般。笔者建议选用yilia，界面、兼容性均较好。当然也可选用其他自己喜欢的主题，安装过程大同小异。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-03T12:12:19.486Z">
+<meta property="og:updated_time" content="2019-09-03T12:26:23.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为hexo博客设置yilia主题(教程)">
 <meta name="twitter:description" content="如今随着hexo博客的兴起，越来越多的主题随之诞生，我们可以到https://hexo.io/themes/ 上选择自己感兴趣的主题，比较经典的比如next、yilia、melody、mellow等，但是有些主题配置非常繁琐或者简单但界面一般。笔者建议选用yilia，界面、兼容性均较好。当然也可选用其他自己喜欢的主题，安装过程大同小异。">
@@ -182,14 +182,8 @@
 <pre><code>$ git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code></pre><hr>
 <h2 id="2-配置myblog下的-config-yml文件"><a href="#2-配置myblog下的-config-yml文件" class="headerlink" title="[2] 配置myblog下的_config.yml文件"></a>[2] 配置myblog下的_config.yml文件</h2><p>  下拉到theme:行，后边填写 yilia（注意空格）<br>  为确保所有组件正常运行，在_config.yml文件的最后添加如下字段：</p>
 <blockquote>
-<p>jsonContent:<br>meta: false<br>pages: false<br>posts:<br>title: true<br>date: true<br>path: true<br>text: false<br>raw: false<br>content: false<br>slug: false<br>updated: false<br>comments: false<br>link: false<br>permalink: false<br>excerpt: false<br>categories: false<br>tags: true  </p>
+<p>jsonContent:<br>meta: false<br>pages: false<br>posts:<br>title: true<br>date: true<br>path: true<br>text: false<br>raw: false<br>content: false<br>slug: false<br>updated: false<br>comments: false<br>link: false<br>permalink: false<br>excerpt: false<br>categories: false<br>tags: true<br>然后就可以运行了~~</p>
 </blockquote>
-<p>写好后如下：</p>
-
-
-
-
-
 
       
 
@@ -301,6 +295,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/09/07/Node-of-JavaSE（1）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Node of JavaSE（1）
+        
+      </div>
+    </a>
   
   
     <a href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/" id="article-nav-older" class="article-nav-link-wrap">
@@ -428,6 +431,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
