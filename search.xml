@@ -7,8 +7,8 @@
       <url>/2019/09/10/Node-of-JavaSE%EF%BC%882%EF%BC%89/</url>
       <content type="html"><![CDATA[<h1 id="Day05-面向对象"><a href="#Day05-面向对象" class="headerlink" title="Day05__面向对象"></a>Day05__面向对象</h1><hr>
 <p>1、面向对象：封装、继承、多态<br>2、属性：类中的变量，行为：类中的的函数（方法）<br>3、内存存放原理：</p>
-<img src="/2019/09/10/Node-of-JavaSE（2）/1.png" title="neicunyuanli1">
 <a id="more"></a>
+<img src="/2019/09/10/Node-of-JavaSE（2）/1.png" title="neicunyuanli1">
 <p>多个引用指向同一个对象：</p>
 <img src="/2019/09/10/Node-of-JavaSE（2）/2.png" title="neicunyuanli2">
 <p>4、成员变量和局部变量：<br>（1）作用范围：成员变量作用于整个类中，局部变量作用于函数中、或语句中。<br>（2）内存中的位置：成员变量：堆内存；局部变量：栈内存。<br>5、匿名对象：调用方法有意义，调用属性没意义，原理：</p>
@@ -46,7 +46,8 @@ Person(String name, int age)
 {
   This(name); //调用上面的Person函数
   This.age = age;
-}</code></pre><h2 id="Day06-static、帮助文档、单例设计模式"><a href="#Day06-static、帮助文档、单例设计模式" class="headerlink" title="#Day06__static、帮助文档、单例设计模式"></a>#Day06__static、帮助文档、单例设计模式</h2><p>1、static是一个修饰符，用于修饰成员（成员变量、成员函数）<br>静态修饰内容被对象共享。<br>2、static特点：<br>（1）随着类的加载而加载，也就是说随着类的消失而消失，说明它的生命周期最长。<br>（2）优先于对象存在。静态先存在，对象后存在。<br>（3）被所有对象共享。<br>（4）可以直接被类名所调用。<br>String name : 成员变量，实例变量。<br>static String country : 静态的成员变量，类变量。<br>3、静态方法只能访问静态成员；非静态方法既能访问静态成员，又能访问非静态成员。<br>4、静态方法中不可以定义this、supper关键字。因为静态优先于对象存在，所以静态方法中不可以出现this。因此，Person类中出现如下字段时错误！！！！</p>
+}</code></pre><h1 id="Day06-static、帮助文档、单例设计模式"><a href="#Day06-static、帮助文档、单例设计模式" class="headerlink" title="Day06__static、帮助文档、单例设计模式"></a>Day06__static、帮助文档、单例设计模式</h1><hr>
+<p>1、static是一个修饰符，用于修饰成员（成员变量、成员函数）<br>静态修饰内容被对象共享。<br>2、static特点：<br>（1）随着类的加载而加载，也就是说随着类的消失而消失，说明它的生命周期最长。<br>（2）优先于对象存在。静态先存在，对象后存在。<br>（3）被所有对象共享。<br>（4）可以直接被类名所调用。<br>String name : 成员变量，实例变量。<br>static String country : 静态的成员变量，类变量。<br>3、静态方法只能访问静态成员；非静态方法既能访问静态成员，又能访问非静态成员。<br>4、静态方法中不可以定义this、supper关键字。因为静态优先于对象存在，所以静态方法中不可以出现this。因此，Person类中出现如下字段时错误！！！！</p>
 <pre><code>Public static void show()
 {
     System.out.println(“:::”+this.name)
@@ -62,144 +63,220 @@ Person(String name, int age)
 <pre><code>Public static void show()
 {
     System.out.println(“haha”);
-}</code></pre><p>可以定义为静态的。<br>11、静态调度应用——工具类<br>每个应用程序中有共性的功能，可以将这些功能进行抽取，以便复用。<br>class Tool<br>{<br>    public static int getMax(int[] arr)<br>    {<br>        int max = 0;<br>        for(int i=1; i&lt;arr.length; i++)<br>        {<br>            if(arr[max]&lt;arr[i])<br>                max = i;<br>        }<br>        return arr[max];<br>    }</p>
-<pre><code>public static int getMin(int[] arr)
+}</code></pre><p>可以定义为静态的。<br>11、静态调度应用——工具类<br>每个应用程序中有共性的功能，可以将这些功能进行抽取，以便复用。</p>
+<pre><code>class Tool
 {
-    int min = 0;
-    for(int i=1; i\&lt;arr.length; i++)
+    public static int getMax(int[] arr)
     {
-        if(arr[min]&gt;arr[i])
-            min = i;
-    }
-    return arr[min];
-}
-
-public static void bubbleSort(int[] arr)
-{
-    for(int i=0; i&lt;arr.length-1; i++)
-    {
-        for(int j=0; j&lt;arr.length-i-1; j++)
+        int max = 0;
+        for(int i=1; i&lt;arr.length; i++)
         {
-            if(arr[j]&gt;arr[j+1])
-                swap(arr,j,j+1);
+            if(arr[max]&lt;arr[i])
+                max = i;
+        }
+        return arr[max];
+    }
+    public static int getMin(int[] arr)
+    {
+        int min = 0;
+        for(int i=1; i&lt;arr.length; i++)
+        {
+            if(arr[min]&gt;arr[i])
+                min = i;
+        }
+        return arr[min];
+    }
+     public static void bubbleSort(int[] arr)
+    {
+        for(int i=0; i&lt;arr.length-1; i++)
+        {
+            for(int j=0; j&lt;arr.length-i-1; j++)
+            {
+                if(arr[j]&gt;arr[j+1])
+                    swap(arr,j,j+1);
+            }
         }
     }
-}
-
-public static void selectSort(int[] arr)
-{
-    for(int i=0; i&lt;arr.length-1; i++)
+    public static void selectSort(int[] arr)
     {
-        for(int j=i+1; j&lt;arr.length; j++)
-            if(arr[i]&gt;arr[j])
-                swap(arr,i,j);
+        for(int i=0; i&lt;arr.length-1; i++)
+        {
+            for(int j=i+1; j&lt;arr.length; j++)
+                if(arr[i]&gt;arr[j])
+                    swap(arr,i,j);
+        }
     }
-}
-
-private static void swap(int[] arr, int a, int b)
-{
-    int temp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = temp;
-}
-
-public static void printArray(int[] arr)
-{
-    for(int i=0; i&lt;arr.length; i++)
+    private static void swap(int[] arr, int a, int b)
     {
-        System.out.print(arr[i]+&quot; &quot;);
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
     }
-    System.out.println();
-}</code></pre><p>}<br>当调用时，因为是static修饰，随着类的加载而加载，可以在主函数使用代码：<br>Tool.bubbleSort(arr);<br>Tool.printArray(arr);<br>Tool.selectSort(arr);<br>Tool.printArray(arr);<br>等进行调用。<br>PS:可以把工具类放入一个单独的.java文件中，cmd中可以使用javac  xxx（主函数所在类名即可），不用再javac Tool.java, 因为文件中出现没见过的类时候会在当前目录下找，自动生成Tool.class</p>
-<p>12、上面的类还是可以被建立对象的，为了不让建立对象，可以在Tool类中将构造函数私有化，即是可以在Tool类中添加语句：<br>private Tool() {}<br>13、制作程序说明书（帮助文档、API文档）：java说明书经常通过注释来完成，如：<br>/**<br>这是一个可以对数组进行操作的工具类，该类中提供了，获取最值，排序等功能，<br>@author 张三<br>@version V1.1<br>*/</p>
-<p>public class Tool<br>{<br>    /**<br>    空参数构造函数<br>    */<br>    private Tool() {}</p>
+    public static void printArray(int[] arr)
+    {
+        for(int i=0; i&lt;arr.length; i++)
+        {
+            System.out.print(arr[i]+&quot; &quot;);
+        }
+        System.out.println();
+    }
+}</code></pre><p>当调用时，因为是static修饰，随着类的加载而加载，可以在主函数使用代码：</p>
+<pre><code>Tool.bubbleSort(arr);
+Tool.printArray(arr);
+Tool.selectSort(arr);
+Tool.printArray(arr);</code></pre><p>等进行调用。<br>PS:可以把工具类放入一个单独的.java文件中，cmd中可以使用javac  xxx（主函数所在类名即可），不用再javac Tool.java, 因为文件中出现没见过的类时候会在当前目录下找，自动生成Tool.class</p>
+<p>12、上面的类还是可以被建立对象的，为了不让建立对象，可以在Tool类中将构造函数私有化，即是可以在Tool类中添加语句：</p>
+<pre><code>private Tool() {} </code></pre><p>13、制作程序说明书（帮助文档、API文档）：java说明书经常通过注释来完成，如：</p>
 <pre><code>/**
-获取一个整形数组中的最大值。
-@param arr 接收一个int类型的数组。
-@return 会返回一个该数组中的最大值。
+这是一个可以对数组进行操作的工具类，该类中提供了，获取最值，排序等功能，
+@author 张三
+@version V1.1
 */
-public static int getMax(int[] arr)
+public class Tool
 {
-    int max = 0;
-    for(int i=1; i&lt;arr.length; i++)
+    /**
+    空参数构造函数
+    */
+    private Tool() {}
+    /**
+    获取一个整形数组中的最大值。
+    @param arr 接收一个int类型的数组。
+    @return 会返回一个该数组中的最大值。
+    */
+    public static int getMax(int[] arr)
     {
-        if(arr[max]&lt;arr[i])
-            max = i;
-    }
-    return arr[max];
-}
-/**
-获取一个整形数组中的最小值。
-@param arr 接收一个int类型的数组。
-@return 会返回一个该数组中的最小值。
-*/
-public static int getMin(int[] arr)
-{
-    int min = 0;
-    for(int i=1; i&lt;arr.length; i++)
-    {
-        if(arr[min]&gt;arr[i])
-            min = i;
-    }
-    return arr[min];
-}
-/**
-给int数组进行冒泡排序。
-@param arr 接受一个int类型的数组。
-*/
-public static void bubbleSort(int[] arr)
-{
-    for(int i=0; i&lt;arr.length-1; i++)
-    {
-        for(int j=0; j&lt;arr.length-i-1; j++)
+        int max = 0;
+        for(int i=1; i&lt;arr.length; i++)
         {
-            if(arr[j]&gt;arr[j+1])
-                swap(arr,j,j+1);
+            if(arr[max]&lt;arr[i])
+                max = i;
+        }
+        return arr[max];
+    }
+    /**
+    获取一个整形数组中的最小值。
+    @param arr 接收一个int类型的数组。
+    @return 会返回一个该数组中的最小值。
+    */
+    public static int getMin(int[] arr)
+    {
+        int min = 0;
+        for(int i=1; i&lt;arr.length; i++)
+        {
+            if(arr[min]&gt;arr[i])
+                min = i;
+        }
+        return arr[min];
+    }
+    /**
+    给int数组进行冒泡排序。
+    @param arr 接受一个int类型的数组。
+    */
+    public static void bubbleSort(int[] arr)
+    {
+        for(int i=0; i&lt;arr.length-1; i++)
+        {
+            for(int j=0; j&lt;arr.length-i-1; j++)
+            {
+                if(arr[j]&gt;arr[j+1])
+                    swap(arr,j,j+1);
+            }
         }
     }
-}
-/**
-给int数组进行选择排序。
-@param arr 接受一个int类型的数组。
-*/
-public static void selectSort(int[] arr)
-{
-    for(int i=0; i&lt;arr.length-1; i++)
+    /**
+    给int数组进行选择排序。
+    @param arr 接受一个int类型的数组。
+    */
+    public static void selectSort(int[] arr)
     {
-        for(int j=i+1; j&lt;arr.length; j++)
-            if(arr[i]&gt;arr[j])
-                swap(arr,i,j);
+        for(int i=0; i&lt;arr.length-1; i++)
+        {
+            for(int j=i+1; j&lt;arr.length; j++)
+                if(arr[i]&gt;arr[j])
+                    swap(arr,i,j);
+        }
+    }
+    /**
+    给数组中的元素进行位置的置换。
+    @param arr 接受一个int类型的数组。
+    @param a 要置换的位置
+    @param b 要制换的位置
+    */
+    public static void swap(int[] arr, int a, int b)
+    {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+    /**
+    用于打印数组中的元素，打印形式是：[element1, element2,...]
+    */
+    public static void printArray(int[] arr)
+    {
+        Sdystem.out.print(&quot;[&quot;);
+        for(int i=0; i&lt;arr.length; i++)
+        {
+            if(x!=arr.length-1)
+                System.out.print(arr[x]+&quot;, &quot;);
+            else
+                    System.out.println(arr[i]+&quot;]&quot;);
+        }
+    }
+}</code></pre><p>创建好后在命令行中输入：</p>
+<pre><code>Javadoc -d myhelp -author -version Tool.java</code></pre><p>[1] 其中-d表示当前目录，要是不想存放在当前目录可以写如-dc:表示存放到c盘<br>[2] myhelp是文件名，如果没有此文件名系统会帮忙建立一个<br>[3] -author -version表示提取作者和版本，若没有可以不提取<br>[4] Tool.java是工具类存放的文件，帮助文档就是根据这个生成的<br>PS: class一定要用public修饰，不然无法生成帮助文档<br>生成后，在myhelp/index.html中查看</p>
+<p>14、如果类被public修饰，那么默认的构造函数也被public修饰；如果类没有public修饰，默认的构造函数也没有被public修饰。<br>15、静态代码块：static{  }<br>随着类的加载而加载，只执行一次，用于给类进行初始化的</p>
+<pre><code>class StaticCode
+{
+    static
+    {
+        System.out.println(&quot;a&quot;);
+    } 
+    public static void show()
+    {
+        System.out.println(&quot;show run&quot;);
     }
 }
-/**
-给数组中的元素进行位置的置换。
-@param arr 接受一个int类型的数组。
-@param a 要置换的位置
-@param b 要制换的位置
-*/
-public static void swap(int[] arr, int a, int b)
+class StaticCodeDemo
 {
-    int temp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = temp;
-}
-/**
-用于打印数组中的元素，打印形式是：[element1, element2,...]
-*/
-public static void printArray(int[] arr)
-{
-    Sdystem.out.print(&quot;[&quot;);
-    for(int i=0; i&lt;arr.length; i++)
+    static
     {
-        if(x!=arr.length-1)
-            System.out.print(arr[x]+&quot;, &quot;);
-        else
-            System.out.println(arr[i]+&quot;]&quot;);
+        //System.out.print
     }
-}</code></pre><p>}<br>创建好后在命令行中输入：<br>Javadoc -d myhelp -author -version Tool.java<br>[1] 其中-d表示当前目录，要是不想存放在当前目录可以写如-dc:表示存放到c盘<br>[2] myhelp是文件名，如果没有此文件名系统会帮忙建立一个<br>[3] -author -version表示提取作者和版本，若没有可以不提取<br>[4] Tool.java是工具类存放的文件，帮助文档就是根据这个生成的<br>PS: class一定要用public修饰，不然无法生成帮助文档<br>生成后，在myhelp/index.html中查看</p>
-<p>14、如果类被public修饰，那么默认的构造函数也被public修饰；如果类没有public修饰，默认的构造函数也没有被public修饰。<br>15、静态代码块：static{  }<br>随着类的加载而加载，只执行一次，用于给类进行初始化的<br>class StaticCode<br>{<br>    static<br>    {<br>        System.out.println(“a”);<br>    }<br>    public static void show()<br>    {<br>        System.out.println(“show run”);<br>    }<br>}<br>class StaticCodeDemo<br>{<br>    static<br>    {<br>        //System.out.print<br>    }<br>    public static void main(String[] args)<br>    {<br>        //new StaticCode();<br>        //new StaticCode();<br>        //System.out.println(“over”);<br>        //StaticCode.show();<br>        StaticCode s = null; //此时没加载，也就没用到静态代码块只有当用到StaticCode中的方法时才加载<br>        s = new StaticCode();//加载了，因为使用其中的构造函数了</p>
-<pre><code>    StaticCode.show();//加载了，因为用到类中方法了了
-}</code></pre><p>}<br>16、静态代码块：给类初始化<br>构造代码块：给对象初始化<br>构造函数：给对应对象初始化的<br>17、Person p = new Person(“ZhangSan”,20);<br>该句话都干了什么事？<br>[1]因为new用到了Person.class，所以会先找到Person.class文件并加载到内存中。<br>[2]执行该类中的static代码块，如果有的话，给Person.class类进行初始化。<br>[3]在堆内存中开辟空间，分配内存地址。<br>[4]在堆内存中建立对象的特有属性，并进行默认初始化。（如name为null，年龄是0）<br>[5]对属性进行显示初始化。<br>[6]对对象进行构造代码块初始化。<br>[7]对对象进行对应的构造函数初始化。<br>将内存地址赋给栈内存中的p变量。</p>
+    public static void main(String[] args)
+    {
+        //new StaticCode();
+        //new StaticCode();
+        //System.out.println(&quot;over&quot;);
+        //StaticCode.show();
+        StaticCode s = null; //此时没加载，也就没用到静态代码块只有当用到StaticCode中的方法时才加载
+        s = new StaticCode();//加载了，因为使用其中的构造函数了
+        StaticCode.show();//加载了，因为用到类中方法了了
+    }
+}</code></pre><p>16、静态代码块：给类初始化<br>构造代码块：给对象初始化<br>构造函数：给对应对象初始化的<br>17、Person p = new Person(“ZhangSan”,20);<br>该句话都干了什么事？<br>[1]因为new用到了Person.class，所以会先找到Person.class文件并加载到内存中。<br>[2]执行该类中的static代码块，如果有的话，给Person.class类进行初始化。<br>[3]在堆内存中开辟空间，分配内存地址。<br>[4]在堆内存中建立对象的特有属性，并进行默认初始化。（如name为null，年龄是0）<br>[5]对属性进行显示初始化。<br>[6]对对象进行构造代码块初始化。<br>[7]对对象进行对应的构造函数初始化。<br>[8]将内存地址赋给栈内存中的p变量。</p>
+<img src="/2019/09/10/Node-of-JavaSE（2）/7.png" title="neicunyuanli7">
+<img src="/2019/09/10/Node-of-JavaSE（2）/8.png" title="neicunyuanli8">
+<p>18、单例设计模式：解决一个类在内存中只存在一个对象。</p>
+<p>想要保证对象唯一。<br>1.为了避免其他程序过多建立该类对象，先禁止其他程序建立该对象。<br>2.为了让其他程序能够访问该类对象，只好在本类中自定义一个对象。<br>3.为了方便其他程序对自定义的对象的访问，可以对外提供一些访问方式。</p>
+<p>体现：<br>1.将构造函数私有化<br>2.类中创建一个本类对象<br>3.提供一个方法可以获取到对象<br>下面的是饿汉式：</p>
+<img src="/2019/09/10/Node-of-JavaSE（2）/9.png" title="neicunyuanli9">
+<p>19、单例设计模式的第二种写法：<br>这是懒汉式，（对象被调用时，才被加载出来）</p>
+<pre><code>class Single
+{ 
+    private static Single s = null;
+    private Single() {}
+    public static Single getInstance()
+    {
+        if(s==null)
+        {
+            synchronized(Single.class)
+            {
+                if(s==null)
+                s = new Single();
+            }
+        }
+        returns;
+    }
+}</code></pre><p>(其中，synchronized表示锁，用于同步，A程序进去，B程序就进不来了）<br>（定义单例时，建议使用饿汉式）</p>
 ]]></content>
       
         
@@ -305,9 +382,9 @@ public static void printArray(int[] arr)
         
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> Markdown </tag>
+            
+            <tag> 教程 </tag>
             
         </tags>
         
@@ -553,11 +630,11 @@ public static void trans(int num, int base, int offset)
         
         <tags>
             
+            <tag> 教程 </tag>
+            
             <tag> hexo </tag>
             
             <tag> yilia </tag>
-            
-            <tag> 教程 </tag>
             
         </tags>
         
@@ -647,9 +724,9 @@ public static void trans(int num, int base, int offset)
         
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> 教程 </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
         
