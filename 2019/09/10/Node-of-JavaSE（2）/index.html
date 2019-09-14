@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: hexo | 我的博客</title>
+  <title>Node-of-JavaSE（2） | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录程序员的点点滴滴~~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://yoursite.com/tags/hexo/index.html">
+  <meta name="description" content="Day05__面向对象 1、面向对象：封装、继承、多态2、属性：类中的变量，行为：类中的的函数（方法）3、内存存放原理：">
+<meta name="keywords" content="Java,JavaSE,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node-of-JavaSE（2）">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="记录程序员的点点滴滴~~">
+<meta property="og:description" content="Day05__面向对象 1、面向对象：封装、继承、多态2、属性：类中的变量，行为：类中的的函数（方法）3、内存存放原理：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/6.png">
+<meta property="og:updated_time" content="2019-09-14T08:51:24.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="记录程序员的点点滴滴~~">
+<meta name="twitter:title" content="Node-of-JavaSE（2）">
+<meta name="twitter:description" content="Day05__面向对象 1、面向对象：封装、继承、多态2、属性：类中的变量，行为：类中的的函数（方法）3、内存存放原理：">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/1.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -153,110 +162,389 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Node-of-JavaSE（2）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/为hexo博客设置yilia主题(教程)/" class="archive-article-date">
-  	<time datetime="2019-09-03T03:37:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/为hexo博客设置yilia主题(教程)/">为hexo博客设置yilia主题(教程)</a>
+    <h1 class="article-title" itemprop="name">
+      Node-of-JavaSE（2）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/10/Node-of-JavaSE（2）/" class="archive-article-date">
+  	<time datetime="2019-09-10T03:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Day05-面向对象"><a href="#Day05-面向对象" class="headerlink" title="Day05__面向对象"></a>Day05__面向对象</h1><hr>
+<p>1、面向对象：封装、继承、多态<br>2、属性：类中的变量，行为：类中的的函数（方法）<br>3、内存存放原理：</p>
+<img src="/2019/09/10/Node-of-JavaSE（2）/1.png" title="neicunyuanli1">
+<a id="more"></a>
+<p>多个引用指向同一个对象：</p>
+<img src="/2019/09/10/Node-of-JavaSE（2）/2.png" title="neicunyuanli2">
+<p>4、成员变量和局部变量：<br>（1）作用范围：成员变量作用于整个类中，局部变量作用于函数中、或语句中。<br>（2）内存中的位置：成员变量：堆内存；局部变量：栈内存。<br>5、匿名对象：调用方法有意义，调用属性没意义，原理：</p>
+<img src="/2019/09/10/Node-of-JavaSE（2）/3.png" title="neicunyuanli3">
+<p>（每次new都创建一个新对象）<br>6、匿名对象应用1：当对对象的方法进行一次调用时，可用匿名对象来完成，这样比较简单。当对对各成员调用时，必须给这个对象起一个名字。<br>应用2：可以将匿名对象作为实际参数进行传递（原理如下图）</p>
+<img src="/2019/09/10/Node-of-JavaSE（2）/4.png" title="neicunyuanli4">
+<p>这时候new Car()这个匿名对象就传给了形参c。不过当show完了以后，内存就释放了。<br>7、若真想让对象变成垃圾的话，就用c = null;<br>8、封装：隐藏对象的属性和实现细节，对外提供公共访问方式<br>好处：将变化隔离、便于使用、提高重用性、提高安全性<br>9、private:私有，权限修饰符，用于修饰类中的成员，（成员变量、成员函数）<br>私有只在本类中有效。<br>10、封装不是私有，私有只是封装的一种表现形式。<br>11、构造函数：</p>
+<img src="/2019/09/10/Node-of-JavaSE（2）/5.png" title="constructedfun">
+<p>12、对象一建立就会调用与之对应的构造函数<br>13、当对象中没有定义构造函数时，系统会自动添加一个空的构造函数如：Person（）{}<br>14、Person类中可以添加构造函数：Person(){……},当类名相同时,以重载的方式呈现：</p>
+<pre><code>class Person
+{
+    private int age;
+    private String name;
+    Person()
+    {
+        System.out.println(&quot;A:name= &quot;+name+&quot; age= &quot;+age);
+    }
+    Person(String n)
+    {
+        name = n;
+        System.out.println(&quot;B:name= &quot;+name+&quot; age= &quot;+age);
+    }
+    Person(String n, int a)
+    {
+        age = a;
+        name = n;
+        System.out.println(&quot;C:name= &quot;+name+&quot; age= &quot;+age);
+    }
+}</code></pre><p>15、构造代码块：对象一建立就运行，优先于构造函数。并且是给所有的对象统一初始化。是不同对象共性的内容！<br>16、this关键字：当局部变量的名称和成员变量的名称相同时使用；否则如name=name；两个name都是局部变量。可使用this.name=name;<br>17、构造函数间调用只能用this语句：(且this语句只能放在构造函数的第一行)</p>
+<pre><code>Person(String name)
+{
+  this.name = name;
+}
+Person(String name, int age)
+{
+  This(name); //调用上面的Person函数
+  This.age = age;
+}</code></pre><h2 id="Day06-static、帮助文档、单例设计模式"><a href="#Day06-static、帮助文档、单例设计模式" class="headerlink" title="#Day06__static、帮助文档、单例设计模式"></a>#Day06__static、帮助文档、单例设计模式</h2><p>1、static是一个修饰符，用于修饰成员（成员变量、成员函数）<br>静态修饰内容被对象共享。<br>2、static特点：<br>（1）随着类的加载而加载，也就是说随着类的消失而消失，说明它的生命周期最长。<br>（2）优先于对象存在。静态先存在，对象后存在。<br>（3）被所有对象共享。<br>（4）可以直接被类名所调用。<br>String name : 成员变量，实例变量。<br>static String country : 静态的成员变量，类变量。<br>3、静态方法只能访问静态成员；非静态方法既能访问静态成员，又能访问非静态成员。<br>4、静态方法中不可以定义this、supper关键字。因为静态优先于对象存在，所以静态方法中不可以出现this。因此，Person类中出现如下字段时错误！！！！</p>
+<pre><code>Public static void show()
+{
+    System.out.println(“:::”+this.name)
+}</code></pre><p>5、静态有利有弊：有利：对对象的共享数据进行单独空间的存储，节省空间。可以直接被类名调用。弊端：生命周期太长。访问出现局限性，静态只能访问静态。<br>6、主函数的定义：<br>Public:表示函数的访问权限时最大的。<br>Static:代表主函数随着类的加载几经存在了。<br>Void:主函数没有具体的返回值。<br>Main:不是关键字，但是一个特殊的函数，可以被jvm识别<br>（String[] argS):函数的参数，参数类型是一个数组，该数组中的元素是字符串，字符串类型的数组。主函数是固定格式的：jvm识别。<br>7、主函数唯一可以改的地方：变量名args。<br>8、虚拟机在调用主函数时，传入的参数是new String[0].<br>9、可以向主函数中传递参数：</p>
+<pre><code>class MainDemo
+{
+    public static void main(String[] args)
+    {
+        System.out.println(args[0]);
+    }
+}</code></pre><img src="/2019/09/10/Node-of-JavaSE（2）/6.png" title="MainDemo">
+<p>10、什么时候用静态:(1)当存在共享数据时.(2)当功能内部没有访问到非静态数据（对象的特有数据），那么该功能可以定义成静态的。如：</p>
+<pre><code>Public static void show()
+{
+    System.out.println(“haha”);
+}</code></pre><p>可以定义为静态的。<br>11、静态调度应用——工具类<br>每个应用程序中有共性的功能，可以将这些功能进行抽取，以便复用。<br>class Tool<br>{<br>    public static int getMax(int[] arr)<br>    {<br>        int max = 0;<br>        for(int i=1; i&lt;arr.length; i++)<br>        {<br>            if(arr[max]&lt;arr[i])<br>                max = i;<br>        }<br>        return arr[max];<br>    }</p>
+<pre><code>public static int getMin(int[] arr)
+{
+    int min = 0;
+    for(int i=1; i\&lt;arr.length; i++)
+    {
+        if(arr[min]&gt;arr[i])
+            min = i;
+    }
+    return arr[min];
+}
+
+public static void bubbleSort(int[] arr)
+{
+    for(int i=0; i&lt;arr.length-1; i++)
+    {
+        for(int j=0; j&lt;arr.length-i-1; j++)
+        {
+            if(arr[j]&gt;arr[j+1])
+                swap(arr,j,j+1);
+        }
+    }
+}
+
+public static void selectSort(int[] arr)
+{
+    for(int i=0; i&lt;arr.length-1; i++)
+    {
+        for(int j=i+1; j&lt;arr.length; j++)
+            if(arr[i]&gt;arr[j])
+                swap(arr,i,j);
+    }
+}
+
+private static void swap(int[] arr, int a, int b)
+{
+    int temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+}
+
+public static void printArray(int[] arr)
+{
+    for(int i=0; i&lt;arr.length; i++)
+    {
+        System.out.print(arr[i]+&quot; &quot;);
+    }
+    System.out.println();
+}</code></pre><p>}<br>当调用时，因为是static修饰，随着类的加载而加载，可以在主函数使用代码：<br>Tool.bubbleSort(arr);<br>Tool.printArray(arr);<br>Tool.selectSort(arr);<br>Tool.printArray(arr);<br>等进行调用。<br>PS:可以把工具类放入一个单独的.java文件中，cmd中可以使用javac  xxx（主函数所在类名即可），不用再javac Tool.java, 因为文件中出现没见过的类时候会在当前目录下找，自动生成Tool.class</p>
+<p>12、上面的类还是可以被建立对象的，为了不让建立对象，可以在Tool类中将构造函数私有化，即是可以在Tool类中添加语句：<br>private Tool() {}<br>13、制作程序说明书（帮助文档、API文档）：java说明书经常通过注释来完成，如：<br>/**<br>这是一个可以对数组进行操作的工具类，该类中提供了，获取最值，排序等功能，<br>@author 张三<br>@version V1.1<br>*/</p>
+<p>public class Tool<br>{<br>    /**<br>    空参数构造函数<br>    */<br>    private Tool() {}</p>
+<pre><code>/**
+获取一个整形数组中的最大值。
+@param arr 接收一个int类型的数组。
+@return 会返回一个该数组中的最大值。
+*/
+public static int getMax(int[] arr)
+{
+    int max = 0;
+    for(int i=1; i&lt;arr.length; i++)
+    {
+        if(arr[max]&lt;arr[i])
+            max = i;
+    }
+    return arr[max];
+}
+/**
+获取一个整形数组中的最小值。
+@param arr 接收一个int类型的数组。
+@return 会返回一个该数组中的最小值。
+*/
+public static int getMin(int[] arr)
+{
+    int min = 0;
+    for(int i=1; i&lt;arr.length; i++)
+    {
+        if(arr[min]&gt;arr[i])
+            min = i;
+    }
+    return arr[min];
+}
+/**
+给int数组进行冒泡排序。
+@param arr 接受一个int类型的数组。
+*/
+public static void bubbleSort(int[] arr)
+{
+    for(int i=0; i&lt;arr.length-1; i++)
+    {
+        for(int j=0; j&lt;arr.length-i-1; j++)
+        {
+            if(arr[j]&gt;arr[j+1])
+                swap(arr,j,j+1);
+        }
+    }
+}
+/**
+给int数组进行选择排序。
+@param arr 接受一个int类型的数组。
+*/
+public static void selectSort(int[] arr)
+{
+    for(int i=0; i&lt;arr.length-1; i++)
+    {
+        for(int j=i+1; j&lt;arr.length; j++)
+            if(arr[i]&gt;arr[j])
+                swap(arr,i,j);
+    }
+}
+/**
+给数组中的元素进行位置的置换。
+@param arr 接受一个int类型的数组。
+@param a 要置换的位置
+@param b 要制换的位置
+*/
+public static void swap(int[] arr, int a, int b)
+{
+    int temp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = temp;
+}
+/**
+用于打印数组中的元素，打印形式是：[element1, element2,...]
+*/
+public static void printArray(int[] arr)
+{
+    Sdystem.out.print(&quot;[&quot;);
+    for(int i=0; i&lt;arr.length; i++)
+    {
+        if(x!=arr.length-1)
+            System.out.print(arr[x]+&quot;, &quot;);
+        else
+            System.out.println(arr[i]+&quot;]&quot;);
+    }
+}</code></pre><p>}<br>创建好后在命令行中输入：<br>Javadoc -d myhelp -author -version Tool.java<br>[1] 其中-d表示当前目录，要是不想存放在当前目录可以写如-dc:表示存放到c盘<br>[2] myhelp是文件名，如果没有此文件名系统会帮忙建立一个<br>[3] -author -version表示提取作者和版本，若没有可以不提取<br>[4] Tool.java是工具类存放的文件，帮助文档就是根据这个生成的<br>PS: class一定要用public修饰，不然无法生成帮助文档<br>生成后，在myhelp/index.html中查看</p>
+<p>14、如果类被public修饰，那么默认的构造函数也被public修饰；如果类没有public修饰，默认的构造函数也没有被public修饰。<br>15、静态代码块：static{  }<br>随着类的加载而加载，只执行一次，用于给类进行初始化的<br>class StaticCode<br>{<br>    static<br>    {<br>        System.out.println(“a”);<br>    }<br>    public static void show()<br>    {<br>        System.out.println(“show run”);<br>    }<br>}<br>class StaticCodeDemo<br>{<br>    static<br>    {<br>        //System.out.print<br>    }<br>    public static void main(String[] args)<br>    {<br>        //new StaticCode();<br>        //new StaticCode();<br>        //System.out.println(“over”);<br>        //StaticCode.show();<br>        StaticCode s = null; //此时没加载，也就没用到静态代码块只有当用到StaticCode中的方法时才加载<br>        s = new StaticCode();//加载了，因为使用其中的构造函数了</p>
+<pre><code>    StaticCode.show();//加载了，因为用到类中方法了了
+}</code></pre><p>}<br>16、静态代码块：给类初始化<br>构造代码块：给对象初始化<br>构造函数：给对应对象初始化的<br>17、Person p = new Person(“ZhangSan”,20);<br>该句话都干了什么事？<br>[1]因为new用到了Person.class，所以会先找到Person.class文件并加载到内存中。<br>[2]执行该类中的static代码块，如果有的话，给Person.class类进行初始化。<br>[3]在堆内存中开辟空间，分配内存地址。<br>[4]在堆内存中建立对象的特有属性，并进行默认初始化。（如name为null，年龄是0）<br>[5]对属性进行显示初始化。<br>[6]对对象进行构造代码块初始化。<br>[7]对对象进行对应的构造函数初始化。<br>将内存地址赋给栈内存中的p变量。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aS47jMAwFQN//0pltNxo2HklNAEulVZCPpcqCIEVeV7w+P9bd+z8/vXvn7+tkl2ULAwPjtYzP43o+bn6I5yfk+97ugoGBcQDjbuNquFwbjvO9MDAwMJ4P8Xy4XuDGwMDA+E7AfQ7Ez8kfBgYGRq+IrR6leqwv1eIYGBgvZOS37t9//V/6GxgYGK9ifIprcrmWXLQ1T4WBgbE1Iw9wecKXp26TgIuBgXEao1ou9sYyqt9JmhDN4TAMDIxXMXpX/IX/Jmhw5k++/RQDA2NrRnKIPPhOUsNC8jd/HAYGxmsZ1bbl/Ipt2ZgFBgbG1oznoJYcrhp8J4Xx1YvNGBgYL2fkKWD1Oiz51ardMTAwTmBUA2v1O/M/KPr7MDAwNmUkhWVvYKLHq46LXUl3FAMDYwtGUnbO2wn5sEWeSmJgYJzAyAPoJPmbJJq9gI6BgbETo7rxWuQqNgYGxmmMteNcedugWgAXeq0YGBgvZ+QXW0kJWk3+5sMZGBgYGNUhiUnbcnKph4GBcQ6juqqthR6mcGuIgYFxAOOK1ySAzovn219hYGBsylgVZPNLtDwBfab++hQDA2NrRjXIVge25iNfzZkRDAyM7Rh5kF1wfd/qPEZPw8DAOICRF6W95mWveTAatsDAwDiYUW0JXK21YCwMAwPjYEbvGi4fLKumjxgYGOcwJkOreXmcJ5HlpgIGBsbWjFHpGCSRk4MmySgGBsbWjH/wD1WDMVs0SQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/" class="archive-article-date">
-  	<time datetime="2019-08-27T03:19:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/07/Markdown语言使用方法概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Markdown语言使用方法总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/">Windows下搭建hexo+Github个人博客（教程）</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Node-of-JavaSE（2）" data-title="Node-of-JavaSE（2）" data-url="http://yoursite.com/2019/09/10/Node-of-JavaSE（2）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -279,9 +567,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
