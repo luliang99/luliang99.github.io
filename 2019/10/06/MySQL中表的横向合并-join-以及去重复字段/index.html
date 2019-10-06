@@ -8,18 +8,26 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>&#39;MySQL中表的横向合并(join)以及去重复字段&#39; | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、例题分析 Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：) 表名：">
+  <meta name="description" content="一、例题分析 Question: 查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额； (这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5)，由于dept_emp、sa">
 <meta name="keywords" content="SQL,实践经验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;MySQL中表的横向合并(join)以及去重复字段&#39;">
 <meta property="og:url" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="一、例题分析 Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：) 表名：">
+<meta property="og:description" content="一、例题分析 Question: 查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额； (这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5)，由于dept_emp、sa">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-06T06:47:54.585Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/2.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/3.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/4.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/5.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/6.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/7.jpg">
+<meta property="og:updated_time" content="2019-10-06T08:32:46.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;MySQL中表的横向合并(join)以及去重复字段&#39;">
-<meta name="twitter:description" content="一、例题分析 Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：) 表名：">
+<meta name="twitter:description" content="一、例题分析 Question: 查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额； (这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5)，由于dept_emp、sa">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -176,10 +184,71 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="一、例题分析"><a href="#一、例题分析" class="headerlink" title="一、例题分析"></a>一、例题分析</h1><hr>
-<p>Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；<br>(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：)</p>
-<p><em>表名：departments</em><br>+———+——————–+<br>| dept_no | dept_name          |<br>+———+——————–+<br>| d009    | Customer Service   |<br>| d005    | Development        |<br>| d002    | Finance            |<br>| d003    | Human Resources    |<br>| d001    | Marketing          |<br>| d004    | Production         |<br>| d006    | Quality Management |<br>| d008    | Research           |<br>| d007    | Sales              |<br>+———+——————–+</p>
+<p><strong>Question</strong>: 查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；</p>
+<p>(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是<strong>employees_db-full-1.0.6.tar.bz2(md5)</strong>，由于<strong>dept_emp</strong>、<strong>salaries</strong>表格过长，因此只显示部分，其库的部分结构如下)</p>
+<p><em>表格一：departments</em></p>
+<a id="more"></a>
+<img src="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/1.jpg" title="departments">
+<p><em>表格二：dept_emp</em></p>
+<img src="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/2.jpg" title="dept_emp">
+<p><em>表格三：salaries</em></p>
+<img src="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/3.jpg" title="salaries">
 
+<p><strong>典型错误</strong>：若是按照一般的思路，会直接进行如下操作：</p>
+<pre><code>SELECT departments.dept_no, dept_name, count(*), MIN(salary), AVG(salary), MAX(salary), SUM(salary)
+FROM departments, dept_emp, salaries
+WHERE departments.dept_no=dept_emp.dept_no AND dept_emp.emp_no=salaries.emp_no
+GROUP BY dept_no;</code></pre><p>打印结果如下：</p>
+<img src="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/4.jpg" title="error">
+<p><strong>错误理由</strong>：从代码的的语义上理解，是将三张表格做了等值连接，这时候再计算雇员人数（count(*))就出大错了，因为由于同一名员工拥有不同时间段的工资记录，因此会将同一个部门工作过的同一名员工反复累计多次，导致雇员人数（count(*))的值偏大。另外，从结果上来看，也不合理，因为我曾经用“select count(*) from dept_emp;”查询过雇员总数，大约33w+，而表中数据远超这一指标，因此错误！</p>
+<h1 id="二、解决思路"><a href="#二、解决思路" class="headerlink" title="二、解决思路"></a>二、解决思路</h1><hr>
+<p><strong>Solution</strong>：可以看到，造成上述揭发错误的根本原因是，在同一张大表，由于统计的方式不同，造成统计结果的错误。由此考虑将一个表分解成为两张小表，再用join进行拼接，最后从拼接的新表中选择需要的字段，代码如下：</p>
+<pre><code>SELECT *
+FROM
+(/*下表筛选出部门名称、部门雇员人数*/
+SELECT departments.dept_no, dept_name, count(*)
+FROM departments, dept_emp
+WHERE departments.dept_no=dept_emp.dept_no
+GROUP BY dept_no) as A
+/*将两个表格进行内连接*/
+INNER JOIN
+(/*下表筛选出部门最低、最高、平均、总工资*/
+SELECT dept_no, MIN(salary), AVG(salary), MAX(salary), SUM(salary)
+FROM dept_emp, salaries
+WHERE dept_emp.emp_no=salaries.emp_no
+GROUP BY dept_no) as B
+ON A.dept_no=B.dept_no;</code></pre><p>显示结果如下：</p>
+<img src="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/5.jpg" title="corect1">
+<p>但是我们发现一个问题，即dept_no出现了两次。因此要去掉重复的列，只能将所需要的列都筛选出来。但是直接筛选count（*)等带关键字的列名会冲突而报错，因此只能用双反引号（`）来将列名包起来。最终代码和结果如下：</p>
+<pre><code>SELECT A.dept_no, dept_name, `count(*)`,`MIN(salary)`, `AVG(salary)`, `MAX(salary)`, `SUM(salary)`
+FROM
+(SELECT departments.dept_no, dept_name, count(*)
+FROM departments, dept_emp
+WHERE departments.dept_no=dept_emp.dept_no
+GROUP BY dept_no) as A
+INNER JOIN
+(SELECT dept_no, MIN(salary), AVG(salary), MAX(salary), SUM(salary)
+FROM dept_emp, salaries
+WHERE dept_emp.emp_no=salaries.emp_no
+GROUP BY dept_no) as B
+ON A.dept_no=B.dept_no;</code></pre><img src="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/6.jpg" title="corect2">
 
+<h1 id="三、要点总结"><a href="#三、要点总结" class="headerlink" title="三、要点总结"></a>三、要点总结</h1><hr>
+<p>（1）当要将两张表进行横向拼接时，可以使用join关键字进行拼接。使用格式：</p>
+<pre><code>SELECT column——name
+FROM tabel_A
+JOIN tabel_B
+ON tabel_A.key=tabel_B.key;</code></pre><p>而本题中使用的表格是由select临时创建的表，此时进行join连接可以使用如下格式：</p>
+<pre><code>SELECT column——name
+FROM (SELECT ...) as A
+JOIN (SELECT ...) as B
+ON A.key=B.key;</code></pre><p>（2）当横向合并后发现重复字段，只能一个一个将需要的字段筛选出来，不能用*代替。若字段上含关键字，则用反引号``将字段囊括其中即可。</p>
+<p>（3）PS：对几种常见的join，如：INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN 等做简单介绍，也可通过图片进行记忆。</p>
+<img src="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/7.jpg" title="join">
+
+<blockquote>
+<p>INNER JOIN：与JOIN相同，且INNER关键字可以省略。INNER JOIN将只会返回相匹配的元素项，即不会返回结果为NULL的数据项。<br>FULL OUTER JOIN：取得所有的元素项，则可以使用FULL OUTER JOIN。<br>LEFT JOIN：左连接会输出左边的表中的所有结果，如果右边的表中有相应项，则会输出，否则为NULL。<br>RIGHT JOIN：使用右连接，结果将会输出tabel_B中所有的数据项和tabel_A中相应的匹配项。</p>
+</blockquote>
 
       
 
@@ -436,11 +505,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
+                <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -452,6 +521,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
@@ -460,15 +537,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
