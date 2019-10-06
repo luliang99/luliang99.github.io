@@ -3,6 +3,60 @@
   
     
     <entry>
+      <title><![CDATA['MySQL中表的横向合并(join)以及去重复字段']]></title>
+      <url>/2019/10/06/MySQL%E4%B8%AD%E8%A1%A8%E7%9A%84%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6-join-%E4%BB%A5%E5%8F%8A%E5%8E%BB%E9%87%8D%E5%A4%8D%E5%AD%97%E6%AE%B5/</url>
+      <content type="html"><![CDATA[<h1 id="一、例题分析"><a href="#一、例题分析" class="headerlink" title="一、例题分析"></a>一、例题分析</h1><hr>
+<p>Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；<br>(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：)</p>
+<p><em>表名：departments</em><br>+———+——————–+<br>| dept_no | dept_name          |<br>+———+——————–+<br>| d009    | Customer Service   |<br>| d005    | Development        |<br>| d002    | Finance            |<br>| d003    | Human Resources    |<br>| d001    | Marketing          |<br>| d004    | Production         |<br>| d006    | Quality Management |<br>| d008    | Research           |<br>| d007    | Sales              |<br>+———+——————–+</p>
+
+
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> SQL </tag>
+            
+            <tag> 实践经验 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MySQL使用经验]]></title>
+      <url>/2019/09/30/MySQL%E4%BD%BF%E7%94%A8%E7%BB%8F%E9%AA%8C/</url>
+      <content type="html"><![CDATA[<h1 id="1、连接本机上的MySQL"><a href="#1、连接本机上的MySQL" class="headerlink" title="1、连接本机上的MySQL"></a>1、连接本机上的MySQL</h1><hr>
+<p>方式一：打开MySQL Command Line Client,输入密码<br>方式二：打开DOS窗口，然后进入目录mysql\bin。输入命令：mysql -u root -p密码</p>
+<a id="more"></a>
+<h1 id="2、修改密码"><a href="#2、修改密码" class="headerlink" title="2、修改密码"></a>2、修改密码</h1><hr>
+<p> 创建密码abcd：mysqladmin -u root -password abcd<br> 修改密码defg：mysqladmin -u root -p abcd password defg</p>
+<h1 id="3、创建数据库"><a href="#3、创建数据库" class="headerlink" title="3、创建数据库"></a>3、创建数据库</h1><hr>
+<p>creat database&lt;数据库名&gt;;</p>
+<h1 id="4、显示数据库"><a href="#4、显示数据库" class="headerlink" title="4、显示数据库"></a>4、显示数据库</h1><hr>
+<p>show databases;(注意：不要忘记写‘;’不然再输一遍加分号的也会报错，要一次写对)</p>
+<h1 id="5、连接数据库"><a href="#5、连接数据库" class="headerlink" title="5、连接数据库"></a>5、连接数据库</h1><hr>
+<p>use &lt;数据库名&gt;;</p>
+<h1 id="6、推出数据库服务器"><a href="#6、推出数据库服务器" class="headerlink" title="6、推出数据库服务器"></a>6、推出数据库服务器</h1><hr>
+<p>exit;</p>
+<h1 id="7、创建数据表"><a href="#7、创建数据表" class="headerlink" title="7、创建数据表"></a>7、创建数据表</h1><hr>
+<p>CREATE TABLE pet(<br>    name VARCHAR(20),<br>    owner VARCHAR(20),<br>    birth DATE);</p>
+<h1 id="8、查看创建好的数据表的结构"><a href="#8、查看创建好的数据表的结构" class="headerlink" title="8、查看创建好的数据表的结构"></a>8、查看创建好的数据表的结构</h1><hr>
+<p>describe &lt;数据表名称&gt;;（describe可以简写为desc）</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+            <tag> 学习笔记 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Node-of-JavaSE（2）]]></title>
       <url>/2019/09/10/Node-of-JavaSE%EF%BC%882%EF%BC%89/</url>
       <content type="html"><![CDATA[<h1 id="Day05-面向对象"><a href="#Day05-面向对象" class="headerlink" title="Day05__面向对象"></a>Day05__面向对象</h1><hr>
@@ -282,11 +336,11 @@ class StaticCodeDemo
         
         <tags>
             
+            <tag> 学习笔记 </tag>
+            
             <tag> Java </tag>
             
             <tag> JavaSE </tag>
-            
-            <tag> 学习笔记 </tag>
             
         </tags>
         
@@ -382,9 +436,9 @@ class StaticCodeDemo
         
         <tags>
             
-            <tag> Markdown </tag>
-            
             <tag> 教程 </tag>
+            
+            <tag> Markdown </tag>
             
         </tags>
         
@@ -603,11 +657,11 @@ public static void trans(int num, int base, int offset)
         
         <tags>
             
+            <tag> 学习笔记 </tag>
+            
             <tag> Java </tag>
             
             <tag> JavaSE </tag>
-            
-            <tag> 学习笔记 </tag>
             
         </tags>
         

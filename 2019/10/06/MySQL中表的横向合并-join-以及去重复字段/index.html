@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/9 | 我的博客</title>
+  <title>&#39;MySQL中表的横向合并(join)以及去重复字段&#39; | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录程序员的点点滴滴~~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/09/index.html">
+  <meta name="description" content="一、例题分析 Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：) 表名：">
+<meta name="keywords" content="SQL,实践经验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;MySQL中表的横向合并(join)以及去重复字段&#39;">
+<meta property="og:url" content="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="记录程序员的点点滴滴~~">
+<meta property="og:description" content="一、例题分析 Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：) 表名：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-06T06:47:54.585Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="记录程序员的点点滴滴~~">
+<meta name="twitter:title" content="&#39;MySQL中表的横向合并(join)以及去重复字段&#39;">
+<meta name="twitter:description" content="一、例题分析 Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：) 表名：">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -153,244 +155,195 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL中表的横向合并-join-以及去重复字段" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      &#39;MySQL中表的横向合并(join)以及去重复字段&#39;
+    </h1>
+  
+
+        
+        <a href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/" class="archive-article-date">
+  	<time datetime="2019-10-06T06:29:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、例题分析"><a href="#一、例题分析" class="headerlink" title="一、例题分析"></a>一、例题分析</h1><hr>
+<p>Question:查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；<br>(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是employees_db-full-1.0.6.tar.bz2(md5),其库的部分结构如下：)</p>
+<p><em>表名：departments</em><br>+———+——————–+<br>| dept_no | dept_name          |<br>+———+——————–+<br>| d009    | Customer Service   |<br>| d005    | Development        |<br>| d002    | Finance            |<br>| d003    | Human Resources    |<br>| d001    | Marketing          |<br>| d004    | Production         |<br>| d006    | Quality Management |<br>| d008    | Research           |<br>| d007    | Sales              |<br>+———+——————–+</p>
+
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/30/MySQL使用经验/" class="archive-article-date">
-  	<time datetime="2019-09-29T17:02:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/30/MySQL使用经验/">MySQL使用经验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践经验</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMUlEQVR42u3awYrjQAwE0Pn/n85eBxabKimBcef5FDKs3a8Nq6jUPz/x9fp1Jd/8/j65T/L5/3veP+sNFzY2NvZD2K/ba8a+ekr+Od+I++8vV4WNjY19HLtdaFKK7hlJfUnK1f3GXX6PjY2NjV3+Nd+IFoyNjY2N3bI35STZgllThI2NjY2dPCwPdNoSdb9xs/L5tiwNGxsb+8+z24jnL3/+yHwbGxsb+w+zX+U1++mflJO8/dhf2NjY2Cex8wKQR/yzNiMPg2ZtBjY2Nvap7DaI3x/lae/w3kM/dbXExsbGfiB7Fi3NtmDfriTt0GXFxsbGxj6I3Ra2TTnJ46q2IclHxdjY2NjnsWfNQ3sUJm919o1QHSphY2NjP5yd/9e/iXjykW3b9tQrwcbGxv4C9mxY2zYem2Zm1rpgY2Njn8quQ5lRwdtsQX4kKEqNsLGxsQ9i56UiCXSSR7Zb0z531iBhY2NjP5c9+1k/24J2TNuOH4qwCRsbG/sg9iqaGZWf/LnJprSDhOK8EjY2NvZD2LPGIGcno9w8wGrHD5dbgI2NjX0Qe1OuZs1MS5q1LkXJxMbGxj6CPTt2s29UPjEMqEMlbGxs7Iez8yB+1orMgvtNaxQdJ8LGxsY+lJ2H72352Sw3HwxgY2Njfyd7dvhmc/wxHwbMhgr5v8LGxsY+m70BDBcRr6RtmS7LJzY2NvZB7GRU0I5+Z1vQDnTf1fxgY2NjP5e9ecymhUjeRv3GghcZTUWwsbGxH8Vuw/dNozI7BvSGMUB7XgkbGxv7gexZEJOUqPaX/6zJyUOoyywNGxsb+zh2O8T93BLzWKrO0rCxsbGPY++Hr/ni8q3cRE5RAcPGxsY+jt0el5nF97NhQx4zRQd6sLGxsY9gv8orD+vzZeVj5ja0Kio2NjY29mPZs4MvbRGaRVf50vd3wMbGxn46exMJtUdwNmPjvNRFLwYbGxv7OHZbGPLQZzOanbVDRZaGjY2N/ZXsWdxTLKgsYMOxMTY2NvYXszfNSVuWZoPkD7Yi2NjY2H+Y3S60DY+SEWxbCNtxAjY2Nvap7E0xyDH3gVRSRPOV7A8SYWNjYz+E/Q9e1WkED4rUPAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/10/Node-of-JavaSE（2）/" class="archive-article-date">
-  	<time datetime="2019-09-10T03:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/30/MySQL使用经验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL使用经验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/Node-of-JavaSE（2）/">Node-of-JavaSE（2）</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="MySQL中表的横向合并-join-以及去重复字段" data-title="&#39;MySQL中表的横向合并(join)以及去重复字段&#39;" data-url="http://yoursite.com/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/Markdown语言使用方法概述/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/Markdown语言使用方法概述/">Markdown语言使用方法总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/Node-of-JavaSE（1）/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/Node-of-JavaSE（1）/">Node-of-JavaSE（1）</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/为hexo博客设置yilia主题(教程)/" class="archive-article-date">
-  	<time datetime="2019-09-03T03:37:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/为hexo博客设置yilia主题(教程)/">为hexo博客设置yilia主题(教程)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -413,8 +366,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
