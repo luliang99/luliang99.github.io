@@ -3,7 +3,179 @@
   
     
     <entry>
-      <title><![CDATA['MySQL中表的横向合并(join)以及去重复字段']]></title>
+      <title><![CDATA[MySQL性能分析——EXPLAIN使用指南]]></title>
+      <url>/2019/10/07/MySQL%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E2%80%94%E2%80%94EXPLAIN%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
+      <content type="html"><![CDATA[<h1 id="一、EXPLIAN——简介"><a href="#一、EXPLIAN——简介" class="headerlink" title="一、EXPLIAN——简介"></a>一、EXPLIAN——简介</h1><hr>
+<p>使用EXPLAIN关键字可以来获取关于查询执行计划的信息。可以模拟优化器执行SQL查询语句，从而知道<strong>MySQL是如何处理SQL语句</strong>的。</p>
+<ul>
+<li>用法：<strong>EXPLAIN + SQL语句；</strong>，或者去掉分号加上\G表示竖版显示。</li>
+<li>返回：查询执行计划所包含的信息（如：<strong>id</strong>、<strong>select_type</strong>、<strong>table</strong>、<strong>type</strong>、<strong>possible_keys</strong>、<strong>key</strong>、<strong>key_len</strong>、<strong>ref</strong>、<strong>rows</strong>、<strong>Extra</strong>）<a id="more"></a></li>
+<li>其中，<strong>id</strong>、 <strong>type</strong>、 <strong>key</strong>、 <strong>rows</strong>、 <strong>Extra</strong>是最重要的字段属性。</li>
+<li>EXPLIAN能做的事:<br>（1）获取表的读取顺序（id）。<br>（2）获取数据读取操作的操作类型（select_type）。<br>（3）表明哪些索引可以使用（possible_keys）。<br>（4）表明哪些索引被实际使用（key）。<br>（5）表之间的引用（ref）。<br>（6）每张表有多少行被优化器查询（rows）。 </li>
+</ul>
+<h1 id="二、id——介绍"><a href="#二、id——介绍" class="headerlink" title="二、id——介绍"></a>二、id——介绍</h1><hr>
+<ul>
+<li>EXPLIAN查询执行计划中的第一个参数id（查询标识符）主要反映的是表的加载顺序，其具体加载顺序的确定，分成以下三种情况：</li>
+</ul>
+<p>（1）id相同：执行顺序从上到下。</p>
+<pre><code>EXPLAIN SELECT employees.emp_no, first_name, last_name, from_date, to_date
+FROM departments, dept_emp, employees
+WHERE dept_name=&apos;Development&apos; AND departments.dept_no=dept_emp.dept_no AND dept_emp.emp_no=employees.emp_no;</code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/1.png" title="explain1">
+<p>（如从上述执行计划中，可知三张表的读取从上到下顺序执行）</p>
+<p>（2）id不同：id越大优先级越高，越先被执行。<br>（3）id有相同有不同的：先执行数字大的，其中数字大小相同的则顺序执行。</p>
+<pre><code>EXPLAIN SELECT *
+FROM
+(SELECT employees.emp_no, first_name, last_name, from_date, to_date, salary
+FROM employees, salaries
+WHERE employees.emp_no=salaries.emp_no
+ORDER BY emp_no, salary DESC) as A
+GROUP BY A.emp_no;</code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/2.png" title="explain2">
+<p>（如上述执行计划中，可知先读取id为2的表，并按顺序执行；再读取id为1的&lt;derived2&gt;，即id为2的表的衍生表）</p>
+<h1 id="三、select-type与table——介绍"><a href="#三、select-type与table——介绍" class="headerlink" title="三、select_type与table——介绍"></a>三、select_type与table——介绍</h1><hr>
+<ul>
+<li><p>select_type: 查询的类型，主要是用于区别是普通查询、联合查询、子查询等复杂的查询。</p>
+</li>
+<li><p>所有类型：<br>（1）SIMPLE: 简单的select查询，查询中不包括子查询或者UNION。<br>（2）PRIMARY: 查询中包含任何复杂的子部分，最外层查询则被标记为PRIMARY。<br>（3）SUBQUERY: 在SELECT或WHERE列表中包含了子查询（即子查询，括号中的）。<br>（4）DERIVED: 在FROM列表中包含的子查询被标记为DERIVED（衍生）,MySQL会递归执行这些子查询，把结果放在临时表里（临时表可能加重系统负担）。<br>（5）UNOIN: 若第二个SELECT出现在UNION之后，则被标记为UNION;若UNION包含在FROM子句的子查询中，外层SELECT将被标记为：DERIVED。<br>（6）UNION RESULT: 从UNOIN表获取结果的SELECT（两个表合并的结果）。</p>
+</li>
+<li><p>table: 即所读取的表。</p>
+</li>
+</ul>
+<h1 id="四、type——介绍"><a href="#四、type——介绍" class="headerlink" title="四、type——介绍"></a>四、type——介绍</h1><hr>
+<ul>
+<li>type：显示的是访问类型，是一个较为重要的指标，结果值从好到坏依次是：</li>
+</ul>
+<p><strong>system</strong> &gt; <strong>const</strong> &gt; <strong>eq_ref</strong> &gt; <strong>ref</strong> &gt; <strong>fulltext</strong> &gt; <strong>ref_or_null</strong> &gt; <strong>index_merge</strong> &gt; <strong>unique_subquery</strong> &gt; <strong>index_subquery</strong> &gt; <strong>range</strong> &gt; <strong>index</strong> &gt; <strong>ALL</strong></p>
+<ul>
+<li>在实际工作中，经常碰到的是如下几种常见的访问类型：</li>
+</ul>
+<p><strong>system</strong> &gt; <strong>const</strong> &gt; <strong>eq_ref</strong> &gt; <strong>ref</strong> &gt; <strong>range</strong> &gt; <strong>index</strong> &gt; <strong>ALL</strong></p>
+<ul>
+<li>一般来说，需要保证查询至少达到<strong>range</strong>级别，最好能到达<strong>ref</strong>。</li>
+<li>常用类型详解：<br>（1）<strong>system</strong>: 表只有一行记录（等于系统表），这是const类型的特例，平时不会出现，可以忽略不计。<br>（2）<strong>const</strong>: 表示通过索引一次就找到了，const用于比较primary key或者unique索引。因为匹配一行数据，如将主键至于where列表中，MySQL就能将该查询转换成一个常量（如查询学号为10020的学生信息，该查询条件具有唯一性）。<br>（3）<strong>eq_ref</strong>: 唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或者唯一索引扫描。（比如SELECT * FROM ceo, employees WHERE ceo.id=employees.id;由于总裁办只有一名员工,即CEO,因此表ceo中只有一条记录与employees匹配)<br>（4）<strong>ref</strong>: 非唯一性索引扫描，返回某个单独值得所有行，本质上也是一种索引访问，它返回所有匹配某个单独值的行，然而它可能会找到多个符合条件的行，所以它应该属于查找和扫描的混合体。（上一条是查CEO，这一条改为查询开发部的程序员，因为开发部的程序员有多个）<br>（5）<strong>range</strong>: 只检索指定范围的行，使用一个索引来选择行。key列显示使用了哪个索引。<strong>一般就是在你的where语句中出现了between、 &lt;、 &gt;、 in等的查询</strong>。这种范围扫描索引扫描比全表扫描好，因为只需开始于索引的某一点，而结束于另一点，不用扫描全部索引。<br>（6）<strong>index</strong>: Full Index Scan，index与ALL区别为index只遍历索引树，这通常比ALL快，因为索引文件通常比数据文件小。也就是说虽然all和index都是读全表，但是index是从索引中读取的，而all是从硬盘中读取的。（举例：select id from employees；查询所有的员工号(id)，但是id又刚好在索引上）<br>（7）<strong>ALL</strong>: Full Table Scan，将遍历全表以找到匹配的行。（如SELECT * FROM employees;一般来说，没建立索引就是全表扫描)</li>
+</ul>
+<h1 id="五、possible-keys与key——介绍"><a href="#五、possible-keys与key——介绍" class="headerlink" title="五、possible_keys与key——介绍"></a>五、possible_keys与key——介绍</h1><hr>
+<ul>
+<li><strong>possible_keys</strong>: 显示可能应用在这张表中的索引，一个或多个。查询涉及到的字段上若存在索引，则该索引将被列出，<strong>但不一定被查询实际使用</strong>。（如上课，理论应到多少人[possible_keys]，实际到多少人[key]）</li>
+<li><strong>key</strong>: 实际使用的索引。如果为NULL，则没有使用索引；<strong>查询中若使用了覆盖索引，则该索引仅出现在key列表中</strong>。<strong>（覆盖索引：即要查询的字段和所建立的索引刚好吻合。简单地说，即select后面查询的字段和建复合索引的个数和顺序一一一致。比如说，你建了三个字段的一个索引，刚好查的也是三个，两者的个数和顺序刚好匹配）</strong></li>
+</ul>
+<h1 id="六、key-len——介绍"><a href="#六、key-len——介绍" class="headerlink" title="六、key_len——介绍"></a>六、key_len——介绍</h1><hr>
+<ul>
+<li><p><strong>key_len</strong>: 表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度。在不损失精度的情况下，长度越短越好；key_len显示的值是索引字段的最大可能长度，<strong>并非实际使用长度</strong>，即key_len是根据表定义计算而得，不是通过表内检索出的。</p>
+</li>
+<li><p>查询的精度越高，key_len越大的值。</p>
+</li>
+</ul>
+<h1 id="七、ref——介绍"><a href="#七、ref——介绍" class="headerlink" title="七、ref——介绍"></a>七、ref——介绍</h1><hr>
+<ul>
+<li><strong>ref</strong>: 显示索引的哪一列被使用了，如果可能的话，是一个常数。即哪些列或常量被用于查找索引列上的值。</li>
+<li>举例：<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/3.png" title="explain3">
+由key_len可知t1表的idx_col1_col2被充分使用，col1匹配t2表的col1，col2匹配了一个常量，即’ac’</li>
+</ul>
+<h1 id="七、rows——介绍"><a href="#七、rows——介绍" class="headerlink" title="七、rows——介绍"></a>七、rows——介绍</h1><hr>
+<ul>
+<li><strong>rows</strong>: 根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数.</li>
+<li>举例：<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/4.png" title="explain4">
+可见，创建复合索引idx_col1_col2后，理论上读取的行数从640行变为142行。</li>
+</ul>
+<h1 id="八、Extra——介绍"><a href="#八、Extra——介绍" class="headerlink" title="八、Extra——介绍"></a>八、Extra——介绍</h1><hr>
+<ul>
+<li><strong>Extra</strong>: 包含不在其他列中显示，但是又十分重要的信息。</li>
+<li>Extra中包含的信息有以下几种：<br>（1）<strong>Using filesort</strong>: 【这表示性能差的，待优化的】文件内排序，说明mysql会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。也就是说，MySQL中无法利用索引完成的排序操作称作“文件内排序”。</li>
+</ul>
+<p><strong>优化示例</strong>：</p>
+<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/5.png" title="explain5">
+<p>–优化前，由key可知用到的索引是idx_col_col2_col3，但是实际上并没有用到col2，而是直接从col1跳到col3，此时需要文件自己建立索引进行查询，没有完全按照表内的顺序进行读取。<br>–优化后，即补上col2，完全按照表内的索引顺序进行读取（完全按照主人修的路走）。<br>–优化前由于在文件内部多折腾了一次（建立索引），因此性能没有优化后的好。</p>
+<p>（2）<strong>Using temporary</strong>: 【这表示性能差的，待优化的】新建了一个临时表，使用了临时表保存了中间结果，MySQL在对查询结果排序时使用临时表。常见于排序order by和分组查询group by。<br><strong>优化示例</strong>：</p>
+<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/6.png" title="explain6">
+<p>–可见，group by后面列出所建的全部索引，可以避免出现临时表。</p>
+<p>（3）<strong>Using index</strong>: 【这是好的】表示相应的select操作中使用了覆盖索引（Covering Index），避免访问了表的数据行，效率不错！</p>
+<ul>
+<li>如果同时出现using where，表明索引被用来执行索引键值的查找。<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/7.png" title="explain7"></li>
+<li>如果没有出现using where，表明索引用来读取数据而非执行查找动作。<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/8.png" title="explain8"></li>
+</ul>
+<p><strong>PS</strong>： 如果要使用覆盖索引，一定要注意select列表中只取出需要的列，不可以select *，因为如果将所有字段一起做索引会导致索引文件过大，查询效率下降。</p>
+<p>（4）Using where: 表明使用了where过滤。<br>（5）using join buffer: 使用了连接缓存。<br>（6）impossible where: where子句的值总是false，不能用来获取任何元组（如一个人的名字既叫张三又叫李四）。<br>（7）select tables optimized away: 此词条较少见。表示在没有GROUP BY的情况下，基于索引优化MIN/MAX操作或者对于MyISAM存储引擎优化COUNT(*)操作，不必等到执行阶段再进行计算，查询执行计划生成的阶段即完成优化。<br>（8）distinct: 此词条较少见。优化distinct操作，在找到第一匹配的元组后即停止找同样值的动作。</p>
+<h1 id="九、优化案例"><a href="#九、优化案例" class="headerlink" title="九、优化案例"></a>九、优化案例</h1><hr>
+<h2 id="1、索引单表优化案例"><a href="#1、索引单表优化案例" class="headerlink" title="1、索引单表优化案例"></a>1、索引单表优化案例</h2><p>Question: 查询category_id为1且comments大于1的情况下，views最多的article_id。</p>
+<pre><code>EXPLAIN SELECT id,author_id FROM article 
+WHERE category_id=1 AND comments&gt;1 
+ORDER BY views DESC limit 1; </code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/9.png" title="explain9">
+<ul>
+<li>结论：很显然，type是ALL，即是最坏的情况。Extra里面还出现了Using filesort，也是最坏的情况，优化是必须的。</li>
+<li>开始优化：</li>
+</ul>
+<p>（1）建立索引。</p>
+<pre><code>creat index idx_article_ccv on article(category_id,comments,views);
+
+show index from article;</code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/10.png" title="explain10">
+<p>（2）再次执行explain。</p>
+<pre><code>EXPLAIN SELECT id,author_id FROM article 
+WHERE category_id=1 AND comments&gt;1 
+ORDER BY views DESC LIMIT 1;</code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/11.png" title="explain11">
+
+<ul>
+<li><strong>小结</strong>：type变成了range，这是可以忍受的。但是extra里使用Using filesort仍然无法接受。但是我们已经建立了索引，为什么没用呢？这是因为根据BTree索引的工作原理，先排序category_id，如果遇到相同的category_id，则再排序comments，如果遇到相同的comments，则再排序views，当comments字段再联合索引里处于中间位置时，因为comments&gt;1条件是一个<strong>范围值（所谓range）</strong>，<strong>MySQL无法利用索引再对后面的views部分进行检索</strong>，即range类型查询字段后面的索引无效！</li>
+</ul>
+<p>（3）删除第一次建立的索引。</p>
+<pre><code>DROP INDEX idx_article_ccv ON article;</code></pre><p>（4）第二次新建索引。</p>
+<pre><code>creat index idx_article_cv on article(category_id,views);</code></pre><p>（5）第三次执行explain。</p>
+<pre><code>EXPLAIN SELECT id,author_id FROM article 
+WHERE category_id=1 AND comments&gt;1 
+ORDER BY views DESC LIMIT 1;</code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/12.png" title="explain12">
+<ul>
+<li>总结：可以看到，既实现了type：ref，又消除了Using filesort，同时又得到ref：const，满足性能需求。</li>
+</ul>
+<h2 id="2、索引两表优化案例"><a href="#2、索引两表优化案例" class="headerlink" title="2、索引两表优化案例"></a>2、索引两表优化案例</h2><p>Question: 分析并优化如下语句：</p>
+<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/15.png" title="explain15">
+<pre><code>EXPLAIN SELECT * FROM class LEFT JOIN book ON class.card=book.card;</code></pre><ul>
+<li><p>结论：type有ALL。</p>
+</li>
+<li><p>优化过程：<br>（1）添加索引优化。</p>
+<p>  ALTER TABLE ‘book’ ADD INDEX Y(‘card’);<br>（2）第二次explain分析。</p>
+<p>  EXPLAIN SELECT * FROM class LEFT JOIN book ON class.card=book.card;</p>
+{%asset_img 13.png explain13%}</li>
+<li><p>小结：可以看到，第二行的type变为了ref，rows也变成了1优化比较明显。这是由于左连接的特性决定的。LEFT JOIN条件用于确定如何从右边表搜索行，左边一定都有。因此，右边是我们的关键点，一定要建立索引。</p>
+</li>
+<li><p>PS：如果不对右表建立索引，而是对左表建立索引【ALTER TABLE ‘book’ ADD INDEX Y(‘card’);】，就会出现不一样的情况：</p>
+{%asset_img 14.png explain14%}</li>
+<li><p>总结：<strong>左连接，建立右表索引；右连接，建立左表索引。</strong></p>
+</li>
+</ul>
+<h2 id="3、索引三表优化案例"><a href="#3、索引三表优化案例" class="headerlink" title="3、索引三表优化案例"></a>3、索引三表优化案例</h2><p>Question: 将以下查询语句进行优化：</p>
+<pre><code>EXPLAIN SELECT * 
+FROM class LEFT JOIN book ON class.card=book.card 
+LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/17.png" title="explain17">
+
+<ul>
+<li>优化过程：</li>
+</ul>
+<p>（1）建立索引：</p>
+<pre><code>ALTER TABLE &apos;phone&apos; ADD INDEX Z(&apos;card&apos;);
+ALTER TABLE &apos;book&apos; ADD INDEX Y(&apos;card&apos;);</code></pre><p>（2）第二次运行EXPLAIN：</p>
+<pre><code>EXPLAIN SELECT * 
+FROM class LEFT JOIN book ON class.card=book.card 
+LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/18.png" title="explain18">
+<ul>
+<li>小结：后两行的type都是ref且总rows优化很好，效果不错。因此索引最好设置在经常查询的字段中。</li>
+<li>结论：<br>（1）join语句的优化：尽可能减少Join语句中的NestedLooop的循环总次数:”永远用小结果集驱动大结果集”。<br>（2）优先优化NestedLoop的内层循环。<br>（3）保证Join语句中被驱动表上Join条件字段已经被索引。<br>（4）当无法保证被驱动表的Join条件字段被索引且内存资源充足的情况下，不要太吝啬JoinBuffer的设置。</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> MySQL </tag>
+            
+            <tag> SQL </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MySQL中表的横向合并(join)以及去重复字段]]></title>
       <url>/2019/10/06/MySQL%E4%B8%AD%E8%A1%A8%E7%9A%84%E6%A8%AA%E5%90%91%E5%90%88%E5%B9%B6-join-%E4%BB%A5%E5%8F%8A%E5%8E%BB%E9%87%8D%E5%A4%8D%E5%AD%97%E6%AE%B5/</url>
       <content type="html"><![CDATA[<h1 id="一、例题分析"><a href="#一、例题分析" class="headerlink" title="一、例题分析"></a>一、例题分析</h1><hr>
 <p><strong>Question</strong>: 查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；</p>
