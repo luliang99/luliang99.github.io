@@ -9,7 +9,7 @@
   <title>MySQL性能分析——EXPLAIN使用指南 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一、EXPLIAN——简介 使用EXPLAIN关键字可以来获取关于查询执行计划的信息。可以模拟优化器执行SQL查询语句，从而知道MySQL是如何处理SQL语句的。  用法：EXPLAIN + SQL语句；，或者去掉分号加上\G表示竖版显示。 返回：查询执行计划所包含的信息（如：id、select_type、table、type、possible_keys、key、key_len、ref、rows、">
-<meta name="keywords" content="教程,MySQL,SQL">
+<meta name="keywords" content="SQL,教程,MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL性能分析——EXPLAIN使用指南">
 <meta property="og:url" content="http://yoursite.com/2019/10/07/MySQL性能分析——EXPLAIN使用指南/index.html">
@@ -31,7 +31,8 @@
 <meta property="og:image" content="http://yoursite.com/2019/10/07/MySQL性能分析——EXPLAIN使用指南/15.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/MySQL性能分析——EXPLAIN使用指南/17.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/07/MySQL性能分析——EXPLAIN使用指南/18.png">
-<meta property="og:updated_time" content="2019-10-09T09:35:25.728Z">
+<meta property="og:image" content="http://yoursite.com/2019/10/07/MySQL性能分析——EXPLAIN使用指南/19.png">
+<meta property="og:updated_time" content="2019-10-15T02:28:56.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL性能分析——EXPLAIN使用指南">
 <meta name="twitter:description" content="一、EXPLIAN——简介 使用EXPLAIN关键字可以来获取关于查询执行计划的信息。可以模拟优化器执行SQL查询语句，从而知道MySQL是如何处理SQL语句的。  用法：EXPLAIN + SQL语句；，或者去掉分号加上\G表示竖版显示。 返回：查询执行计划所包含的信息（如：id、select_type、table、type、possible_keys、key、key_len、ref、rows、">
@@ -345,6 +346,11 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
 <li>小结：后两行的type都是ref且总rows优化很好，效果不错。因此索引最好设置在经常查询的字段中。</li>
 <li>结论：<br>（1）join语句的优化：尽可能减少Join语句中的NestedLooop的循环总次数:”永远用小结果集驱动大结果集”。<br>（2）优先优化NestedLoop的内层循环。<br>（3）保证Join语句中被驱动表上Join条件字段已经被索引。<br>（4）当无法保证被驱动表的Join条件字段被索引且内存资源充足的情况下，不要太吝啬JoinBuffer的设置。</li>
 </ul>
+<h2 id="4、避免索引失效"><a href="#4、避免索引失效" class="headerlink" title="4、避免索引失效"></a>4、避免索引失效</h2><p>（1）全值匹配我最爱。<br>（2）最佳左前缀法则，并且不能跳过索引中间的列。</p>
+<ul>
+<li>如：建立索引name_age_position，查询条件没有用到name，则type类型变成ALL，且没有用到索引。若查询条件只有name，position，跳过中间的age，则导致索引没有完全被使用，key_len中只显示索引中第一个关键字的长度。<br>（3）不在索引列上做任何操作（计算、函数、（自动or手动）类型转换），会导致索引失效而转向全表扫描。<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/19.png" title="explain19">
+（4）存储引擎不能使用索引中范围条件的右边的列。<br>（5）尽量使用覆盖索引（只访问索引的查询（索引列和查询列一致）），减少select*。<br>（6）mysql在使用不等于（！=或者&lt;&gt;）的时候无法使用索引会导致全表扫描。<br>（7）is null, is not null也无法使用索引。<br>（8）like以通配符开头（’%abc…’）mysql索引失效会变成全表扫描的操作。<br>（9）字符串不加单引号索引失效。<br>（10）少用or，用它来连接时会索引失效。</li>
+</ul>
 
       
 
@@ -379,15 +385,15 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
         		</li>
       		
 		</ul>
@@ -605,6 +611,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
@@ -618,14 +632,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
               </li>
              
               <li class="article-tag-list-item">

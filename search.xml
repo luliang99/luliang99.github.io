@@ -159,16 +159,21 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
 <li>小结：后两行的type都是ref且总rows优化很好，效果不错。因此索引最好设置在经常查询的字段中。</li>
 <li>结论：<br>（1）join语句的优化：尽可能减少Join语句中的NestedLooop的循环总次数:”永远用小结果集驱动大结果集”。<br>（2）优先优化NestedLoop的内层循环。<br>（3）保证Join语句中被驱动表上Join条件字段已经被索引。<br>（4）当无法保证被驱动表的Join条件字段被索引且内存资源充足的情况下，不要太吝啬JoinBuffer的设置。</li>
 </ul>
+<h2 id="4、避免索引失效"><a href="#4、避免索引失效" class="headerlink" title="4、避免索引失效"></a>4、避免索引失效</h2><p>（1）全值匹配我最爱。<br>（2）最佳左前缀法则，并且不能跳过索引中间的列。</p>
+<ul>
+<li>如：建立索引name_age_position，查询条件没有用到name，则type类型变成ALL，且没有用到索引。若查询条件只有name，position，跳过中间的age，则导致索引没有完全被使用，key_len中只显示索引中第一个关键字的长度。<br>（3）不在索引列上做任何操作（计算、函数、（自动or手动）类型转换），会导致索引失效而转向全表扫描。<img src="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/19.png" title="explain19">
+（4）存储引擎不能使用索引中范围条件的右边的列。<br>（5）尽量使用覆盖索引（只访问索引的查询（索引列和查询列一致）），减少select*。<br>（6）mysql在使用不等于（！=或者&lt;&gt;）的时候无法使用索引会导致全表扫描。<br>（7）is null, is not null也无法使用索引。<br>（8）like以通配符开头（’%abc…’）mysql索引失效会变成全表扫描的操作。<br>（9）字符串不加单引号索引失效。<br>（10）少用or，用它来连接时会索引失效。</li>
+</ul>
 ]]></content>
       
         
         <tags>
             
+            <tag> SQL </tag>
+            
             <tag> 教程 </tag>
             
             <tag> MySQL </tag>
-            
-            <tag> SQL </tag>
             
         </tags>
         
