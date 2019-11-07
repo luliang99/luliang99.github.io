@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | 我的博客</title>
+  <title>Node-of-JavaSE（3） | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录程序员的点点滴滴~~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="Day07__继承1、继承的好处：（1）提高了代码的复用性。（2）让类与类产生关系，有了这个关系，才有了多态的特性。举例：人、学生、工人。 class Person {     String name;     int age; } class Student extends Person {     void study()     {         System.out.println(&amp;q">
+<meta name="keywords" content="学习笔记,Java,JavaSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node-of-JavaSE（3）">
+<meta property="og:url" content="http://yoursite.com/2019/10/15/Node-of-JavaSE（3）/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="记录程序员的点点滴滴~~">
+<meta property="og:description" content="Day07__继承1、继承的好处：（1）提高了代码的复用性。（2）让类与类产生关系，有了这个关系，才有了多态的特性。举例：人、学生、工人。 class Person {     String name;     int age; } class Student extends Person {     void study()     {         System.out.println(&amp;q">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-15T15:22:29.166Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="记录程序员的点点滴滴~~">
+<meta name="twitter:title" content="Node-of-JavaSE（3）">
+<meta name="twitter:description" content="Day07__继承1、继承的好处：（1）提高了代码的复用性。（2）让类与类产生关系，有了这个关系，才有了多态的特性。举例：人、学生、工人。 class Person {     String name;     int age; } class Student extends Person {     void study()     {         System.out.println(&amp;q">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -153,82 +155,335 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Node-of-JavaSE（3）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/" class="archive-article-date">
-  	<time datetime="2019-10-30T03:04:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/">Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除</a>
+    <h1 class="article-title" itemprop="name">
+      Node-of-JavaSE（3）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OkHttp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">debug</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/15/Node-of-JavaSE（3）/" class="archive-article-date">
+        
+        <a href="/2019/10/15/Node-of-JavaSE（3）/" class="archive-article-date">
   	<time datetime="2019-10-15T15:07:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/15/Node-of-JavaSE（3）/">Node-of-JavaSE（3）</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Day07-继承"><a href="#Day07-继承" class="headerlink" title="Day07__继承"></a>Day07__继承</h1><p>1、继承的好处：<br>（1）提高了代码的复用性。<br>（2）让类与类产生关系，有了这个关系，才有了多态的特性。举例：人、学生、工人。</p>
+<pre><code>class Person
+{
+    String name;
+    int age;
+}
+class Student extends Person
+{
+    void study()
+    {
+        System.out.println(&quot;good study&quot;);
+    }
+}
+class Worker extends Person
+{
+    void work()
+    {
+        System.out.println(&quot;good work&quot;);
+    }
+}</code></pre><p>2、注意：千万不要为了获取其他类的功能，简化代码而继承。必须是类与类之间有所属关系才可以继承。<br>3、Java语言中：java只支持单继承，不支持多继承。因为多继承容易带来安全隐患：当多个父类中定义了相同的功能。当功能内容不同时，子类对象不确定要运行哪一个。但是java保留了这种机制。<br>4、java支持多层继承，也就是一个继承体系。想要使用体系，先查阅体系父类的描述，因为父类中定义的是该体系中的共性功能。通过了解共性功能，就可以知道该体系的基本功能。那么这个体系几经可以基本使用了。那么在具体调用时，要创建最子类的对象。为什么呢？（1）有可能父类不能创建对象。（2）创建子类可以使用更多的功能，包括基本的和特有的。简单一句话：查阅父类功能，创建子类对象使用功能。<br>5、聚集：has a； 聚合：球队中有球员；组合：事物联系更紧密，如人体各器官。<br>6、super表示父类对象的引用；this表示子类对象的引用；</p>
+<pre><code>class Fu
+{
+    int num = 4;
+}
+class Zi extends Fu
+{
+    int num = 5;
+    void show()
+    {
+        System.out.println(super.num);//打印结果为4
+    }
+}
+class ExtendsDemo2
+{
+    public static void main(String[] args)
+    {
+        Zi z = new Zi();
+        z.show();
+    }
+}</code></pre><p>7、当子类出现和父类一模一样的函数时，当子类对象调用该函数，会运行子类函数的内容。<br>如同父类的函数被覆盖一样。<br>这种情况是函数的另一个特性：重写（覆盖）<br>8、当子类继承父类时，沿袭了父类的功能，到子类中，但是子类具备该功能，但是功能的内容却和父类不一致。这时，没必要定义新的功能，而是使用覆盖，保留父类的功能定义，并重写功能内容。如：</p>
+<pre><code>class Fu
+{
+    void speak()
+    {
+        System.out.println(“vb”);
+    }
+}
+class Zi extends Fu
+{
+    void speak()
+    {
+        System.out.println(“java”);
+    }
+}</code></pre><p>9、注意事项：（1）必须保证子类权限大于等于父类权限，才可以覆盖，否则编译失败。<br>（2）静态只能覆盖静态。<br>10、重载：只看同名函数的参数列表。重写（覆盖）：子父类方法要一模一样。<br>11、在对子类对象进行初始化时，父类的构造函数也会运行，那是因为子类的构造函数默认第一行有一条隐式的语句：super ();</p>
+<pre><code>class Fu
+{
+    Fu()
+    {
+        System.out.println(&quot;fu run&quot;);
+    }
+}
+class Zi extends Fu
+{
+    Zi()
+    {
+        //supper();
+        System.out.println(&quot;zi run&quot;);
+    }
+    Zi(int num)
+    {
+        //super();
+        System.out.println(&quot;zi....&quot; + num);
+    }
+}
+class ExtendsDemo4
+{
+    public static void main(String[] args)
+    {
+        Zi z = new Zi ();
+        Zi zi = new Zi (6);
+    }
+}</code></pre><p>运行该代码，将会显示:</p>
+<p>12、当父类中没有构造函数Fu()，只有带参数的如Fu(int num)，则子类必须显式引用，添加语句如：super(6); 且super语句必须放在子类的构造函数第一行。<br>13、为什么子类一定要访问父类中的构造函数？因为父类中的数据子类可以直接获取，所以子类对象在建立时，需要看父类对象是如何对这些数据进行初始化的。<br>14、final: 最终，作为一个修饰符，<br>（1）可以修饰类，函数，变量。<br>（2）被final修饰的类不可以被继承。为了避免被继承，被子类复写功能。<br>（3）被final修饰的方法不能被复写（重写、覆盖）。<br>（4）被final修饰的变量是一个常量只能赋值一次，既可以修饰成员变量，又可以修饰局部变量。（用于固定的数值赋值，如Π；常量的书写规范，所有字母大写如：PI）<br>（5）内部类定义在类中的局部位置上时，只能访问该局部被final修饰的局部变量。<br>15、当多个类出现相同功能，但是功能主题不同，这时可以进行向上抽取。这时，只抽取功能定义，而不抽取功能主题。<br>16、抽象：看不懂。抽象类的特点：<br>（1）抽象方法一定在抽象类中。<br>（2）抽象方法和抽象类都必须被abstract关键字修饰。<br>（3）抽象类不可以用new创建对象，因为调用抽象方法没意义。<br>（4）抽象类中的方法要被使用必须由子类复写起所有的抽象方法后，建立子类对象调用。如果子类只覆盖了部分抽象方法，那么该子类还是一个抽象类。</p>
+<pre><code>abstract class Student
+{
+    abstract void study();
+}
+class BaseStudent extends Students
+{
+    void study()
+    {
+        System.out.println(&quot;base study&quot;);
+    }
+}
+class AdvStudent extends Student
+{
+    void study()
+    {
+        System.out.println(&quot;adv study&quot;);
+    }
+}</code></pre><p>特殊：抽象类中可以不定义抽象方法，这样做仅仅时不让该类建立对象。<br>17、案例分析：加入我们在开发一个系统时要对员工进行建模，员工包含三个属性：姓名，工号，工资。经理也是员工，除了含有员工的属性外，另外还有奖金属性。使用继承的方法设计出员工类和经理类。提供必要的方法进行属性访问。</p>
+<pre><code>class Employee
+{
+    private String name;
+    private String id;
+    private double pay;
+    Employee(String name, String id, double pay)
+    {
+        this.name = name;
+        this.id = id;
+        this.pay = pay;
+    }
+    public abstract void work();
+}
+class Manager extends Employee
+{
+    private int bonus;
+    Manager(String name, String id, double pay, int bonus)
+    {
+        super(name,id,pay);
+        this.bonus = bonus;
+    }
+    public void work()
+    {
+        System.out.println(&quot;manager work&quot;);
+    }
+}
+class Pro extends Employee
+{
+    Pro(String name, String id, double pay, int bonus)
+    {
+        super(name,id,pay);
+    }
+    public void work()
+    {
+        System.out.println(&quot;Pro work&quot;);
+    }
+}</code></pre><p>18、模板方法设计模式：<br>需求：获取一段程序运行时间。<br>原理：获取程序开始和结束的时间相减即可。<br>获取时间：System.currentTimeMillis();<br>当代码完成优化后，就可以解决这类问题。<br>这种方法叫做模板方法设计模式。<br>什么是模板方法：定义功能时，功能的一部分时确定的，但是有一部分是不确定的，而确定的部分在使用不确定的部分，那么这时就将不确定的部分暴露出去，由该类的子类来完成。</p>
+<pre><code>abstract class GetTime
+{
+    public final void getTime()
+    {
+        long start = System.currentTimeMillis();
+        runcode();
+        long end = System.currentTimeMillis();
+        System.out.println(&quot;毫秒：&quot;+(end-start));
+    }
+    public abstract void runcode();
+}
+class SubTime extends GetTime
+{
+    public void runcode()
+    {
+        for (int x=0; x&lt;4000; x++)
+        {
+            System.out.print(x);
+        }
+    }
+}
+class TempLateDemo
+{
+    public static void main(String[] args)
+    {
+        //GetTime gt = new GetTime();
+        SubTime gt = new SubTime();
+        gt.getTime();
+    }
+}</code></pre><p>19、接口：可以认为是一个特殊的抽象类，当抽象类中的方法都是抽象的，那么该类可以通过接口的形式来表示，关键字：interface<br>接口定义时，格式特点：<br>1、接口中常见定义：常量、抽象方法。<br>2、接口中的成员都有固定修饰符。<br>常量：public static final int NUM =3;<br>方法：public abstract<br>记住：接口中的成员都是public的。<br>接口是不可以创建对象的，因为由抽象方法。<br>需要被子类实现，子类对接口中的抽象方法全部覆盖后，子类才可以实例化。<br>否则子类是一个抽象类。</p>
+<pre><code>interface Inter
+{
+    public static final int NUM = 3;
+    public abstract void show();
+}
+class Test implements Inter
+{
+    public void show(){}
+}
+class InterfaceTest
+{
+    public static void main(String[] args)
+    {
+        Test t = new Test();
+        Systen.out.println(t.NUM);
+        System.out.println(Test.NUM);
+        System.out.println(INTER.NUM);
+    }
+}</code></pre><p>20、接口可以被类多实现，也是对多继承不支持的转换形式。java支持多实现。</p>
+<pre><code>interface Inter
+{
+    public static final int NUM = 3;
+    public abstract void show();
+}
+interface InterA
+{
+    public abstract void show();
+}
+class Test implements Inter, InterA
+{
+    public void show(){}
+    public abstract void method(){}
+}</code></pre><p>21、接口也可以继承接口：(JAVA只有在接口与接口之间存在多继承，类与类之间只支持单继承)</p>
+<pre><code>interface A
+{
+    void methodA();
+}
+interface B extends A
+{
+    void methodB();
+}
+interface C extends B,A
+{
+    void methodC();
+}
+class D implements C
+{
+    public void methodA(){}
+    public void methodB(){}
+    public void methodC(){}
+}</code></pre><p>22、接口的特点：</p>
+<p>基本功能定义在类中，扩展功能定义在接口中：</p>
+<pre><code>abstract class Student
+{
+    abstract void study();
+    void sleep()
+    {
+        System.out.println(&quot;sleep&quot;)；
+    }
+}
+interface Smoking
+{
+    void smoke();
+}
+class ZhangSan extends Student implements Smoking
+{
+    void study(){}
+    punlic void smoke(){}
+}</code></pre><p>23、多态：事物存在的多种表现形态。如：人：男人、女人。动物：猫、狗。猫 x = new();<br>动物 x = new();</p>
+<p>Day8</p>
+<p>1、多态：可以理解为事物存在的多种体现形态。<br>多态的体现：<br>父类的引用指向了自己子类的对象。<br>父类的引用也可以接收自己的子类对象。<br>多态的前提：<br>必须是类与类之间有联系，要么继承，要么实现。<br>通常还有一个前提：存在覆盖。<br>多态的好处：<br>多态的出现大大提高了程序的扩展性。<br>多态的弊端：<br>提高了扩展性，但是只能使用父类的引用访问父类中的成员<br>多态的应用</p>
+<pre><code>abstract class Animal
+{
+    abstract void eat();
+}
+class Cat extends Animal
+{
+    public void eat()
+    {
+        System.out.println(&quot;吃鱼&quot;);
+    }
+}
+class Dog extends Animal
+{
+    public void eat()
+    {
+        System.out.println(&quot;吃骨头&quot;);
+    }
+}
+class DuoTaiDemo
+{
+    public static void main(String[] args)
+    {
+        function(new Cat());
+        function(new Dog());
+    }
+    public static void function(Animal a)
+    {
+        a.eat();
+    }
+}</code></pre><p>2、类型提升（向上转型）,如：Animal a = new Cat();<br>当想要调用猫的特有方法时，向下转型：强制将父类的引用转成子类类型：<br>Cat c = (Cat) a;  c.catchMouse();<br>可以将猫转化为动物，但是不可以将动物转化成猫。即不可以将父类转化成子类类型。<br>多态自始至终都是子类在变化。<br>3、instanceof关键字的用法，如：</p>
+<pre><code>public static void function(Animal a)
+{
+    a.eat();
+    if(a instanceof Cat)
+    {
+        System.out.println(&quot;抓老鼠&quot;);
+    }
+    if(a instanceof Dog)
+    {
+        System.out.println(&quot;看家&quot;);
+    }
+}</code></pre>
+      
 
-        <div class="article-info info-on-right">
-          
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -248,371 +503,135 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aQW7DMAwFUd//0u66CGTPJ50WpkarIIklvw1BijwOvM7F+vz1+pvPz6tTjm8sGTJkvJZxXi5ywOop/h9y7s0pMmTI2ICxOnj1mSDTAJ2GZhkyZMgg29Vel4RmGTJkyHgq4KavxXeTIUOGjFoRS8Ir/8+/1eIyZMh4IYPfuv/956/0N2TIkPEqxhmuNODyq7rWW8mQIWM0gwe4tGTle9YCrgwZMvZhdArRWjmalrjXzdGDd0RlyJDxckZteCstODmMtzN/BVwZMmRswOCjXbUQidqQpX1kyJAxm1E7uNPyrDVNEV6GDBmjGWSEi6SMKaAT1mXIkLEbo3aJ30kB0+IZ7SNDhoyhDD5O0WkGdF4RXfzJkCFjNKMTZNPhMF4Md4KyDBkypjL4A52Ri84YB/lGhgwZUxmkicgvzjrDGSRkBzMjMmTIGMfoFLFpYO2Pgi0DrgwZMjZg8BbjU+ljmg7e5LYyZMgYyki34+lgrQnaKWtlyJAxm8FTQH67lbYta+H1Js+VIUPGUAYfpOiEUY4JgrsMGTI2YPD0Li1l+T5k+GP5lAwZMoYyznDxord/0RZc5MmQIWM0gy+e3vUbAPGwhQwZMjZgkCCbHp/y0oAb3PPJkCFjEKN2EVZLInnzIAjuMmTIkBFejRUz0PCtZMiQIYMPQ/RTwAeelSFDxgYMUsSmmLQcbTUVZMiQMZpRS9TIyEX/RUkxLEOGjNGMH05ak2GzUu+AAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/" class="archive-article-date">
-  	<time datetime="2019-10-07T08:44:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL性能分析——EXPLAIN使用指南</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/">MySQL性能分析——EXPLAIN使用指南</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Node-of-JavaSE（3）" data-title="Node-of-JavaSE（3）" data-url="http://yoursite.com/2019/10/15/Node-of-JavaSE（3）/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/" class="archive-article-date">
-  	<time datetime="2019-10-06T06:29:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/">MySQL中表的横向合并(join)以及去重复字段</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践经验</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/30/MySQL使用经验/" class="archive-article-date">
-  	<time datetime="2019-09-29T17:02:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/30/MySQL使用经验/">MySQL使用经验</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/10/Node-of-JavaSE（2）/" class="archive-article-date">
-  	<time datetime="2019-09-10T03:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/Node-of-JavaSE（2）/">Node-of-JavaSE（2）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/Markdown语言使用方法概述/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/Markdown语言使用方法概述/">Markdown语言使用方法总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/Node-of-JavaSE（1）/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/Node-of-JavaSE（1）/">Node-of-JavaSE（1）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/为hexo博客设置yilia主题(教程)/" class="archive-article-date">
-  	<time datetime="2019-09-03T03:37:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/为hexo博客设置yilia主题(教程)/">为hexo博客设置yilia主题(教程)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/" class="archive-article-date">
-  	<time datetime="2019-08-27T03:19:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/">Windows下搭建hexo+Github个人博客（教程）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -635,8 +654,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

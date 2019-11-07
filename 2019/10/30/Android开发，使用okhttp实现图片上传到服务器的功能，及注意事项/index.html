@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | 我的博客</title>
+  <title>Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录程序员的点点滴滴~~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="一、源代码1、MainActivity">
+<meta name="keywords" content="Android,OkHttp,debug">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除">
+<meta property="og:url" content="http://yoursite.com/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="记录程序员的点点滴滴~~">
+<meta property="og:description" content="一、源代码1、MainActivity">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-30T04:34:11.535Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="记录程序员的点点滴滴~~">
+<meta name="twitter:title" content="Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除">
+<meta name="twitter:description" content="一、源代码1、MainActivity">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -153,36 +155,393 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/" class="archive-article-date">
-  	<time datetime="2019-10-30T03:04:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/">Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除</a>
+    <h1 class="article-title" itemprop="name">
+      Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/" class="archive-article-date">
+  	<time datetime="2019-10-30T03:04:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、源代码"><a href="#一、源代码" class="headerlink" title="一、源代码"></a>一、源代码</h1><h2 id="1、MainActivity"><a href="#1、MainActivity" class="headerlink" title="1、MainActivity"></a>1、MainActivity</h2><a id="more"></a>
+<pre><code>package com.example.image_test;
+
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class MainActivity extends AppCompatActivity {
+    private ImageView photo;
+    private String uploadFileName;
+    private byte[] fileBuf;
+    private String uploadUrl = &quot;http://192.168.3.2:8000/upload&quot;;
+    private Button button1;
+    private Button button2;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        photo = findViewById(R.id.photo);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button1.setOnClickListener(new View.OnClickListener() {
+               @Override
+            public void onClick(View v) {
+                select(v);
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    upload(v);}
+                catch(Exception e){
+                    e.printStackTrace();}
+            }
+        });
+    }
+
+    //按钮点击事件
+    public void select(View view) {
+        String[] permissions = new String[]{
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        };
+           //进行sdcard的读写请求
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, permissions, 1);
+        } else {
+            openGallery(); //打开相册，进行选择
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length &gt; 0 &amp;&amp; grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openGallery();
+                } else {
+                    Toast.makeText(this, &quot;读相册的操作被拒绝&quot;, Toast.LENGTH_LONG).show();
+                }
+        }
+    }
+
+    //打开相册,进行照片的选择
+    private void openGallery() {
+        Intent intent = new Intent(&quot;android.intent.action.GET_CONTENT&quot;);
+        intent.setType(&quot;image/*&quot;);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+                handleSelect(data);
+        }
+    }
+
+    //选择后照片的读取工作
+    private void handleSelect(Intent intent) {
+        Cursor cursor = null;
+        Uri uri = intent.getData();
+        cursor = getContentResolver().query(uri, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
+            uploadFileName = cursor.getString(columnIndex);
+        }
+        try {
+            InputStream inputStream = getContentResolver().openInputStream(uri);
+            fileBuf=convertToBytes(inputStream);
+            Log.i(&quot;aaaaa&quot;,fileBuf.toString());
+            Bitmap bitmap = BitmapFactory.decodeByteArray(fileBuf, 0, fileBuf.length);
+            photo.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        cursor.close();
+    }
+
+    //文件上传的处理
+    public void upload(View view) {
+        new Thread() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+                //上传文件域的请求体部分
+                RequestBody formBody = RequestBody
+                        .create(fileBuf, MediaType.parse(&quot;image/jpg&quot;));
+                //整个上传的请求体部分（普通表单+文件上传域）
+                RequestBody requestBody = new MultipartBody.Builder()
+                        .setType(MultipartBody.FORM)
+                        .addFormDataPart(&quot;title&quot;, &quot;Square Logo&quot;)
+                        //filename:avatar,originname:abc.jpg
+                        .addFormDataPart(&quot;avatar&quot;, uploadFileName, formBody)
+                        .build();
+                Request request = new Request.Builder()
+                        .url(uploadUrl)
+                        .post(requestBody)
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    Log.i(&quot;数据&quot;, response.body().string() + &quot;....&quot;);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+
+    private byte[] convertToBytes(InputStream inputStream) throws Exception{
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        int len = 0;
+        while ((len = inputStream.read(buf)) &gt; 0) {
+            out.write(buf, 0, len);
+        }
+        out.close();
+        inputStream.close();
+        return  out.toByteArray();
+        }
+    }</code></pre><h2 id="2、AndroidManifest"><a href="#2、AndroidManifest" class="headerlink" title="2、AndroidManifest"></a>2、AndroidManifest</h2><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.example.image_test&quot;&gt;
+    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:roundIcon=&quot;@mipmap/ic_launcher_round&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot;&gt;
+        &lt;activity android:name=&quot;.MainActivity&quot;&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;/manifest&gt;</code></pre><h2 id="3、layout-activity-main"><a href="#3、layout-activity-main" class="headerlink" title="3、layout: activity_main"></a>3、layout: activity_main</h2><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:padding=&quot;10dp&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+    &lt;ImageView
+        android:id=&quot;@+id/photo&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;0dp&quot;
+        android:layout_weight=&quot;5&quot;/&gt;
+    &lt;ImageView
+        android:id=&quot;@+id/photo2&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;0dp&quot;
+        android:layout_weight=&quot;5&quot;/&gt;
+    &lt;Button
+        android:id=&quot;@+id/button1&quot;
+        android:text=&quot;选择图片&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;/&gt;
+    &lt;Button
+        android:id=&quot;@+id/button2&quot;
+        android:text=&quot;上传图片&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;wrap_content&quot;/&gt;
+&lt;/LinearLayout&gt;</code></pre><h2 id="4、biuld-gradle：-dependencies"><a href="#4、biuld-gradle：-dependencies" class="headerlink" title="4、biuld.gradle： dependencies"></a>4、biuld.gradle： dependencies</h2><pre><code>dependencies {
+    implementation fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])
+    implementation &apos;androidx.appcompat:appcompat:1.0.2&apos;
+    implementation &apos;androidx.constraintlayout:constraintlayout:1.1.3&apos;
+    testImplementation &apos;junit:junit:4.12&apos;
+    androidTestImplementation &apos;androidx.test.ext:junit:1.1.0&apos;
+    androidTestImplementation &apos;androidx.test.espresso:espresso-core:3.1.1&apos;
+    implementation &apos;com.squareup.okhttp3:okhttp:4.2.1&apos;
+    testImplementation(&quot;com.squareup.okhttp3:mockwebserver:4.2.1&quot;)
+}</code></pre><h1 id="二、本地服务端口搭建"><a href="#二、本地服务端口搭建" class="headerlink" title="二、本地服务端口搭建"></a>二、本地服务端口搭建</h1><h2 id="1、文件结构："><a href="#1、文件结构：" class="headerlink" title="1、文件结构："></a>1、文件结构：</h2><pre><code>/
+  app.js
+  -public/
+       index.html
+      +images/ 
+  +uploads/
+  +node_modules/
+  package.json</code></pre><h2 id="2、package-json的依赖部分"><a href="#2、package-json的依赖部分" class="headerlink" title="2、package.json的依赖部分"></a>2、package.json的依赖部分</h2><pre><code>&quot;dependencies&quot;: {
+   &quot;express&quot;: &quot;^4.17.1&quot;,
+   &quot;multer&quot;: &quot;^1.4.2&quot;
+ }</code></pre><h2 id="3、app-js的内容"><a href="#3、app-js的内容" class="headerlink" title="3、app.js的内容"></a>3、app.js的内容</h2><pre><code>//app.js
+const fs=require(&apos;fs&apos;)
+const express=require(&apos;express&apos;)
+const http=require(&apos;http&apos;)
+//文件上传中间件(指定上传的临时文件夹是/uploads)
+const multer=require(&apos;multer&apos;)
+let upload = multer({ dest: &apos;uploads/&apos; })
+let app=express();
+const FILE_PATH=&quot;public/images/&quot;
+//HttpServer服务的中间件(public目录下的index.html为首页)
+app.use(express.static(&apos;public&apos;))
+//文件上传的处理（avatar是上传时的filedName）
+app.post(&apos;/upload&apos;, upload.single(&apos;avatar&apos;), function (req, res, next) {
+    //req.body是普通表单域
+    //req.file是文件域
+    let msg={
+        body:req.body,
+        file:req.file
+    }
+    //将临时文件上传到/public/images中
+    let output=fs.createWriteStream(FILE_PATH+req.file.originalname)
+    let input=fs.createReadStream(req.file.path)
+    input.pipe(output)
+    res.json(msg)
+})
+//接收前端的请求，返回上传图片的列表
+app.get(&quot;/files&quot;,function (req,res) {
+    fs.readdir(&apos;public/images&apos;,function (err,dir) {
+        res.json(dir)
+    })
+})
+//启动Express服务器
+let server=http.createServer(app);
+server.listen(8000,function () {
+    console.log(&quot;start server at port 8000&quot;)
+})</code></pre><h2 id="4、-public-index-html的内容："><a href="#4、-public-index-html的内容：" class="headerlink" title="4、/public/index.html的内容："></a>4、/public/index.html的内容：</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Title&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.bootcss.com/vue/2.6.10/vue.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        li{
+            list-style: none;
+            display: inline-block;
+        }
+        li img{
+            margin: 10px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;您上传的照片墙&lt;/h1&gt;
+    &lt;div id=&quot;app&quot;&gt;
+        &lt;ul&gt;
+            &lt;li v-for=&quot;img of images&quot;&gt;
+                &lt;img :src=&quot;&apos;images/&apos;+img&quot; alt=&quot;&quot; width=&quot;300px&quot;&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        new Vue({
+            el:&apos;#app&apos;,
+            data:{
+                images:[]
+            },
+            created(){
+                fetch(&quot;/files&quot;,{method:&apos;GET&apos;})
+                    .then(res=&gt;res.json())
+                    .then(files=&gt;{
+                        this.images.push(...files)
+                    })
+            }
+        })
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><h1 id="三、排除故障"><a href="#三、排除故障" class="headerlink" title="三、排除故障"></a>三、排除故障</h1><ul>
+<li><p>上述代码都是已经调好的准确无误的，下面写下一些debug过程之中容易遇到的一些故障及解决方式：</p>
+</li>
+<li><p>1、java.net.SocketException: Permission denied:</p>
+</li>
+</ul>
+<p>Solution：获取mac地址需要网络权限。在AndroidManifest.xml中，进行如下配置： </p>
+<pre><code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</code></pre><ul>
+<li>2、java.net.ConnectException: Failed to connect to localhost/127.0.0.1:8000：</li>
+</ul>
+<p>Solution：将本机网络地址去替代localhost就可以解决此问题。如将<a href="http://localhost:8000/upload" target="_blank" rel="noopener">http://localhost:8000/upload</a> 改成 <a href="http://192.168.3.2:8000/upload" target="_blank" rel="noopener">http://192.168.3.2:8000/upload</a><br>Ps：本机网络地址查询方式：命令行输入ipconfig，查询即可。</p>
+<ul>
+<li><p>3、出现如下错误：说明已经成功连接到本地但是，图片无法上传。</p>
+<pre><code>数据: &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;Error&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;pre&gt;Cannot POST /&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+....</code></pre></li>
+</ul>
+<p>Solution：将<a href="http://192.168.3.2:8000/" target="_blank" rel="noopener">http://192.168.3.2:8000/</a> 改成 <a href="http://192.168.3.2:8000/upload" target="_blank" rel="noopener">http://192.168.3.2:8000/upload</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -202,417 +561,126 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD50lEQVR42u3aS24bQQwFQN//0g6QrW35PZJjB0jNShhJ092lBcXP21t8vf+9Pr7OP/P+4Xr9rY+vv1r3q8+8/vzqwoEDBw4cwVG/ul5vLrm/5072lt/5Zp84cODAgeOII99iHgI3gXOG1QZdHDhw4MDxuxyzNKkNe5swv0k7ceDAgQPHz3MkYSw/WF6dS36kfUETBw4cOHDccrQFuHZDsyJjG5jzwuVBrRQHDhw4cEz6QXWh8N98/UPzHThw4MDx33M8EcCuCo5JaH+9Sn0iHDhw4MCx5piNF8wG1NriYHs/TzK/2QMOHDhw4Fhw7ENjGybz8l977H3wxoEDBw4cz3HkwwT7IYOcrB2Jy59w8CAcOHDgwBEnObMRh3bo4faQswCPAwcOHDj2HG0Zrj1wHm7bJlbelCpGH3DgwIEDx5pj1kZqU7VNc2izq7aRhgMHDhw4rjiiAbLyCft1r8Yj2rEJHDhw4MBxxTEbHcjTp1lQb/fQpnk4cODAgeMJjqRYdjvElo84tMN8+beKOIwDBw4cOGKOtuWTjzVsBhHyw+y/+8lkBw4cOHDgOOJoBxHalk9eBJz9IWiTwE/exYEDBw4ca46coB01uBpNyNPF4/YVDhw4cOAYccxGBNpC4SaUzhLF4VgDDhw4cOBYc+RJUVtG3Dy/HZho94kDBw4cOJ7mmCVU+SBa3nDKj/H4lAcOHDhw4HiMY1bUa5mSMl/bGGv/EODAgQMHjj3HLKS1RcPZ89sS5OzJn8x34MCBAweOI468JJeHtzaVypteSVhtk0YcOHDgwHHL0T6oLQImQJt0bt+4woEDBw4ce448vdmEwCLUlYncE+0rHDhw4MCx4Zh1qJIBtTZwzgYp9uEfBw4cOHDccrSlvfzO7PDJnVkjqgjAOHDgwIFjzZGX8DYhOVkr3/RsP0U7DQcOHDhwLDiSJdumUTvEkJcj850ctJpw4MCBA8eic5QkWrPQ2KZks5LivsGGAwcOHDj2HA9ORpTPSVA2QToK/zhw4MCB44hjNliQp2d50jh796wNhgMHDhw4jjjaptEsoObDDUmZsv1MFJJx4MCBA8eaI9nErPHTht4knWuBHhlowIEDBw4cQZ8lv2ZYsxJknljmof2bHwAHDhw4cFx2ed42AXI2vtAWH9uAmq+FAwcOHDhuOfKy3QyiDYR5ubBtMkU/Mw4cOHDgOOLYFwE3gxFJcG2Zhk0yHDhw4MDxqxx5GMsPdlVSnBUKceDAgQPHT3LkCds+FdyEzJYPBw4cOHA8wZEc4/Uy+ehAu+I+8StaVjhw4MCBY80xGw6YDTHkoXSWKJ6VCHHgwIEDx4TjD6tJKlxBprtEAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/15/Node-of-JavaSE（3）/" class="archive-article-date">
-  	<time datetime="2019-10-15T15:07:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/15/Node-of-JavaSE（3）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node-of-JavaSE（3）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/15/Node-of-JavaSE（3）/">Node-of-JavaSE（3）</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项" data-title="Android开发，使用okhttp实现图片上传到服务器的功能，及故障排除" data-url="http://yoursite.com/2019/10/30/Android开发，使用okhttp实现图片上传到服务器的功能，及注意事项/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/" class="archive-article-date">
-  	<time datetime="2019-10-07T08:44:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/">MySQL性能分析——EXPLAIN使用指南</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/" class="archive-article-date">
-  	<time datetime="2019-10-06T06:29:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/">MySQL中表的横向合并(join)以及去重复字段</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践经验</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/30/MySQL使用经验/" class="archive-article-date">
-  	<time datetime="2019-09-29T17:02:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/30/MySQL使用经验/">MySQL使用经验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/10/Node-of-JavaSE（2）/" class="archive-article-date">
-  	<time datetime="2019-09-10T03:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/Node-of-JavaSE（2）/">Node-of-JavaSE（2）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/Markdown语言使用方法概述/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/Markdown语言使用方法概述/">Markdown语言使用方法总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/07/Node-of-JavaSE（1）/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:18:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/07/Node-of-JavaSE（1）/">Node-of-JavaSE（1）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/03/为hexo博客设置yilia主题(教程)/" class="archive-article-date">
-  	<time datetime="2019-09-03T03:37:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/03/为hexo博客设置yilia主题(教程)/">为hexo博客设置yilia主题(教程)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/" class="archive-article-date">
-  	<time datetime="2019-08-27T03:19:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/">Windows下搭建hexo+Github个人博客（教程）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -635,8 +703,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
