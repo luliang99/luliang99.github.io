@@ -5,7 +5,9 @@
     <entry>
       <title><![CDATA[Linux下MPI并行编程环境搭建与程序测试]]></title>
       <url>/2019/12/30/Linux%E4%B8%8BMPI%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95/</url>
-      <content type="html"><![CDATA[<h2 id="一、MPI简介"><a href="#一、MPI简介" class="headerlink" title="一、MPI简介"></a>一、MPI简介</h2><p>MPI是一个跨语言的通讯协议，用于编写并行计算机。支持点对点和广播。MPI是一个信息传递应用程序接口，包括协议和和语义说明，他们指明其如何在各种实现中发挥其特性。MPI的目标是高性能，大规模性，和可移植性。MPI在今天仍为高性能计算的主要模型。<br>MPI涉及以下四种基本函数：<br>（1）MPI_Init：用来初始化MPI执行环境，建立多个MPI进程之间的联系，为后续通信做准备。<br>（2）MPI_Finalize：结束MPI执行环境。<br>（3）MPI_Comm_rank：就是来标识各个MPI进程的，告诉调用该函数的进程“我是谁”，返回整型的错误值，需要提供两个函数参数：MPI_Comm类型的通信域，标识参与计算的MPI进程组。<br>（4）MPI_Comm_size：本函数则用来标识相应进程组中有多少个进程</p>
+      <content type="html"><![CDATA[<h2 id="一、MPI简介"><a href="#一、MPI简介" class="headerlink" title="一、MPI简介"></a>一、MPI简介</h2><p>MPI是一个跨语言的通讯协议，用于编写并行计算机。支持点对点和广播。MPI是一个信息传递应用程序接口，包括协议和和语义说明，他们指明其如何在各种实现中发挥其特性。MPI的目标是高性能，大规模性，和可移植性。MPI在今天仍为高性能计算的主要模型。<br>MPI涉及以下四种基本函数：</p>
+<a id="more"></a>
+<p>（1）MPI_Init：用来初始化MPI执行环境，建立多个MPI进程之间的联系，为后续通信做准备。<br>（2）MPI_Finalize：结束MPI执行环境。<br>（3）MPI_Comm_rank：就是来标识各个MPI进程的，告诉调用该函数的进程“我是谁”，返回整型的错误值，需要提供两个函数参数：MPI_Comm类型的通信域，标识参与计算的MPI进程组。<br>（4）MPI_Comm_size：本函数则用来标识相应进程组中有多少个进程</p>
 <h2 id="二、环境配置"><a href="#二、环境配置" class="headerlink" title="二、环境配置"></a>二、环境配置</h2><h1 id="2-1系统环境准备"><a href="#2-1系统环境准备" class="headerlink" title="2.1系统环境准备"></a>2.1系统环境准备</h1><p>Windows10 + Vmware + CentOS7<br>（1）使用Vmware虚拟出一台CentOS7操作系统的Linux虚拟机。<br>（2）配置ip地址：进入网络配置文件/etc/sysconfig/network-scripts/ifcfg-ens33设置虚拟机的ip地址为192.168.3.11，如下图所示：</p>
 <img src="/2019/12/30/Linux下MPI并行编程环境搭建与程序测试/1.png" title="IP">
 <img src="/2019/12/30/Linux下MPI并行编程环境搭建与程序测试/2.png" title="IP2">
@@ -1011,11 +1013,11 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
         
         <tags>
             
-            <tag> MySQL </tag>
+            <tag> SQL </tag>
             
             <tag> 教程 </tag>
             
-            <tag> SQL </tag>
+            <tag> MySQL </tag>
             
         </tags>
         
