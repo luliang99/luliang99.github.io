@@ -6,20 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>为hexo博客设置yilia主题(教程) | 我的博客</title>
+  <title>Python+OpenCV+dlib实现视频中的人脸检测 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如今随着hexo博客的兴起，越来越多的主题随之诞生，我们可以到https://hexo.io/themes/ 上选择自己感兴趣的主题，比较经典的比如next、yilia、melody、mellow等，但是有些主题配置非常繁琐或者简单但界面一般。笔者建议选用yilia，界面、兼容性均较好。当然也可选用其他自己喜欢的主题，安装过程大同小异。">
-<meta name="keywords" content="教程,hexo,yilia">
+  <meta name="description" content="一、实验简介 1.1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。1.2、设计思路：本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用">
+<meta name="keywords" content="实践经验,计算机视觉,机器学习,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为hexo博客设置yilia主题(教程)">
-<meta property="og:url" content="http://yoursite.com/2019/09/03/为hexo博客设置yilia主题(教程)/index.html">
+<meta property="og:title" content="Python+OpenCV+dlib实现视频中的人脸检测">
+<meta property="og:url" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="如今随着hexo博客的兴起，越来越多的主题随之诞生，我们可以到https://hexo.io/themes/ 上选择自己感兴趣的主题，比较经典的比如next、yilia、melody、mellow等，但是有些主题配置非常繁琐或者简单但界面一般。笔者建议选用yilia，界面、兼容性均较好。当然也可选用其他自己喜欢的主题，安装过程大同小异。">
+<meta property="og:description" content="一、实验简介 1.1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。1.2、设计思路：本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-03T12:26:23.981Z">
+<meta property="og:image" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/6.png">
+<meta property="og:updated_time" content="2020-02-29T07:32:57.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为hexo博客设置yilia主题(教程)">
-<meta name="twitter:description" content="如今随着hexo博客的兴起，越来越多的主题随之诞生，我们可以到https://hexo.io/themes/ 上选择自己感兴趣的主题，比较经典的比如next、yilia、melody、mellow等，但是有些主题配置非常繁琐或者简单但界面一般。笔者建议选用yilia，界面、兼容性均较好。当然也可选用其他自己喜欢的主题，安装过程大同小异。">
+<meta name="twitter:title" content="Python+OpenCV+dlib实现视频中的人脸检测">
+<meta name="twitter:description" content="一、实验简介 1.1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。1.2、设计思路：本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用">
+<meta name="twitter:image" content="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/1.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -155,35 +162,125 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-为hexo博客设置yilia主题(教程)" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Python-OpenCV-dlib实现视频中的人脸检测" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      为hexo博客设置yilia主题(教程)
+      Python+OpenCV+dlib实现视频中的人脸检测
     </h1>
   
 
         
-        <a href="/2019/09/03/为hexo博客设置yilia主题(教程)/" class="archive-article-date">
-  	<time datetime="2019-09-03T03:37:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
+        <a href="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/" class="archive-article-date">
+  	<time datetime="2020-02-29T07:14:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  如今随着hexo博客的兴起，越来越多的主题随之诞生，我们可以到<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> 上选择自己感兴趣的主题，比较经典的比如next、yilia、melody、mellow等，但是有些主题配置非常繁琐或者简单但界面一般。笔者建议选用yilia，界面、兼容性均较好。当然也可选用其他自己喜欢的主题，安装过程大同小异。</p>
-<a id="more"></a>
-<hr>
-<h2 id="1-从github上拷贝yilia主题配置文件到本地"><a href="#1-从github上拷贝yilia主题配置文件到本地" class="headerlink" title="[1] 从github上拷贝yilia主题配置文件到本地"></a>[1] 从github上拷贝yilia主题配置文件到本地</h2><p>  在cmd窗口进入myblog文件夹下面，使用命令：</p>
-<pre><code>$ git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</code></pre><hr>
-<h2 id="2-配置myblog下的-config-yml文件"><a href="#2-配置myblog下的-config-yml文件" class="headerlink" title="[2] 配置myblog下的_config.yml文件"></a>[2] 配置myblog下的_config.yml文件</h2><p>  下拉到theme:行，后边填写 yilia（注意空格）<br>  为确保所有组件正常运行，在_config.yml文件的最后添加如下字段：</p>
-<blockquote>
-<p>jsonContent:<br>meta: false<br>pages: false<br>posts:<br>title: true<br>date: true<br>path: true<br>text: false<br>raw: false<br>content: false<br>slug: false<br>updated: false<br>comments: false<br>link: false<br>permalink: false<br>excerpt: false<br>categories: false<br>tags: true<br>然后就可以运行了~~</p>
-</blockquote>
+        <h1 id="一、实验简介"><a href="#一、实验简介" class="headerlink" title="一、实验简介"></a>一、实验简介</h1><hr>
+<h2 id="1-1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。"><a href="#1-1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。" class="headerlink" title="1.1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。"></a>1.1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。</h2><h2 id="1-2、设计思路：本程序使用python-opencv-dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征，-再用np-linalg-norm-descriptor1-descriptor2-计算出该截图和已保存的截图的相似度，若相似则利用cv2-Laplacian（img1，img2）-var-获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。"><a href="#1-2、设计思路：本程序使用python-opencv-dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征，-再用np-linalg-norm-descriptor1-descriptor2-计算出该截图和已保存的截图的相似度，若相似则利用cv2-Laplacian（img1，img2）-var-获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。" class="headerlink" title="1.2、设计思路：本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用np.linalg.norm(descriptor1 - descriptor2)计算出该截图和已保存的截图的相似度，若相似则利用cv2.Laplacian（img1，img2）.var()获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。"></a>1.2、设计思路：本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用np.linalg.norm(descriptor1 - descriptor2)计算出该截图和已保存的截图的相似度，若相似则利用cv2.Laplacian（img1，img2）.var()获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。</h2><h1 id="二、环境配置"><a href="#二、环境配置" class="headerlink" title="二、环境配置"></a>二、环境配置</h1><hr>
+<h2 id="2-1开发环境准备"><a href="#2-1开发环境准备" class="headerlink" title="2.1开发环境准备"></a>2.1开发环境准备</h2><p>Windows 10（专业版）的PC一台、python 3.7、opencv4.1.2.30、PyCharm 2018.3.5、visualstudio2017、cmake3.16.3、dlib19.19.0、shape_predictor_68_face_landmarks.dat、dlib_face_recognition_resnet_model_v1.dat</p>
+<h2 id="2-2-实验环境的配置流程"><a href="#2-2-实验环境的配置流程" class="headerlink" title="2.2 实验环境的配置流程"></a>2.2 实验环境的配置流程</h2><p>1、安装python3.7、pycharm2018.3.5。<br>2、在cmd中使用pip install opencv-python安装opencv4.1.2.30<br>3、安装vs2017：勾选C++桌面开发环境、python开发环境。<br>4、安装好vs2017后，添加cl路径到环境变量。<br>5、安装cmake：使用pip install cmake  安装 cmake 插件。在cmd中输入cmake，若出现以下，说明安装成功。</p>
+<img src="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/1.png" title="git">
+<p>6、安装dlib：下载dlibdlib-19.19.0压缩包，将其解压至F:/dlib19.19.0下用cd 进入到dlib文件夹的路径，然后输入python setup.py install进行安装，等待几分钟，提示dlib安装成功。<br>7、配置pycharm：打开pycharm，新建项目facedetect。在配置中将已经添加dlib的python解释器放置到该项目中。项目中解释器内含库如下：</p>
+<img src="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/2.png" title="git">
+<p>8、下载shape_predictor_68_face_landmarks.dat、dlib_face_recognition_resnet_model_v1.dat模型到项目文件夹data中去，用于人脸关键点检测以及特征检测。</p>
+<h1 id="三、程序设计"><a href="#三、程序设计" class="headerlink" title="三、程序设计"></a>三、程序设计</h1><hr>
+<h2 id="3-1-文件结构"><a href="#3-1-文件结构" class="headerlink" title="3.1 文件结构"></a>3.1 文件结构</h2><p>项目名称：facedetect；实验使用模型以及原始视频保存至data文件夹中；实验结果存储于result文件夹中；程序代码写在facedetect.py中。</p>
+<img src="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/3.png" title="git">
+<img src="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/4.png" title="git">
+<h2 id="3-2-代码设计"><a href="#3-2-代码设计" class="headerlink" title="3.2 代码设计"></a>3.2 代码设计</h2><pre><code>import cv2,os,dlib
+import numpy as np
+#识别视频中出现的人物，每个人物截取最清晰的一张，保存到figures数组
+def CatchPICFromVideo(window_name, video_path, predictor_path, face_rec_model_path):
+    detector = dlib.get_frontal_face_detector() # 创建人脸检测器
+    sp = dlib.shape_predictor(predictor_path) # 创建关键点预测器
+    facerec = dlib.face_recognition_model_v1(face_rec_model_path) #创建人脸特征识别器
+    video = cv2.VideoCapture(video_path) # 加载视频
+    cv2.namedWindow(window_name, cv2.WINDOW_KEEPRATIO) # 创建窗口
+    figures = []  # 用于存储识别的人物
+    descriptors = [] # 用于存储人物特征
+    ret,frame = video.read() # 按帧处理视频
+    count = 0 # 记录当前帧序号
+    while ret:
+        if(count % 3 == 0): # 每三帧截取一帧
+            dets = FaceDetect(frame,detector) #检测人脸，返回坐标
+            for k, d in enumerate(dets):  # k为下标，d为人脸坐标，检测当前帧中所有的人脸
+                v = DrawFace(frame,d,sp,facerec) #绘制人脸矩形框,返回人脸特征
+                if len(descriptors) == 0: # 用以存放第一张人脸
+                    descriptors.append(v)
+                    figures.append(frame)
+                else:
+                    lenth = len(descriptors)
+                    newface = True # 用以标记是否是新的人脸
+                    for i in range(lenth): #将当前截图与前面已经保存的作比较
+                        if(SimCompare(descriptors[i], v)):
+                            figures[i] = ClearCompare(frame, figures[i])
+                            newface = False
+                            break
+                    if newface: #若是新的人脸则保存
+                        descriptors.append(v)
+                        figures.append(frame)
+            cv2.imshow(window_name, frame)  # 在窗口中显示
+            index = cv2.waitKey(1)
+            if index == 27:
+                video.release()
+                cv2.destroyWindow(window_name)
+                break
+        ret,frame = video.read() #读取下一帧
+        count += 1
+    print(len(descriptors))  # 输出不同的人脸数
+    return figures
+def FaceDetect(frame,detector): #检测人脸，返回坐标
+    gray_pic = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # 转化成为灰度图像
+    dets = detector(gray_pic, 1)  # 检测图像中的人脸，返回四点坐标
+    return dets
+def DrawFace(frame,d,sp,facerec):  #绘制矩形框,返回人脸特征
+    gray_pic = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    shape = sp(gray_pic, d)  # 返回68个关键点的位置
+    cv2.rectangle(frame, (d.left(), d.top()), (d.right(), d.bottom()), (0, 255，0), 1)  # 对人脸画框
+    face_descriptor = facerec.compute_face_descriptor(frame, shape)  # 提取人脸特征
+    v = np.array(face_descriptor)
+    return v
+def SimCompare(descriptor1,descriptor2): #两张人脸特征相似度对比，距离小于0.6则认为是同一个人
+    distance = np.linalg.norm(descriptor1 - descriptor2)
+    if distance &lt; 0.6:
+        return True
+    else:
+        return False
+def ClearCompare(pic1, pic2): #两张图片的清晰度比较
+    gray_pic1 = cv2.cvtColor(pic1, cv2.COLOR_BGR2GRAY)
+    gray_pic2 = cv2.cvtColor(pic2, cv2.COLOR_BGR2GRAY)
+    if cv2.Laplacian(gray_pic1, cv2.CV_64F).var() &gt; cv2.Laplacian(gray_pic2, cv2.CV_64F).var():
+        return pic1
+    else:
+        return pic2
+def OutputToLocal(figures, output_path): # 将不同的比较清晰的人脸照片输出到本地,命名为1,2,3，...
+    num = 1
+    for figure in figures:
+        cv2.imwrite(output_path + str(num) + &quot;.jpg&quot;, figure)
+        num += 1
+if __name__ == &apos;__main__&apos;:
+    video_path = os.getcwd() + &quot;\\data\\haha.mp4&quot;  # 待识别视频路径
+    output_path = os.getcwd() + &quot;\\result\\&quot;  # 结果保存文件夹
+    predictor_path = os.getcwd() + &quot;\\data\\shape_predictor_68_face_landmarks.dat&quot;  # 用于检测人脸的关键点，比如眼睛，鼻子
+    face_rec_model_path = os.getcwd() + &quot;\\data\\dlib_face_recognition_resnet_model_v1.dat&quot;  # 用于在检测关键点的基础上，生成人脸的特征值
+    figures = CatchPICFromVideo(&quot;GetFaceFromVideo&quot;, video_path, predictor_path, face_rec_model_path)
+    OutputToLocal(figures, output_path)</code></pre><h2 id="3-3-执行结果"><a href="#3-3-执行结果" class="headerlink" title="3.3 执行结果"></a>3.3 执行结果</h2><p>运行中：</p>
+<img src="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/5.png" title="git">
+<p>运行结果：</p>
+<img src="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/6.png" title="git">
+<h1 id="四、实验总结"><a href="#四、实验总结" class="headerlink" title="四、实验总结"></a>四、实验总结</h1><hr>
+<p>1、本实验是本人第一次接触 机器学习/计算机视觉 相关方面的程序设计，代码设计稍显稚嫩，整体架构稍显不足，但途中查阅了不少相关文档，提高了本人的程序设计能力，以及对计算机视觉方面的了解。</p>
+<p>2、本实验通过不断的整改，能较好完成人脸的识别、获取较为清晰的人脸截图。但仍存在诸多不足之处：首先，由于计算量庞大，使得程序运行速度稍慢，影响用户体验；其次，人脸相似度对比方面识别度一般，比如同一个人在不同表情或光线下会被认为是两个人。本人试过调整人脸距离阈值，但效果依然不理想。</p>
+<p>3、希望在以后的学习工作生涯中能不断丰富专业知识，不断完善整改此项目，尤其在人脸对比的算法，以及程序性能方面能做的更好。</p>
+<h1 id="五、源代码"><a href="#五、源代码" class="headerlink" title="五、源代码"></a>五、源代码</h1><hr>
+<p>链接：<a href="https://pan.baidu.com/s/1CAFBduNjfKZmC_uRDccCkw" target="_blank" rel="noopener">https://pan.baidu.com/s/1CAFBduNjfKZmC_uRDccCkw</a><br>提取码：s31w</p>
 
       
 
@@ -218,15 +315,19 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践经验</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机视觉</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -282,7 +383,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACv0lEQVR42u3aS47bQAwFQN//0hMgW1vCe2wxngCllSHr06VFkyD5esXHz9/j/ffVNe/n3/9NnvPzdrw2Djw8PLzR0q+OqyUmmPsn5B8oYV8+Hw8PD2+NlweDe0Cy0BNSHZzw8PDwvspLNvr7AHCfWOdJOR4eHt7/yGsT3/MAg4eHh/fbeEkxIi83zMoKLfvhWgseHh5ezDtpgH3r9z/q7+Hh4eGVXfW8JZaMBbQNtjYYfHgyHh4e3gKvHXJKzidJcBsAjgYa8PDw8NZ4ydafJ7j5UtoyR95sw8PDw9vj5Q3+fPtOBgVOQkvRAMPDw8N7lNemyO0STxL09poP1+Ph4eEt8B4bCT1gt6Xe4VgYHh4e3kO8p4q256l2O7aFh4eH9y3ebBF5y6qthSSwpBhxlFLj4eHh3f47S1tnyXRbRDgJV8O6Mh4eHl7Ja1PY7QCQDyJEsQ4PDw9vjZcAZqNUs8Q9b4O98voxHh4e3gHvBNm+OC/1Ptzfw8PDw1vrrd/f0JYGkkXk54eBCg8PD2+B16anCb4dscrHEdrr8fDw8LZ5+SabL2X2yWZFiuiNeHh4eI/y2o04SXNnASNnFO03PDw8vId4s0fnwwGzIsIsNb8s4+Lh4eEt8M637HZMqh2uGrbN8PDw8NZ4bTDI75qVNmbDBx/O4+Hh4S3w2iR4Vh09b3q15Q88PDy8PV7b4pqVBvLRgXxIK0rx8fDw8BZ4sxJDm9S2SXO0xKCQgYeHh7fBmwWAWYmh/TR5kn35ZDw8PLwFXrvtto2utkych6JZkRcPDw/vKV4eDNqQ0C6lHRSI3oiHh4e3xssT3HaUqt3uT5754S48PDy8X8DLl5gk07OCRR428PDw8L7LOxm9mg1jHcHw8PDwlnnnxYi8LHs+jFV8Gjw8PLwF3qwBdl9E2CgBJ298bHQADw8P7/N7/wD0gtpPPDBXjwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3aQY4iMQwF0L7/pWekWbVEE77tGHqkVytUUEVeFrFl++srvv78u75//n49/vLx/vnZ6v3LFx4eHl5r6c+u82/O+Mdvn91J7ifr+eENeHh4eGu8JBgkoWIecvJAEm0QHh4e3kd5vVBx/q88QcfDw8P7f3nnAJB8m6fgyWc8PDy8T/GqB31vEUkJo1ryuFZrwcPDw4t5k5LBpz6v9/fw8PDwWl316lU9+vNiRG+1eHh4eBu83kBVtaxwoaDQej8eHh7eNi9vbuWLqDa0quNf5cQaDw8P7yovb1/1BrPOi6uWa0dxDw8PD2/Ay4/vaqspX9bo0D+HHDw8PLw1Xm+sqjoukJct8iT+xdbg4eHhvZE3KpsG21E43It1Bjw8PLxtXs7ISxXVgNFrgF2rUuPh4eG1eL1jet4eywu4vcQdDw8Pb5uXP9wrYVTbabdGHPDw8PD2eBNqNR2vtr6SIsi1MSw8PDy8mDdpPuXJcXW4Kk+pXyDx8PDw1nhJAKgm0PlxPylJvFgbHh4e3lVe71DO8dW0e/LOHzYUDw8P7ypvkrxOOvVJGJgMaeHh4eFt86rF2V4RdjLF0BwLw8PDw1vg5Qd3EkJ67fx8tKsacvDw8PA2eNV0dpLyJiXaaiuuUJnGw8PDW+Dl7av8KJ80+ydBAg8PD2+PN0+vz3+wV+A4bwEeHh7eHi8vLlSLrb3xgjxpTjYLDw8Pb4N3PtCriXWSBFcZ1dGE6Gs8PDy8Aa93iOf5ar59vRT8RWkYDw8Pb4HXO3aryXF1I6pBZQTDw8PDa/HyYsFkFKCXZOetNTw8PLz386rBoJdeX2v/5wNheHh4eL+AVy09vDPVfjpAgIeHh/ch3q2GWd4MS4LKiw3Cw8PDW+PlxYhewp2Xg1dSajw8PLyrvF4DbI6cP3thaAAPDw+vxvsLVxPaT2ZKrLMAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,18 +397,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/07/Node-of-JavaSE（1）/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Node-of-JavaSE（1）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/27/Windows下搭建hexo-Github个人博客（教程）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Windows下搭建hexo+Github个人博客（教程）</div>
+    <a href="/2019/12/30/Linux下MPI并行编程环境搭建与程序测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux下MPI并行编程环境搭建与程序测试</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -335,7 +427,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="为hexo博客设置yilia主题(教程)" data-title="为hexo博客设置yilia主题(教程)" data-url="http://yoursite.com/2019/09/03/为hexo博客设置yilia主题(教程)/"></div>
+	<div class="ds-thread" data-thread-key="Python-OpenCV-dlib实现视频中的人脸检测" data-title="Python+OpenCV+dlib实现视频中的人脸检测" data-url="http://yoursite.com/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
