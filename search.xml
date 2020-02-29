@@ -6,7 +6,10 @@
       <title><![CDATA[Python+OpenCV+dlib实现视频中的人脸检测]]></title>
       <url>/2020/02/29/Python-OpenCV-dlib%E5%AE%9E%E7%8E%B0%E8%A7%86%E9%A2%91%E4%B8%AD%E7%9A%84%E4%BA%BA%E8%84%B8%E6%A3%80%E6%B5%8B/</url>
       <content type="html"><![CDATA[<h1 id="一、实验简介"><a href="#一、实验简介" class="headerlink" title="一、实验简介"></a>一、实验简介</h1><hr>
-<h2 id="1-1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。"><a href="#1-1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。" class="headerlink" title="1.1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。"></a>1.1、功能简介：本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。</h2><h2 id="1-2、设计思路：本程序使用python-opencv-dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征，-再用np-linalg-norm-descriptor1-descriptor2-计算出该截图和已保存的截图的相似度，若相似则利用cv2-Laplacian（img1，img2）-var-获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。"><a href="#1-2、设计思路：本程序使用python-opencv-dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征，-再用np-linalg-norm-descriptor1-descriptor2-计算出该截图和已保存的截图的相似度，若相似则利用cv2-Laplacian（img1，img2）-var-获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。" class="headerlink" title="1.2、设计思路：本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用np.linalg.norm(descriptor1 - descriptor2)计算出该截图和已保存的截图的相似度，若相似则利用cv2.Laplacian（img1，img2）.var()获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。"></a>1.2、设计思路：本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用np.linalg.norm(descriptor1 - descriptor2)计算出该截图和已保存的截图的相似度，若相似则利用cv2.Laplacian（img1，img2）.var()获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。</h2><h1 id="二、环境配置"><a href="#二、环境配置" class="headerlink" title="二、环境配置"></a>二、环境配置</h1><hr>
+<h2 id="1-1、功能简介"><a href="#1-1、功能简介" class="headerlink" title="1.1、功能简介"></a>1.1、功能简介</h2><p>本实验使用python语言，结合opencv工具，dlib模型实现视频中的人脸检测，并分析截取的人脸的清晰度、以及相似度，最终挑选出视频中出现的每个人的最清晰的一张图片保存到本地文件夹中。</p>
+<a id="more"></a>
+<h2 id="1-2、设计思路"><a href="#1-2、设计思路" class="headerlink" title="1.2、设计思路"></a>1.2、设计思路</h2><p>本程序使用python+opencv+dlib进行开发，使用opencv加载已保存的视频，再使用dlib中的predictor和model获取人脸及其特征， 再用np.linalg.norm(descriptor1 - descriptor2)计算出该截图和已保存的截图的相似度，若相似则利用cv2.Laplacian（img1，img2）.var()获取较清晰的一张进行保存，如果不相似则直接保存，最后将识别的结果保存至本地。</p>
+<h1 id="二、环境配置"><a href="#二、环境配置" class="headerlink" title="二、环境配置"></a>二、环境配置</h1><hr>
 <h2 id="2-1开发环境准备"><a href="#2-1开发环境准备" class="headerlink" title="2.1开发环境准备"></a>2.1开发环境准备</h2><p>Windows 10（专业版）的PC一台、python 3.7、opencv4.1.2.30、PyCharm 2018.3.5、visualstudio2017、cmake3.16.3、dlib19.19.0、shape_predictor_68_face_landmarks.dat、dlib_face_recognition_resnet_model_v1.dat</p>
 <h2 id="2-2-实验环境的配置流程"><a href="#2-2-实验环境的配置流程" class="headerlink" title="2.2 实验环境的配置流程"></a>2.2 实验环境的配置流程</h2><p>1、安装python3.7、pycharm2018.3.5。<br>2、在cmd中使用pip install opencv-python安装opencv4.1.2.30<br>3、安装vs2017：勾选C++桌面开发环境、python开发环境。<br>4、安装好vs2017后，添加cl路径到环境变量。<br>5、安装cmake：使用pip install cmake  安装 cmake 插件。在cmd中输入cmake，若出现以下，说明安装成功。</p>
 <img src="/2020/02/29/Python-OpenCV-dlib实现视频中的人脸检测/1.png" title="git">
@@ -1134,9 +1137,9 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
             
             <tag> 教程 </tag>
             
-            <tag> SQL </tag>
-            
             <tag> MySQL </tag>
+            
+            <tag> SQL </tag>
             
         </tags>
         
