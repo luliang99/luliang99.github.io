@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>springboot项目测试时出现resolving maven dependencies...下载缓慢的现象 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天用idea在学习springboot日志的时候使用测试类测试日志的输出： 12345678910111213141516@RunWith(SpringRunner.class)@SpringBootTestclass SpringBoot03LoggingApplicationTests &amp;#123;    //记录器    Logger logger = LoggerFactory.getL">
+  <meta name="description" content="今天用idea在学习springboot日志的时候使用测试类测试日志的输出：">
 <meta name="keywords" content="debug,springboot,maven,idea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot项目测试时出现resolving maven dependencies...下载缓慢的现象">
 <meta property="og:url" content="http://yoursite.com/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="今天用idea在学习springboot日志的时候使用测试类测试日志的输出： 12345678910111213141516@RunWith(SpringRunner.class)@SpringBootTestclass SpringBoot03LoggingApplicationTests &amp;#123;    //记录器    Logger logger = LoggerFactory.getL">
+<meta property="og:description" content="今天用idea在学习springboot日志的时候使用测试类测试日志的输出：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/1.png">
-<meta property="og:updated_time" content="2020-04-02T11:13:19.792Z">
+<meta property="og:updated_time" content="2020-04-02T11:16:58.964Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="springboot项目测试时出现resolving maven dependencies...下载缓慢的现象">
-<meta name="twitter:description" content="今天用idea在学习springboot日志的时候使用测试类测试日志的输出： 12345678910111213141516@RunWith(SpringRunner.class)@SpringBootTestclass SpringBoot03LoggingApplicationTests &amp;#123;    //记录器    Logger logger = LoggerFactory.getL">
+<meta name="twitter:description" content="今天用idea在学习springboot日志的时候使用测试类测试日志的输出：">
 <meta name="twitter:image" content="http://yoursite.com/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/1.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -178,6 +178,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天用idea在学习springboot日志的时候使用测试类测试日志的输出：</p>
+<a id="more"></a>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpringBoot03LoggingApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//记录器</span></span><br><span class="line">    Logger logger = LoggerFactory.getLogger(getClass());</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//日志的级别：由低到高</span></span><br><span class="line">        logger.trace(<span class="string">"这是trace日志..."</span>);</span><br><span class="line">        logger.debug(<span class="string">"这是debug日志..."</span>);</span><br><span class="line">        logger.info(<span class="string">"这是info日志..."</span>);</span><br><span class="line">        logger.warn(<span class="string">"这是warn日志..."</span>);</span><br><span class="line">        logger.error(<span class="string">"这是error日志..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>结果卡死在maven下载相关资源时候的状态，类似下图：</p>
@@ -484,14 +486,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -504,11 +498,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
+                <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,6 +511,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,10 +546,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">debug</a>
               </li>
              
@@ -561,6 +559,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
               </li>
              
               <li class="article-tag-list-item">

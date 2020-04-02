@@ -6,6 +6,8 @@
       <title><![CDATA[springboot项目测试时出现resolving maven dependencies...下载缓慢的现象]]></title>
       <url>/2020/04/02/springboot%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E6%97%B6%E5%87%BA%E7%8E%B0resolving-maven-dependencies-%E4%B8%8B%E8%BD%BD%E7%BC%93%E6%85%A2%E7%9A%84%E7%8E%B0%E8%B1%A1/</url>
       <content type="html"><![CDATA[<p>今天用idea在学习springboot日志的时候使用测试类测试日志的输出：</p>
+<a id="more"></a>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpringBoot03LoggingApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//记录器</span></span><br><span class="line">    Logger logger = LoggerFactory.getLogger(getClass());</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//日志的级别：由低到高</span></span><br><span class="line">        logger.trace(<span class="string">"这是trace日志..."</span>);</span><br><span class="line">        logger.debug(<span class="string">"这是debug日志..."</span>);</span><br><span class="line">        logger.info(<span class="string">"这是info日志..."</span>);</span><br><span class="line">        logger.warn(<span class="string">"这是warn日志..."</span>);</span><br><span class="line">        logger.error(<span class="string">"这是error日志..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>结果卡死在maven下载相关资源时候的状态，类似下图：</p>
@@ -2499,9 +2501,9 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
             
             <tag> 教程 </tag>
             
-            <tag> SQL </tag>
-            
             <tag> MySQL </tag>
+            
+            <tag> SQL </tag>
             
         </tags>
         
