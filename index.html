@@ -155,6 +155,218 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/">springboot项目测试时出现resolving maven dependencies...下载缓慢的现象</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/" class="archive-article-date">
+  	<time datetime="2020-04-02T10:30:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天用idea在学习springboot日志的时候使用测试类测试日志的输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpringBoot03LoggingApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//记录器</span></span><br><span class="line">    Logger logger = LoggerFactory.getLogger(getClass());</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//日志的级别：由低到高</span></span><br><span class="line">        logger.trace(<span class="string">"这是trace日志..."</span>);</span><br><span class="line">        logger.debug(<span class="string">"这是debug日志..."</span>);</span><br><span class="line">        logger.info(<span class="string">"这是info日志..."</span>);</span><br><span class="line">        logger.warn(<span class="string">"这是warn日志..."</span>);</span><br><span class="line">        logger.error(<span class="string">"这是error日志..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果卡死在maven下载相关资源时候的状态，类似下图：</p>
+<img src="/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/1.png" title="idealoading">
+
+<p>当时用的版本是：</p>
+<ul>
+<li><p>idea_2019.3.4</p>
+</li>
+<li><p>maven_1.5.9</p>
+</li>
+</ul>
+<p>经过网上查询，可能是资源直接从国外下载，导致缓慢，因此在maven的settings.xml中导入了阿里云镜像：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 阿里云仓库 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/repositories/central/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- 中央仓库1 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo1<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">name</span>&gt;</span>Human Readable Name for this Mirror.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo1.maven.org/maven2/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- 中央仓库2 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">id</span>&gt;</span>repo2<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">name</span>&gt;</span>Human Readable Name for this Mirror.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo2.maven.org/maven2/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>并且将idea之中的<strong>settings- &gt; … -&gt; maven -&gt; import 中的VM options for importer</strong>项参数改为：</p>
+<ul>
+<li>-Xms1024m -Xmx2048m</li>
+</ul>
+<p>下载速度有所改观，但是还是卡在了相关资某一项的下载。</p>
+<p>于是我了解到可能是maven版本过低的问题，因此我从网上下载了<strong>apache-maven-3.6.3</strong>版本的maven，</p>
+<p>重新修改了环境变量：</p>
+<ul>
+<li>MAVEN_HOME</li>
+<li>F:\java-SpringBoot\apache-maven-3.6.3</li>
+</ul>
+<p>接着重新修改了新maven中的settings.xml：</p>
+<ul>
+<li>修改默认的jdk1.4版本到我的jdk1.8版本：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line"> 	 <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line"> 	 <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加上述的阿里云仓库</li>
+</ul>
+<p>然后在idea环境中配置了新的maven的文件夹、settings.xml、repository所在地址，</p>
+<p>最后运行测试类，发现成功输出了日志：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">18</span>:<span class="number">24</span>:<span class="number">21.422</span> TRACE <span class="number">13100</span> --- [           main] .a.s.SpringBoot03LoggingApplicationTests : 这是trace日志...</span><br><span class="line"><span class="number">2020</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">18</span>:<span class="number">24</span>:<span class="number">21.422</span> DEBUG <span class="number">13100</span> --- [           main] .a.s.SpringBoot03LoggingApplicationTests : 这是debug日志...</span><br><span class="line"><span class="number">2020</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">18</span>:<span class="number">24</span>:<span class="number">21.422</span>  INFO <span class="number">13100</span> --- [           main] .a.s.SpringBoot03LoggingApplicationTests : 这是info日志...</span><br><span class="line"><span class="number">2020</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">18</span>:<span class="number">24</span>:<span class="number">21.422</span>  WARN <span class="number">13100</span> --- [           main] .a.s.SpringBoot03LoggingApplicationTests : 这是warn日志...</span><br><span class="line"><span class="number">2020</span>-<span class="number">04</span>-<span class="number">02</span> <span class="number">18</span>:<span class="number">24</span>:<span class="number">21.422</span> ERROR <span class="number">13100</span> --- [           main] .a.s.SpringBoot03LoggingApplicationTests : 这是error日志...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>总结：主要原因是maven版本太老，换到新的版本即可；同时增加阿里云镜像以及修改VM options for importer参数都可加快下载速度。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">debug</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">springboot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">idea</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java面试必备知识点01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/20/Java面试必备知识点01/">Java面试必备知识点01</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/20/Java面试必备知识点01/" class="archive-article-date">
+  	<time datetime="2020-03-20T01:57:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-变量自增"><a href="#1-变量自增" class="headerlink" title="[1]变量自增"></a>[1]变量自增</h2><ul>
+<li>问：求以下代码的输出结果：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">		i = i++;</span><br><span class="line">		<span class="keyword">int</span> j = i++;</span><br><span class="line">		<span class="keyword">int</span> k = i + ++i * i++;</span><br><span class="line">		System.out.println(<span class="string">"i="</span> + i);</span><br><span class="line">		System.out.println(<span class="string">"j="</span> + j);</span><br><span class="line">		System.out.println(<span class="string">"k="</span> + k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+        
+          <a class="article-more-a" href="/2020/03/20/Java面试必备知识点01/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/20/Java面试必备知识点01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-尚硅谷-SpringBoot学习笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -452,15 +664,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">debug</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OkHttp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">debug</a>
         		</li>
       		
 		</ul>
@@ -624,15 +836,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
         		</li>
       		
 		</ul>
@@ -836,177 +1048,6 @@
 
 
   
-    <article id="post-Node-of-JavaSE（2）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/Node-of-JavaSE（2）/">Node-of-JavaSE（2）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/Node-of-JavaSE（2）/" class="archive-article-date">
-  	<time datetime="2019-09-10T03:55:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Day05-面向对象"><a href="#Day05-面向对象" class="headerlink" title="Day05__面向对象"></a>Day05__面向对象</h1><hr>
-<p>1、面向对象：封装、继承、多态<br>2、属性：类中的变量，行为：类中的的函数（方法）<br>3、内存存放原理：</p>
-        
-          <a class="article-more-a" href="/2019/09/10/Node-of-JavaSE（2）/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习笔记</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/Node-of-JavaSE（2）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Markdown语言使用方法概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/07/Markdown语言使用方法概述/">Markdown语言使用方法总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/07/Markdown语言使用方法概述/" class="archive-article-date">
-  	<time datetime="2019-09-07T08:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、标题的设置"><a href="#一、标题的设置" class="headerlink" title="一、标题的设置"></a>一、标题的设置</h2><p>标题使用若干个#来表示，有多少#就表示几级标题，#越多级别越小，字体越小，如：</p>
-<pre><code># title1
-## title2
-### title3
-#### title4
-##### title5
-###### title6</code></pre>
-        
-          <a class="article-more-a" href="/2019/09/07/Markdown语言使用方法概述/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/07/Markdown语言使用方法概述/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1104,6 +1145,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">教程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -1129,14 +1178,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1168,15 +1209,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">debug</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Android</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">debug</a>
               </li>
              
               <li class="article-tag-list-item">
