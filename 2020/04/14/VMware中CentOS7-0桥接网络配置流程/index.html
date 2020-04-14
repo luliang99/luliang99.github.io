@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: MPI | 我的博客</title>
+  <title>VMware中CentOS7.0桥接网络配置流程 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录程序员的点点滴滴~~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://yoursite.com/tags/MPI/index.html">
+  <meta name="description" content="一、桥接模式概述什么是桥接模式？桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。其网络结">
+<meta name="keywords" content="Linux,CentOS,计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VMware中CentOS7.0桥接网络配置流程">
+<meta property="og:url" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="记录程序员的点点滴滴~~">
+<meta property="og:description" content="一、桥接模式概述什么是桥接模式？桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。其网络结">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/6.png">
+<meta property="og:updated_time" content="2020-04-14T11:55:28.082Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="记录程序员的点点滴滴~~">
+<meta name="twitter:title" content="VMware中CentOS7.0桥接网络配置流程">
+<meta name="twitter:description" content="一、桥接模式概述什么是桥接模式？桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。其网络结">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/1.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -153,36 +162,98 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-VMware中CentOS7-0桥接网络配置流程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/30/Linux下MPI并行编程环境搭建与程序测试/" class="archive-article-date">
-  	<time datetime="2019-12-30T10:17:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/30/Linux下MPI并行编程环境搭建与程序测试/">Linux下MPI并行编程环境搭建与程序测试</a>
+    <h1 class="article-title" itemprop="name">
+      VMware中CentOS7.0桥接网络配置流程
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/" class="archive-article-date">
+  	<time datetime="2020-04-14T09:34:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、桥接模式概述"><a href="#一、桥接模式概述" class="headerlink" title="一、桥接模式概述"></a>一、桥接模式概述</h3><p>什么是桥接模式？桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。其网络结构如下图所示：</p>
+<a id="more"></a>
+
+<img src="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/1.png" title="Bridged">
+
+<p>了解完成后，就开始配置吧：</p>
+<h3 id="二、查看本机的ip地址、网关、DNS等信息"><a href="#二、查看本机的ip地址、网关、DNS等信息" class="headerlink" title="二、查看本机的ip地址、网关、DNS等信息"></a>二、查看本机的ip地址、网关、DNS等信息</h3><ul>
+<li>win10系统以此进入<strong>控制面板\所有控制面板项\网络和共享中心</strong>，点击已连接的网络，在新窗口下点击详细信息，即可查看本机的ip地址、网关、DNS等信息。</li>
+<li>或者也可以在cmd命令行下输入ipconfig进行查看。</li>
+</ul>
+<img src="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/2.png" title="ipconfig">
+
+<h3 id="三、CentOS系统下配置网络相关信息"><a href="#三、CentOS系统下配置网络相关信息" class="headerlink" title="三、CentOS系统下配置网络相关信息"></a>三、CentOS系统下配置网络相关信息</h3><ul>
+<li>进入系统编辑网卡配置文件，进入地址/etc/sysconfig/network-scripts。</li>
+<li>使用vi ifcfg-ens33，配置ifcfg-ens33文件（不同的虚拟机此配置文件的名称不同）</li>
+</ul>
+<img src="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/3.png" title="ipvi">
+
+<ul>
+<li>进入配置文件后，键入 i 键进行编辑，配置好后按Esc再键入”:wq!”保存退出，配置信息如下图红框：</li>
+</ul>
+<img src="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/4.png" title="ipconfig2">
+
+<ul>
+<li>说明：<ul>
+<li>IPADDR表示虚拟机的ip地址，网段和主机一样（即最后一个数字与主机不同）</li>
+<li>NETMASK表示子网掩码。</li>
+<li>GATEWAY表示虚拟网关，和主机相同。</li>
+<li>DNS1表示虚拟机的DNS，和主机相同。</li>
+<li>注意：要将ONBOOT设置为yes，不然不能激活网卡无法连网。</li>
+</ul>
+</li>
+</ul>
+<h3 id="四、测试外网连接状况"><a href="#四、测试外网连接状况" class="headerlink" title="四、测试外网连接状况"></a>四、测试外网连接状况</h3><ul>
+<li>输入红框中的代码，用来进行重启虚拟机网卡，然后ping一下百度，若是有进行数据传输，则说明外网连接成功。</li>
+</ul>
+<img src="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/5.png" title="ipcgtest2">
+
+<h3 id="五、测试内网连接状况"><a href="#五、测试内网连接状况" class="headerlink" title="五、测试内网连接状况"></a>五、测试内网连接状况</h3><ul>
+<li>可以使用Xshell工具对虚拟机进行连接，若出现如下Connection established表示连接成功！</li>
+</ul>
+<img src="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/6.png" title="ipcgtest3">
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -192,29 +263,136 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MPI</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CentOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并行编程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3awU4kMQwE0Pn/n96V9spOU2UnMIfXJzRAd16QOqbs1yu+/vy7vn7y/Hl+fX3K83cPX3h4eHijpbcPTu6WLDrHvLvPuzXj4eHh3eY9HwY5uMU8P73dYjw8PLxP481+5nm5SaGcl9d4eHh4n8ZrX9bPv5XcHw8PD++TeUkYMQsIZilrvkHHshY8PDy8mNc2wD7h64v9PTw8PLxFV70NW9sxgjYCrleLh4eHd4GXNOlnUeysNM8XnccTeHh4eGd5bcCaR7r1Hgfb3T4XDw8P7wYvOQw28Wu76JadHF14eHh4Z3mzf/43A1ttRJtEIXh4eHi/xauHmeLoYTbCNRtZWKUseHh4eAGvffnmgNlGJJvYDjfg4eHhneXlcUALy9tX7chCUejj4eHhXeAlhXV+o9lCX6MrXyEeHh7eWd4mPkiC13YooY19oxgXDw8P7yhvVjrnZW67iLbdVR8weHh4eGte/rqfxQFtGb0fTcDDw8P7GV4O2Le+2pB3dpy8HbrCw8PDO8SbYTaHSv6iX+Hx8PDwLvCS1+s+2N0UzZuQFw8PD+8GbzZ0tW9itcNYyR/gP7+Fh4eHd4G3754lzbBTzbPhiYeHh4d3lJe8attit32hn+1VvS2p8fDw8I7y2sC0LZpnoUPeSPsmX8HDw8O7xpu1qfJYoW2J5UfONzEuHh4e3lHeqQGCff+tLeWLDcXDw8M7ysvb/7PP29ba5th4tfuBh4eHd5Q3a+HnBfF+dODYiYeHh4e3TQb6l+9igGATBA8ZeHh4eId4+4GnZ97s882WFacfHh4e3oI3a3c9x7izpbcjBd/cHw8PD+9Xec+La2va2RFyZfQKDw8P70d4sxGBvEmWl/hRVo2Hh4d3gXe26ZVvUD5oNdt6PDw8vBu8tgE2ixtmpXZLPdDfw8PDw3t61l/DMdB1Stb7oAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/04/02/springboot项目测试时出现resolving-maven-dependencies-下载缓慢的现象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">springboot项目测试时出现resolving maven dependencies...下载缓慢的现象</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="VMware中CentOS7-0桥接网络配置流程" data-title="VMware中CentOS7.0桥接网络配置流程" data-url="http://yoursite.com/2020/04/14/VMware中CentOS7-0桥接网络配置流程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -237,9 +415,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
