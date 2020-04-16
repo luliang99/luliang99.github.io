@@ -3,6 +3,53 @@
   
     
     <entry>
+      <title><![CDATA[CentOS下使用docker创建tomcat容器并添加端口映射，访问时出现404的解决方案]]></title>
+      <url>/2020/04/16/CentOS%E4%B8%8B%E4%BD%BF%E7%94%A8docker%E5%88%9B%E5%BB%BAtomcat%E5%AE%B9%E5%99%A8%E5%B9%B6%E6%B7%BB%E5%8A%A0%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%EF%BC%8C%E8%AE%BF%E9%97%AE%E6%97%B6%E5%87%BA%E7%8E%B0404%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      <content type="html"><![CDATA[<ul>
+<li>分析：CentOS下使用docker创建tomcat容器并添加端口映射，访问时出现404，极大可能是tomcat版本过高，webapps下没有tomcat的首页的页面。</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>解决方法1：移除原tomcat镜像，下载一个低版本的tmocat，如8.0.35版，或更低。</p>
+</li>
+<li><p>解决方法2：移除webapps文件夹，并且把webapps.dist文件名字修改为webapps。</p>
+</li>
+<li><p>方法2的具体步骤：</p>
+<ol>
+<li>启动添加端口映射的容器：使用 <strong>docker ps -a</strong> 查看所有容器名单，再使用 <strong>docker start 容器的id</strong> 命令启动容器。</li>
+</ol>
+<img src="/2020/04/16/CentOS下使用docker创建tomcat容器并添加端口映射，访问时出现404的解决方案/1.png" title="docker1">
+
+<ol start="2">
+<li>使用 <strong>docker exec -it 容器id /bin/bash</strong> 命令进入容器内部。</li>
+<li>使用 <strong>rmdir webapps</strong> 移除webapps文件。</li>
+<li>使用 <strong>mv webapps.dist webapps</strong> 将webapps.dist文件重命名为webapps。</li>
+<li>使用 <strong>exit</strong> 退出容器内部。</li>
+</ol>
+<img src="/2020/04/16/CentOS下使用docker创建tomcat容器并添加端口映射，访问时出现404的解决方案/2.png" title="docker2">
+
+<ol start="6">
+<li>测试：使用 <strong>ip地址:端口号</strong> 在浏览器内进行测试，如输入<a href="http://192.168.3.11:8888/" target="_blank" rel="noopener">http://192.168.3.11:8888/</a> ,若出现tomcat首页，则成功解决。</li>
+</ol>
+<img src="/2020/04/16/CentOS下使用docker创建tomcat容器并添加端口映射，访问时出现404的解决方案/3.png" title="docker3"></li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> debug </tag>
+            
+            <tag> CentOS </tag>
+            
+            <tag> docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[VMware中CentOS7.0桥接网络配置流程]]></title>
       <url>/2020/04/14/VMware%E4%B8%ADCentOS7-0%E6%A1%A5%E6%8E%A5%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B/</url>
       <content type="html"><![CDATA[<h3 id="一、桥接模式概述"><a href="#一、桥接模式概述" class="headerlink" title="一、桥接模式概述"></a>一、桥接模式概述</h3><p>什么是桥接模式？桥接模式就是将主机网卡与虚拟机虚拟的网卡利用虚拟网桥进行通信。在桥接的作用下，类似于把物理主机虚拟为一个交换机，所有桥接设置的虚拟机连接到这个交换机的一个接口上，物理主机也同样插在这个交换机当中，所以所有桥接下的网卡与网卡都是交换模式的，相互可以访问而不干扰。在桥接模式下，虚拟机ip地址需要与主机在同一个网段，如果需要联网，则网关与DNS需要与主机网卡一致。其网络结构如下图所示：</p>
@@ -53,9 +100,9 @@
         
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> CentOS </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 计算机网络 </tag>
             
@@ -2339,9 +2386,9 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
         
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> MySQL </tag>
+            
+            <tag> 教程 </tag>
             
             <tag> SQL </tag>
             
