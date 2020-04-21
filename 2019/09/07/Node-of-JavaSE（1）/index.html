@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Node-of-JavaSE_1_简介、进制、数据结构 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Day01__简介与配置 1、java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关2、J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame3、跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机游戏，">
+  <meta name="description" content="Day01__简介与配置 【1】java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关【2】J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame【3】跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机">
 <meta name="keywords" content="学习笔记,Java,JavaSE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node-of-JavaSE_1_简介、进制、数据结构">
 <meta property="og:url" content="http://yoursite.com/2019/09/07/Node-of-JavaSE（1）/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="Day01__简介与配置 1、java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关2、J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame3、跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机游戏，">
+<meta property="og:description" content="Day01__简介与配置 【1】java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关【2】J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame【3】跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/09/07/Node-of-JavaSE（1）/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/07/Node-of-JavaSE（1）/2.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/07/Node-of-JavaSE（1）/6.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/07/Node-of-JavaSE（1）/7.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/07/Node-of-JavaSE（1）/8.png">
-<meta property="og:updated_time" content="2020-04-21T10:32:15.577Z">
+<meta property="og:updated_time" content="2020-04-21T10:57:23.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node-of-JavaSE_1_简介、进制、数据结构">
-<meta name="twitter:description" content="Day01__简介与配置 1、java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关2、J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame3、跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机游戏，">
+<meta name="twitter:description" content="Day01__简介与配置 【1】java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关【2】J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame【3】跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机">
 <meta name="twitter:image" content="http://yoursite.com/2019/09/07/Node-of-JavaSE（1）/1.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
@@ -185,56 +185,56 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Day01-简介与配置"><a href="#Day01-简介与配置" class="headerlink" title="Day01__简介与配置"></a>Day01__简介与配置</h1><hr>
-<p>1、java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关<br>2、J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame<br>3、跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机游戏，需要装一个模拟红白机的机器）<br>4、Hello World：[1]创建文本文档 [2]写好后保存名为xxx.java<br>               [3]运行java：cmd下打开xxx.java存放的目录，运行：javac xxx.java [4]自动生成class文件，即是运行文件（有虚拟机就能运行）<br>若在123.java中加入。</p>
+<p>【1】java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关<br>【2】J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame<br>【3】跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机游戏，需要装一个模拟红白机的机器）<br>【4】Hello World：[1]创建文本文档 [2]写好后保存名为xxx.java<br>               [3]运行java：cmd下打开xxx.java存放的目录，运行：javac xxx.java [4]自动生成class文件，即是运行文件（有虚拟机就能运行）<br>若在123.java中加入。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">	  	System.out.println(<span class="string">"Hello java"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 <p>可运行命令行java Demo</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/1.png" title="demo">
-<p>5、在任意路径下执行Demo程序方法：<br>[1] 暂时性配置classpath：输入代码set classpath=你的day01路径<br>（对环境变量清空：set classpath=  后面不写）<br>（set classpath=c:;表示找完c盘找不到就找当前目录）<br>（set classpath=c:\不加分号表示的是找完c盘找不着就不找就报错，一般情况不加）<br>（set classpath=c:;d:\表示的是找完C盘找D盘）<br>[2] 永久性配置classpath：环境变量配置<br>6、Hello Java的组成部分：类名中首字母大写，多个单词的话多个单词都要大些如XxxYyy。若一个文件中有两个类，只有含main的是可执行类。</p>
+<p>【5】在任意路径下执行Demo程序方法：<br>[1] 暂时性配置classpath：输入代码set classpath=你的day01路径<br>（对环境变量清空：set classpath=  后面不写）<br>（set classpath=c:;表示找完c盘找不到就找当前目录）<br>（set classpath=c:\不加分号表示的是找完c盘找不着就不找就报错，一般情况不加）<br>（set classpath=c:;d:\表示的是找完C盘找D盘）<br>[2] 永久性配置classpath：环境变量配置<br>【6】Hello Java的组成部分：类名中首字母大写，多个单词的话多个单词都要大些如XxxYyy。若一个文件中有两个类，只有含main的是可执行类。</p>
 <h1 id="Day02-进制、基础规则"><a href="#Day02-进制、基础规则" class="headerlink" title="Day02__进制、基础规则"></a>Day02__进制、基础规则</h1><hr>
-<p>1、命名规则：包名：多单词时每个单词小写wwwyyyzzz<br>类名接口名：多单词组成时，所有单词的首字母大写XxxYyyZzz<br>变量名函数名：多单词组成时，第一个小写其他大写xxxYyyZzz<br>常量名：所有字母都大写，多单词时下划线连接XXX_YYY_ZZZ<br>2、三种表现形式：十进制：0-9，满10进一<br>八进制：0-7，满8进一，用0开头<br>十六进制：0-9 A-F,满16进一，用0x开头<br>3、不同进制之间的转换：</p>
+<p>【1】命名规则：包名：多单词时每个单词小写wwwyyyzzz<br>类名接口名：多单词组成时，所有单词的首字母大写XxxYyyZzz<br>变量名函数名：多单词组成时，第一个小写其他大写xxxYyyZzz<br>常量名：所有字母都大写，多单词时下划线连接XXX_YYY_ZZZ<br>【2】三种表现形式：十进制：0-9，满10进一<br>八进制：0-7，满8进一，用0开头<br>十六进制：0-9 A-F,满16进一，用0x开头<br>【3】不同进制之间的转换：</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/2.png" title="jinzhi">
-<p>4、负数二进制：正数二进制取反+1<br>5、买硬盘看缓存，缓存越大则运算数据越大<br>6、常量与变量：</p>
+<p>【4】负数二进制：正数二进制取反+1<br>【5】买硬盘看缓存，缓存越大则运算数据越大<br>【6】常量与变量：</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/3.png" title="chuangliangyubianlaing">
-<p>7、程序：byte b = 3; b=b+2 会报错，因为b是8位，2是32位，b+2后为32位，32位的不能赋值给8位的<br>8、转义字符：\n: 换行 \b:退格（相当于backspace） \r: 按下回车键（win下与\n一样）\t: 制表符<br>9、short s= 4; s = s+5;失败，short s=4;s+=5;编译成功；<br>因为前者是提升为int类型，运算的结果还是int类型，无法赋值给short类型。<br>S+=2,编译通过是因为+=运算符在赋值给s数据时，自动完成了强转操作。<br>9、左移：3&lt;&lt;2=12; 6&gt;&gt;2=1<br>&lt;&lt;：其实就是乘以2的移动的位数次幂。<br>&gt;&gt;:就是除以2的移动的位数次幂。最高位补什么由原有的数据的最高位置而定。<br>   如果最高位为0，右移后，用0补空位。<br>   如果最高位是1，右移后，用1补空位。<br>&gt;&gt;&gt;：无论最高位是什么，都用0补空位。<br>一个数字抑或同一个数两次，结果还是那个数。（解密用的）<br>10、最有效的方式算出2*8等于几？ （2&lt;&lt;3)<br>11、数值互换（不用三方的变量）：<br>[1] n=n+m; m=n-m; n=n-m;(容易损失精度)<br>[2] 技巧性：<strong>n= n^m;</strong> <strong>m=n^m;</strong> //(n^m)^m; <strong>n=n^m;</strong>//n^(n^m);<br>[3] 一般的三方变量法：一般就用这</p>
+<p>【7】程序：byte b = 3; b=b+2 会报错，因为b是8位，2是32位，b+2后为32位，32位的不能赋值给8位的<br>【8】转义字符：\n: 换行 \b:退格（相当于backspace） \r: 按下回车键（win下与\n一样）\t: 制表符<br>【9】short s= 4; s = s+5;失败，short s=4;s+=5;编译成功；<br>因为前者是提升为int类型，运算的结果还是int类型，无法赋值给short类型。<br>S+=2,编译通过是因为+=运算符在赋值给s数据时，自动完成了强转操作。<br>【10】左移：3&lt;&lt;2=12; 6&gt;&gt;2=1<br>&lt;&lt;：其实就是乘以2的移动的位数次幂。<br>&gt;&gt;:就是除以2的移动的位数次幂。最高位补什么由原有的数据的最高位置而定。<br>   如果最高位为0，右移后，用0补空位。<br>   如果最高位是1，右移后，用1补空位。<br>&gt;&gt;&gt;：无论最高位是什么，都用0补空位。<br>一个数字抑或同一个数两次，结果还是那个数。（解密用的）<br>【11】最有效的方式算出2*8等于几？ （2&lt;&lt;3)<br>【12】数值互换（不用三方的变量）：<br>[1] n=n+m; m=n-m; n=n-m;(容易损失精度)<br>[2] 技巧性：<strong>n= n^m;</strong> <strong>m=n^m;</strong> //(n^m)^m; <strong>n=n^m;</strong>//n^(n^m);<br>[3] 一般的三方变量法：一般就用这</p>
 <h1 id="Day03-循环、数组、堆和栈"><a href="#Day03-循环、数组、堆和栈" class="headerlink" title="Day03__循环、数组、堆和栈"></a>Day03__循环、数组、堆和栈</h1><hr>
-<p>1、以下代码编译失败，System.out.println(“b”)无法判断真假！</p>
+<p>【1】以下代码编译失败，System.out.println(“b”)无法判断真假！</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(System.out.println(“a”);System.out.println(“b”);System.out.println(“c”))</span><br><span class="line">&#123;</span><br><span class="line">     System.out.println(“d”);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>2、for中表达式多的话，就用逗号分开；<br>3、嵌套语句打印九九乘法表：</p>
+<p>【2】for中表达式多的话，就用逗号分开；<br>【3】嵌套语句打印九九乘法表：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">1</span>; x&lt;<span class="number">10</span>; x++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">1</span>; y&lt;=x; y++)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(y+<span class="string">"*"</span>+x+<span class="string">"="</span>+x*y+<span class="string">"\t"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<p>4、使用break/continue跳出循环技巧：（写上标志）</p>
+<p>【4】使用break/continue跳出循环技巧：（写上标志）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">w:<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;<span class="number">3</span>; x++)</span><br><span class="line">	&#123;</span><br><span class="line">		q:<span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>; y&lt;<span class="number">4</span>; y++)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="string">"x="</span>+x);</span><br><span class="line">			<span class="keyword">break</span> w;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<p>5、函数之中不能调用函数;<br>6、函数的重载：</p>
+<p>【5】函数之中不能调用函数;<br>【6】函数的重载：</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/4.png" title="overloaded">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">	    <span class="keyword">int</span> x = add(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">	    <span class="keyword">int</span> y = add(<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>);</span><br><span class="line">	    System.out.println(x);</span><br><span class="line">	    System.out.println(y); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> x+y+z;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">	    <span class="keyword">return</span> x+y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>（注意：返回类型不同不算重载！！！）<br>7、系统内存中的堆和栈：</p>
+<p>（注意：返回类型不同不算重载！！！）<br>【7】系统内存中的堆和栈：</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/5.png" title="duihezhan">
 <p>New出来的都存放在堆里面：</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/6.png" title="duihezhan2">
 
 <h1 id="Day04-排序和查找"><a href="#Day04-排序和查找" class="headerlink" title="Day04__排序和查找"></a>Day04__排序和查找</h1><hr>
-<p>1、数组长度：arr.length<br>2、冒泡排序：</p>
+<p>【1】数组长度：arr.length<br>【2】冒泡排序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length-<span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;arr.length-i-<span class="number">1</span>; x++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[x] &gt; arr[x+<span class="number">1</span>])</span><br><span class="line">			&#123;</span><br><span class="line">				temp = arr[x];</span><br><span class="line">				arr[x] = arr[x+<span class="number">1</span>];</span><br><span class="line">				arr[x+<span class="number">1</span>] = temp;					</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>3、选择排序：</p>
+<p>【3】选择排序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length-<span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;arr.length; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[j]&lt;arr[i])</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> temp = arr[j];</span><br><span class="line">				arr[j] = arr[i];</span><br><span class="line">				arr[i] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>4、java中特有的排序功能：(实际开发中就用这个)</p>
+<p>【4】java中特有的排序功能：(实际开发中就用这个)</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line">Arrays.sort(arr);</span><br></pre></td></tr></table></figure>
 
-<p>5、折半查找（两种）：</p>
+<p>【5】折半查找（两种）：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">halfSearch</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> key)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> max = arr.length-<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> min = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = (max+min)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(arr[mid]!=key)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(arr[mid]&gt;key)</span><br><span class="line">			max = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&lt;key)</span><br><span class="line">			min = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(max&lt;min)</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		mid = (max+min)/<span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> mid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">halfSearch_2</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> key)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> min=<span class="number">0</span>, max=arr.length-<span class="number">1</span>, mid;</span><br><span class="line">	<span class="keyword">while</span>(max&gt;=min)</span><br><span class="line">	&#123;</span><br><span class="line">		mid = (min+max) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(arr[mid]&gt;key)</span><br><span class="line">			max = mid - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&lt;key)</span><br><span class="line">			min = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>6、十进制—&gt;二进制（使用StringBuffer容器，只能算正数）:</p>
+<p>【6】十进制—&gt;二进制（使用StringBuffer容器，只能算正数）:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toBin</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	<span class="keyword">while</span>(num&gt;<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sb.append(num%<span class="number">2</span>);</span><br><span class="line">		num = num / <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(sb.reverse());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>7、十进制—&gt;十六进制：<br>原理分析：</p>
+<p>【7】十进制—&gt;十六进制：<br>原理分析：</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/7.png" title="jinzhi2">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">8</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> temp = num &amp; <span class="number">15</span>;</span><br><span class="line">		<span class="keyword">if</span>(temp&gt;<span class="number">9</span>)</span><br><span class="line">			sb.append((<span class="keyword">char</span>)(temp-<span class="number">10</span>+<span class="string">'A'</span>));</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			sb.append(temp);</span><br><span class="line">		num = num &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(sb.reverse());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -242,13 +242,13 @@
 <p>方法二：（数组法）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toHex_2</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span>[] chs = &#123;<span class="string">'0'</span>,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>,<span class="string">'8'</span>,</span><br><span class="line">					<span class="string">'9'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span>[] arr = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">8</span>];</span><br><span class="line">	<span class="keyword">int</span> pos = arr.length;</span><br><span class="line">	<span class="keyword">while</span>(num!=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> temp = num &amp; <span class="number">15</span>;</span><br><span class="line">		arr[--pos] = chs[temp];</span><br><span class="line">		num = num &gt;&gt;&gt; <span class="number">4</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length; i++)</span><br><span class="line">		System.out.print(arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>8、十进制转所有：</p>
+<p>【8】十进制转所有：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toBin</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	trans(num,<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toBa</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	trans(num,<span class="number">8</span>,<span class="number">3</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	trans(num,<span class="number">16</span>,<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">trans</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> base, <span class="keyword">int</span> offset)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span>[] chs = &#123;<span class="string">'0'</span>,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>,<span class="string">'5'</span>,</span><br><span class="line">					<span class="string">'6'</span>,<span class="string">'7'</span>,<span class="string">'8'</span>,<span class="string">'9'</span>,<span class="string">'A'</span>,<span class="string">'B'</span>,<span class="string">'C'</span>,<span class="string">'D'</span>,<span class="string">'E'</span>,<span class="string">'F'</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span>[] arr = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">32</span>];</span><br><span class="line">	<span class="keyword">int</span> pos = arr.length;</span><br><span class="line">	<span class="keyword">while</span>(num!=<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> temp = num % base;</span><br><span class="line">		arr[--pos] = chs[temp];</span><br><span class="line">		num = num &gt;&gt;&gt; offset;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.print(arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>9、二维数组的内存分布机理：（New的数组初始化的值为0）</p>
+<p>【9】二维数组的内存分布机理：（New的数组初始化的值为0）</p>
 <img src="/2019/09/07/Node-of-JavaSE（1）/8.png" title="shuzuduizhan">
 
-<p>10、</p>
+<p>【10】</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] x,y[]；  <span class="comment">//x是一维数组，y是二维数组</span></span><br></pre></td></tr></table></figure>
 
 
@@ -520,18 +520,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MPI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">并行编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">debug</a>
               </li>
              
@@ -544,11 +532,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
+                <a href="javascript:void(0)" class="js-tag color4">MPI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">并行编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -557,6 +549,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">教程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实践经验</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -576,30 +576,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机视觉</a>
               </li>
              
@@ -612,6 +588,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">springboot</a>
               </li>
              
@@ -621,6 +605,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">idea</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
