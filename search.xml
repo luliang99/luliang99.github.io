@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[Node-of-JavaSE_6_多线程、反射、注解]]></title>
+      <title><![CDATA[Note-of-JavaSE_6_多线程、反射、注解]]></title>
       <url>/2020/04/21/Node-of-JavaSE-6-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/</url>
       <content type="html"><![CDATA[<h1 id="七、-多线程"><a href="#七、-多线程" class="headerlink" title="七、 多线程"></a>七、 多线程</h1><a id="more"></a>
 
@@ -566,7 +566,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Node-of-JavaSE_5_集合、IO流]]></title>
+      <title><![CDATA[Note-of-JavaSE_5_集合、IO流]]></title>
       <url>/2020/04/21/Node-of-JavaSE-5-%E9%9B%86%E5%90%88%E3%80%81IO%E6%B5%81/</url>
       <content type="html"><![CDATA[<h1 id="五、集合"><a href="#五、集合" class="headerlink" title="五、集合"></a>五、集合</h1><a id="more"></a>
 
@@ -1220,7 +1220,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Node-of-JavaSE_4_OO补充、数组、常用类、异常]]></title>
+      <title><![CDATA[Note-of-JavaSE_4_OO补充、数组、常用类、异常]]></title>
       <url>/2020/04/21/Node-of-JavaSE-4/</url>
       <content type="html"><![CDATA[<h1 id="一、面向对象补充"><a href="#一、面向对象补充" class="headerlink" title="一、面向对象补充"></a>一、面向对象补充</h1><a id="more"></a>
 
@@ -3825,7 +3825,7 @@ server.listen(8000,function () {
     </entry>
     
     <entry>
-      <title><![CDATA[Node-of-JavaSE_3_继承]]></title>
+      <title><![CDATA[Note-of-JavaSE_3_继承]]></title>
       <url>/2019/10/15/Node-of-JavaSE%EF%BC%883%EF%BC%89/</url>
       <content type="html"><![CDATA[<h1 id="Day07-继承"><a href="#Day07-继承" class="headerlink" title="Day07__继承"></a>Day07__继承</h1><p>【1】继承的好处：<br>（1）提高了代码的复用性。<br>（2）让类与类产生关系，有了这个关系，才有了多态的特性。举例：人、学生、工人。</p>
 <a id="more"></a>
@@ -4214,7 +4214,7 @@ ON A.key=B.key;</code></pre><p>（2）当横向合并后发现重复字段，只
     </entry>
     
     <entry>
-      <title><![CDATA[Node-of-JavaSE_2_面向对象、static、帮助文档]]></title>
+      <title><![CDATA[Note-of-JavaSE_2_面向对象、static、帮助文档]]></title>
       <url>/2019/09/10/Node-of-JavaSE%EF%BC%882%EF%BC%89/</url>
       <content type="html"><![CDATA[<h1 id="Day05-面向对象"><a href="#Day05-面向对象" class="headerlink" title="Day05__面向对象"></a>Day05__面向对象</h1><hr>
 <p>【1】面向对象：封装、继承、多态<br>【2】属性：类中的变量，行为：类中的的函数（方法）<br>【3】内存存放原理：</p>
@@ -4391,7 +4391,7 @@ ON A.key=B.key;</code></pre><p>（2）当横向合并后发现重复字段，只
     </entry>
     
     <entry>
-      <title><![CDATA[Node-of-JavaSE_1_简介、进制、数据结构]]></title>
+      <title><![CDATA[Note-of-JavaSE_1_简介、进制、数据结构]]></title>
       <url>/2019/09/07/Node-of-JavaSE%EF%BC%881%EF%BC%89/</url>
       <content type="html"><![CDATA[<h1 id="Day01-简介与配置"><a href="#Day01-简介与配置" class="headerlink" title="Day01__简介与配置"></a>Day01__简介与配置</h1><hr>
 <p>【1】java语言：面向internet、web应用首选开发语言、安全可靠、与平台无关<br>【2】J2EE企业级(servlet、jsp、web应用程序开发，就业就用这)  J2SE标准版  J2ME小型版5.0后javaee, javase, javame<br>【3】跨平台性原理：在操作系统上安装一个jvm(java虚拟机)即可，有jvm负责java在程序中的应用（在电脑上玩红白机游戏，需要装一个模拟红白机的机器）<br>【4】Hello World：[1]创建文本文档 [2]写好后保存名为xxx.java<br>               [3]运行java：cmd下打开xxx.java存放的目录，运行：javac xxx.java [4]自动生成class文件，即是运行文件（有虚拟机就能运行）<br>若在123.java中加入。</p>
