@@ -7,6 +7,10 @@
       <url>/2020/04/23/MySQL%E4%BD%BF%E7%94%A8source%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%85%A5%E6%97%B6%E5%8F%91%E7%94%9F1046%E9%94%99%E8%AF%AF/</url>
       <content type="html"><![CDATA[<ul>
 <li>错误：今天在使用MySQL的source命令时，出现<strong>ERROR 1046 (3D000): No database selected</strong>的错误。</li>
+</ul>
+<a id="more"></a>
+
+<ul>
 <li>原因：直接使用source命令，之前未创建相应的数据库，且未使用相应的数据库。</li>
 <li>解决方法：</li>
 </ul>
@@ -4132,11 +4136,11 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
         
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> SQL </tag>
             
             <tag> MySQL </tag>
+            
+            <tag> 教程 </tag>
             
         </tags>
         
