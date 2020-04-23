@@ -3,6 +3,50 @@
   
     
     <entry>
+      <title><![CDATA[MySQL使用source命令导入时发生1046错误]]></title>
+      <url>/2020/04/23/MySQL%E4%BD%BF%E7%94%A8source%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%85%A5%E6%97%B6%E5%8F%91%E7%94%9F1046%E9%94%99%E8%AF%AF/</url>
+      <content type="html"><![CDATA[<ul>
+<li>错误：今天在使用MySQL的source命令时，出现<strong>ERROR 1046 (3D000): No database selected</strong>的错误。</li>
+<li>原因：直接使用source命令，之前未创建相应的数据库，且未使用相应的数据库。</li>
+<li>解决方法：</li>
+</ul>
+<ol>
+<li>先查看数据库中是否有相应的数据库，如数据库名叫bjpowernode。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>如果没有，则先创建bjpowernode数据库。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database bjpowernode;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>创建好后，使用该数据库。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use bjpowernode;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>再次执行source语句进行导入。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source F:\\bjpowernode.sql</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>若出现如下则表示导入成功！</li>
+</ul>
+<img src="/2020/04/23/MySQL使用source命令导入时发生1046错误/1.png" title="mysqldebug">]]></content>
+      
+        
+        <tags>
+            
+            <tag> debug </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Note-of-JavaSE_6_多线程、反射、注解]]></title>
       <url>/2020/04/21/Node-of-JavaSE-6-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E3%80%81%E5%8F%8D%E5%B0%84%E3%80%81%E6%B3%A8%E8%A7%A3/</url>
       <content type="html"><![CDATA[<h1 id="七、-多线程"><a href="#七、-多线程" class="headerlink" title="七、 多线程"></a>七、 多线程</h1><a id="more"></a>
