@@ -6,18 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Linux | 我的博客</title>
+  <title>CentOS7下安装Redis,并连接win10上的Redis Desktop Manager工具 | 我的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录程序员的点点滴滴~~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Linux/index.html">
+  <meta name="description" content="【1】下载安装包：">
+<meta name="keywords" content="CentOS,Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7下安装Redis,并连接win10上的Redis Desktop Manager工具">
+<meta property="og:url" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="记录程序员的点点滴滴~~">
+<meta property="og:description" content="【1】下载安装包：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/3.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/4.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/5.png">
+<meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/6.png">
+<meta property="og:updated_time" content="2020-04-29T15:01:05.953Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的博客">
-<meta name="twitter:description" content="记录程序员的点点滴滴~~">
+<meta name="twitter:title" content="CentOS7下安装Redis,并连接win10上的Redis Desktop Manager工具">
+<meta name="twitter:description" content="【1】下载安装包：">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/1.png">
   
     <link rel="alternative" href="/atom.xml" title="我的博客" type="application/atom+xml">
   
@@ -153,124 +162,255 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/" class="archive-article-date">
-  	<time datetime="2020-04-14T09:34:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-14</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/14/VMware中CentOS7-0桥接网络配置流程/">VMware中CentOS7.0桥接网络配置流程</a>
+    <h1 class="article-title" itemprop="name">
+      CentOS7下安装Redis,并连接win10上的Redis Desktop Manager工具
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/" class="archive-article-date">
+  	<time datetime="2020-04-29T14:01:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="【1】下载安装包："><a href="#【1】下载安装包：" class="headerlink" title="【1】下载安装包："></a>【1】下载安装包：</h3><a id="more"></a>
+
+<ul>
+<li><p>本文以  redis-5.0.8  为例：</p>
+</li>
+<li><p>下载方式一：</p>
+<ul>
+<li>通过命令下载（可能较慢）：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.8.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载方式二（推荐）：</p>
+<ul>
+<li><p>从官网下载  redis-5.0.8.tar.gz ： 地址：<a href="https://redis.io/download" target="_blank" rel="noopener">https://redis.io/download</a></p>
+</li>
+<li><p>并把它通过xftp传到 centos 系统 /root 文件下：</p>
+</li>
+</ul>
+<img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/1.png" title="1-1">
+
+</li>
+</ul>
+<h3 id="【2】编译安装："><a href="#【2】编译安装：" class="headerlink" title="【2】编译安装："></a>【2】编译安装：</h3><ul>
+<li><p>在压缩包所在目录使用，以下命令解压：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf redis-5.0.8.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入/redis-5.0.8/src后,编译安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 如果没安装gcc先yum install -y gcc</span><br><span class="line">cd /redis-5.0.8/src</span><br><span class="line">make all</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="【3】资源整理："><a href="#【3】资源整理：" class="headerlink" title="【3】资源整理："></a>【3】资源整理：</h3><ul>
+<li><p>为了启动关闭方便，将生成的文件的常用文件拷贝到/opt/redis下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/redis</span><br><span class="line">cp redis-benchmark /opt/redis/redis-benchmark</span><br><span class="line">cp redis-check-aof /opt/redis/redis-check-aof</span><br><span class="line">cp redis-check-rdb /opt/redis/redis-check-rdb</span><br><span class="line">cp redis-cli /opt/redis/redis-cli</span><br><span class="line">cp redis-sentinel /opt/redis/redis-sentinel</span><br><span class="line">cp redis-server    /opt/redis/redis-server</span><br><span class="line"></span><br><span class="line">redis-benchmark #压力测试</span><br><span class="line">redis-check-aof # 较完成持久化</span><br><span class="line">redis-check-rdb # redis默认持久化，适合大面积</span><br><span class="line">redis-cli #客户端</span><br><span class="line">redis-sentinel #哨兵机制</span><br><span class="line">redis-server #服务端</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>将解压包中根目录下的redis.conf文件也拷贝到/opt/redis目录下</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp redis.conf  /opt/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="【4】修改相关配置："><a href="#【4】修改相关配置：" class="headerlink" title="【4】修改相关配置："></a>【4】修改相关配置：</h3><ul>
+<li>在 /opt/redis/ 下把 redis.conf 进行修改，把 “daemonize no” 改为 yes，否则redis不能在后台运行。</li>
+</ul>
+<img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/2.png" title="2-1">
+
+<h3 id="【5】启动并测试："><a href="#【5】启动并测试：" class="headerlink" title="【5】启动并测试："></a>【5】启动并测试：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>在目录 /opt/redis 中使用命令 ./redis-server ./redis.conf</span><br><span class="line">./redis-server ./redis.conf</span><br><span class="line"><span class="meta">#</span>使用redis-cli测试服务</span><br><span class="line">./redis-cli</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/3.png" title="3-1">
+
+<h3 id="【6】注意：想连接可视化工具，必须设置密码："><a href="#【6】注意：想连接可视化工具，必须设置密码：" class="headerlink" title="【6】注意：想连接可视化工具，必须设置密码："></a>【6】注意：想连接可视化工具，必须设置密码：</h3><img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/4.png" title="4-1">
+
+<h3 id="【7】连接可视化工具："><a href="#【7】连接可视化工具：" class="headerlink" title="【7】连接可视化工具："></a>【7】连接可视化工具：</h3><img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/5.png" title="5-1">
+
+<img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/6.png" title="6-1">
+
+<ul>
+<li><p>若连不上：关闭防火墙试试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="【8】附：常用命令："><a href="#【8】附：常用命令：" class="headerlink" title="【8】附：常用命令："></a>【8】附：常用命令：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 检查Redis是否正常启动：</span><br><span class="line">ps -ef | grep redis</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开启redis服务器：在（我是放到了）目录 /opt/redis 中使用命令</span><br><span class="line">./redis-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启动redis：  (目录不固定)</span><br><span class="line">redis-server /opt/redis/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 关闭redis：  (目录不固定)</span><br><span class="line">/opt/redis/redis-cli shutdown</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">CentOS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKUlEQVR42u3aQY7jMAwEwPn/p7PAnmYxa7tJOkDMKZ+CwJFVyqEtUl9f8fX6e33//P2b8zt/fv55/9H4yXOPRr7hwsbGxn4I+3V6Jez3kc6fnox/ODI2Njb2Onb1Yef352FWJeWReWHExsbG/pXs/DF5XCUbiXuXBhsbG/s3s+dbiPOoq24tsLGxsbGrRaXJhiRfxF6F/421NGxsbOyPZ/cavZ/5+e39bWxsbOwPY7+KV7V4lDwrD6TJzP8ZBxsbG3sRO2nQVqc1iZlz5Hw+hb40NjY29kPYeSEpH3RyyCaPrl5RDBsbG3sfe9IeeB8jH7m66NF/jo2Njf0o9mRrMYmoXgT2kBfRhY2Njf1wdq8onxy76Y2ZLN/kINFhbmNjY2M/nJ1Mt7ohySMnWZpkUcpdEWxsbOxF7HlR/i1bhfE9Fy5sbGzsRewck4fcvPGQNHTzMMbGxsbeze69+k/Y+XPzA0Dl1i82Njb2InbvYfNpFXI1DqdzPDY2NvY+dh4qeRT12sPVElKvHIaNjY29lZ23XXtlnWo7uVfAKhSVsLGxsdexJ4WepLXQQ1aPBxU2UdjY2NiL2NWiT/VYT+/QTy8yy8d9sLGxsVewq8GQTz0pKuX3TJb4oqiEjY2NvYjde7mfbxvyhkHeGLiIPWxsbOx17HnxvVp4SnZIvUZytMnBxsbGXsfuhVZvC9GDNatlR0uDjY2NvYhdbe5WoytZoGS0SdHqoiuCjY2NvY5dfa2/d8nmy13YXGFjY2OvYPcKN6/4yic0bz8UAhUbGxt7HfuuslGCv+sYUL40//keGxsbexE7L7LfGzzlKbbaCRf3YGNjY69gT4rv1clVD/3MW7yHc8PGxsZex85bv3nPIYmou8IMGxsbG3te7q+W7PMlyNu3hZlgY2NjL2JXX/17Zf35b6stivlRIWxsbOxnsauBUUVORsgP5VSfjo2Njb2PXQ2t6q/yBa0e2SwXlbCxsbF/MbsXGNVtRt7i7R0MwsbGxsbO76m2aZP7q+BCvmFjY2M/nN0LgzxOetHYawNEfww2Njb2Ivak0Ts/4tNr6N7WJMDGxsZ+NvsP1+Wrz+8fE+sAAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/23/MySQL使用source命令导入时发生1046错误/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MySQL使用source命令导入时发生1046错误</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/30/Linux下MPI并行编程环境搭建与程序测试/" class="archive-article-date">
-  	<time datetime="2019-12-30T10:17:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-30</time>
-</a>
-        </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/30/Linux下MPI并行编程环境搭建与程序测试/">Linux下MPI并行编程环境搭建与程序测试</a>
-    </h1>
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具" data-title="CentOS7下安装Redis,并连接win10上的Redis Desktop Manager工具" data-url="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MPI</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">并行编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -293,9 +433,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
