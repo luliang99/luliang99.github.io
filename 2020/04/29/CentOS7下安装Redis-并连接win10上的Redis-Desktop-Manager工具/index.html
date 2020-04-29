@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/4.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/5.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/6.png">
-<meta property="og:updated_time" content="2020-04-29T15:01:05.953Z">
+<meta property="og:updated_time" content="2020-04-29T15:23:08.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7下安装Redis,并连接win10上的Redis Desktop Manager工具">
 <meta name="twitter:description" content="【1】下载安装包：">
@@ -233,7 +233,15 @@
 
 <h3 id="【6】注意：想连接可视化工具，必须设置密码："><a href="#【6】注意：想连接可视化工具，必须设置密码：" class="headerlink" title="【6】注意：想连接可视化工具，必须设置密码："></a>【6】注意：想连接可视化工具，必须设置密码：</h3><img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/4.png" title="4-1">
 
-<h3 id="【7】连接可视化工具："><a href="#【7】连接可视化工具：" class="headerlink" title="【7】连接可视化工具："></a>【7】连接可视化工具：</h3><img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/5.png" title="5-1">
+<h3 id="【7】注意：想让本机以外ip的连接redis："><a href="#【7】注意：想让本机以外ip的连接redis：" class="headerlink" title="【7】注意：想让本机以外ip的连接redis："></a>【7】注意：想让本机以外ip的连接redis：</h3><ul>
+<li><p>在Redis的配置文件 redis.conf 中设置了 bind 127.0.0.1, 即表明只有主机才可访问，将其注释掉即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /opt/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="【8】连接可视化工具："><a href="#【8】连接可视化工具：" class="headerlink" title="【8】连接可视化工具："></a>【8】连接可视化工具：</h3><img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/5.png" title="5-1">
 
 <img src="/2020/04/29/CentOS7下安装Redis-并连接win10上的Redis-Desktop-Manager工具/6.png" title="6-1">
 
@@ -245,7 +253,7 @@
 
 </li>
 </ul>
-<h3 id="【8】附：常用命令："><a href="#【8】附：常用命令：" class="headerlink" title="【8】附：常用命令："></a>【8】附：常用命令：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 检查Redis是否正常启动：</span><br><span class="line">ps -ef | grep redis</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开启redis服务器：在（我是放到了）目录 /opt/redis 中使用命令</span><br><span class="line">./redis-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启动redis：  (目录不固定)</span><br><span class="line">redis-server /opt/redis/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 关闭redis：  (目录不固定)</span><br><span class="line">/opt/redis/redis-cli shutdown</span><br></pre></td></tr></table></figure>
+<h3 id="【9】附：常用命令："><a href="#【9】附：常用命令：" class="headerlink" title="【9】附：常用命令："></a>【9】附：常用命令：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 检查Redis是否正常启动：</span><br><span class="line">ps -ef | grep redis</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开启redis服务器：在（我是放到了）目录 /opt/redis 中使用命令</span><br><span class="line">./redis-server</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启动redis：  (目录不固定)</span><br><span class="line">redis-server /opt/redis/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 关闭redis：  (目录不固定)</span><br><span class="line">/opt/redis/redis-cli shutdown</span><br></pre></td></tr></table></figure>
 
 
       
@@ -503,18 +511,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MPI</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">并行编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">CentOS</a>
               </li>
              
@@ -531,11 +527,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">教程</a>
+                <a href="javascript:void(0)" class="js-tag color4">MPI</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">并行编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,23 +555,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">教程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">JavaSE</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,11 +583,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
