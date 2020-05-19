@@ -3,6 +3,91 @@
   
     
     <entry>
+      <title><![CDATA[CentOS下使用yum安装失败，提示Cannot retrieve metalink for repository: epel/x86_64]]></title>
+      <url>/2020/05/19/CentOS%E4%B8%8B%E4%BD%BF%E7%94%A8yum%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5%EF%BC%8C%E6%8F%90%E7%A4%BACannot-retrieve-metalink-for-repository-epel-x86-64/</url>
+      <content type="html"><![CDATA[<ul>
+<li>今天在centos7服务器上用yum安装nginx的时候发现，yum命令不能用了，使用yum install nginx命令出现如下错误提示：</li>
+</ul>
+<a id="more"></a>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cannot retrieve metalink for repository: epel/x86_64. Please verify its path and try again</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>完整提示如下：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">One of the configured repositories failed (Unknown),</span><br><span class="line"> and yum doesn't have enough cached data to continue. At this point the only</span><br><span class="line"> safe thing yum can do is fail. There are a few ways to work "fix" this:</span><br><span class="line"></span><br><span class="line">     1. Contact the upstream for the repository and get them to fix the problem.</span><br><span class="line"></span><br><span class="line">     2. Reconfigure the baseurl/etc. for the repository, to point to a working</span><br><span class="line">        upstream. This is most often useful if you are using a newer</span><br><span class="line">        distribution release than is supported by the repository (and the</span><br><span class="line">        packages for the previous distribution release still work).</span><br><span class="line"></span><br><span class="line">     3. Disable the repository, so yum won't use it by default. Yum will then</span><br><span class="line">        just ignore the repository until you permanently enable it again or use</span><br><span class="line">        --enablerepo for temporary usage:</span><br><span class="line"></span><br><span class="line">            yum-config-manager --disable &lt;repoid&gt;</span><br><span class="line"></span><br><span class="line">     4. Configure the failing repository to be skipped, if it is unavailable.</span><br><span class="line">        Note that yum will try to contact the repo. when it runs most commands,</span><br><span class="line">        so will have to try and fail each time (and thus. yum will be be much</span><br><span class="line">        slower). If it is a very temporary problem though, this is often a nice</span><br><span class="line">        compromise:</span><br><span class="line"></span><br><span class="line">            yum-config-manager --save --setopt=&lt;repoid&gt;.skip_if_unavailable=true</span><br><span class="line"></span><br><span class="line">Cannot retrieve metalink for repository: epel/x86_64. Please verify its path and try again</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>解决思路：首先以为是网络问题，按照网上的思路进行了网络测试、配置，发现均没问题：</p>
+<ol>
+<li>我的服务器 ping 正常的，无论是ping镜像还是ping其它网站都可以ping通。</li>
+<li>/etc/resolv.conf 里面的 nameserver 114.114.114.114 也是有的，dns也没问题。</li>
+</ol>
+</li>
+<li><p>解决方法：问题根本的原因是“/etc/yum.repos.d/epel.repo”里面的镜像源路径不对。</p>
+<ul>
+<li>首先，打开<strong>/etc/yum.repos.d/epel.repo</strong>文件。</li>
+<li>然后，将里面的所有metalink注释掉，然后把所有的baseurl打开。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[epel]</span><br><span class="line">name=Extra Packages for Enterprise Linux 7 - $basearch</span><br><span class="line">baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch</span><br><span class="line">#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-7&amp;arch=$basearch</span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line"></span><br><span class="line">[epel-debuginfo]</span><br><span class="line">name=Extra Packages for Enterprise Linux 7 - $basearch - Debug</span><br><span class="line">baseurl=http://download.fedoraproject.org/pub/epel/7/$basearch/debug</span><br><span class="line">#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-debug-7&amp;arch=$basearch</span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line">gpgcheck=1</span><br><span class="line"></span><br><span class="line">[epel-source]</span><br><span class="line">name=Extra Packages for Enterprise Linux 7 - $basearch - Source</span><br><span class="line">baseurl=http://download.fedoraproject.org/pub/epel/7/SRPMS</span><br><span class="line">#metalink=https://mirrors.fedoraproject.org/metalink?repo=epel-source-7&amp;arch=$basearch</span><br><span class="line">failovermethod=priority</span><br><span class="line">enabled=0</span><br><span class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7</span><br><span class="line">gpgcheck=1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>最后，更新缓存，并更新yum，执行安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br><span class="line">yum update</span><br><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>效果图：（安装成功）</p>
+</li>
+</ul>
+<img src="/2020/05/19/CentOS下使用yum安装失败，提示Cannot-retrieve-metalink-for-repository-epel-x86-64/1.png" title="yum">
+
+
+
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> CentOS </tag>
+            
+            <tag> yum </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[使用SpringBoot+Junit+Mock进行json数据传输时候遇到的问题]]></title>
+      <url>/2020/05/01/%E4%BD%BF%E7%94%A8SpringBoot-Junit-Mock%E8%BF%9B%E8%A1%8Cjson%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%97%B6%E5%80%99%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<h3 id="1-initializationError-runner-Junit4"><a href="#1-initializationError-runner-Junit4" class="headerlink" title="[1]  initializationError [runner:Junit4]"></a>[1]  initializationError [runner:Junit4]</h3><a id="more"></a>
+
+<ul>
+<li>试了好久，发现并不是@Test注释的方法修饰符非public、类名修饰符非public、带参数等等问题。</li>
+<li>解决：而是我@Test包导错了，我导的是import org.junit.jupiter.api.Test; 实际需要的是 import org.junit.Test;前者是junit5需要的，后者是junit4需要的，我用的是junit4。</li>
+</ul>
+<h3 id="2-java-lang-AssertionError-Content-type-expected…"><a href="#2-java-lang-AssertionError-Content-type-expected…" class="headerlink" title="[2]  java.lang.AssertionError: Content type expected…"></a>[2]  java.lang.AssertionError: Content type expected…</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面代码中出现以上错误</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextLoads</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    MvcResult result = mockMvc.perform(post(<span class="string">"/api/login"</span>).param(<span class="string">"username"</span>, <span class="string">"123"</span>).param(<span class="string">"password"</span>, <span class="string">"123456"</span>)</span><br><span class="line">        .contentType(MediaType.APPLICATION_JSON))</span><br><span class="line">        .andExpect(status().isOk())</span><br><span class="line">        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">        .andReturn();</span><br><span class="line">    System.out.println(result.getResponse().getContentAsString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>原因是使用了 MediaType.APPLICATION_JSON_UTF8 的传输类型，这种写法已经被废弃，将”_UTF8”删除即可不报错，但是输出的信息乱码。</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> debug </tag>
+            
+            <tag> Mock </tag>
+            
+            <tag> Junit </tag>
+            
+            <tag> SpringBoot </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[SpringBoot秒课系统-1]]></title>
       <url>/2020/04/30/SpringBoot%E7%A7%92%E8%AF%BE%E7%B3%BB%E7%BB%9F-1/</url>
       <content type="html"><![CDATA[<h1 id="一、整体设计思路"><a href="#一、整体设计思路" class="headerlink" title="一、整体设计思路"></a>一、整体设计思路</h1><a id="more"></a>

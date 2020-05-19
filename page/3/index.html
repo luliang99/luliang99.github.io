@@ -155,6 +155,177 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySQL性能分析——EXPLAIN使用指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/">MySQL性能分析——EXPLAIN使用指南</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/" class="archive-article-date">
+  	<time datetime="2019-10-07T08:44:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、EXPLIAN——简介"><a href="#一、EXPLIAN——简介" class="headerlink" title="一、EXPLIAN——简介"></a>一、EXPLIAN——简介</h1><hr>
+<p>使用EXPLAIN关键字可以来获取关于查询执行计划的信息。可以模拟优化器执行SQL查询语句，从而知道<strong>MySQL是如何处理SQL语句</strong>的。</p>
+<ul>
+<li>用法：<strong>EXPLAIN + SQL语句；</strong>，或者去掉分号加上\G表示竖版显示。</li>
+<li>返回：查询执行计划所包含的信息（如：<strong>id</strong>、<strong>select_type</strong>、<strong>table</strong>、<strong>type</strong>、<strong>possible_keys</strong>、<strong>key</strong>、<strong>key_len</strong>、<strong>ref</strong>、<strong>rows</strong>、<strong>Extra</strong>）</li></ul>
+        
+          <a class="article-more-a" href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">教程</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/07/MySQL性能分析——EXPLAIN使用指南/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL中表的横向合并-join-以及去重复字段" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/">MySQL中表的横向合并(join)以及去重复字段</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/" class="archive-article-date">
+  	<time datetime="2019-10-06T06:29:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、例题分析"><a href="#一、例题分析" class="headerlink" title="一、例题分析"></a>一、例题分析</h1><hr>
+<p><strong>Question</strong>: 查询每个部门(departments)的编号(dept_no),名称(dept_name),在该部门工作过的雇员(employees)人数,最低工资(salary),平均工资,最高工资及工资总额；</p>
+<p>(这道题所使用的数据库的来源是MYSQL官网上的的一个样例库，库名是<strong>employees_db-full-1.0.6.tar.bz2(md5)</strong>，由于<strong>dept_emp</strong>、<strong>salaries</strong>表格过长，因此只显示部分，其库的部分结构如下)</p>
+<p><em>表格一：departments</em></p>
+        
+          <a class="article-more-a" href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实践经验</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/06/MySQL中表的横向合并-join-以及去重复字段/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MySQL使用经验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -773,6 +944,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">yum</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -809,7 +984,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,23 +1040,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Android</a>
+                <a href="javascript:void(0)" class="js-tag color5">Mock</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">OkHttp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
+                <a href="javascript:void(0)" class="js-tag color1">Junit</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JDBC</a>
               </li>
              
               <li class="article-tag-list-item">
