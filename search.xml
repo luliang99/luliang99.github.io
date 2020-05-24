@@ -3,6 +3,38 @@
   
     
     <entry>
+      <title><![CDATA[报错：org.thymeleaf.exceptions.TemplateInputException: Error resolving template xxx]]></title>
+      <url>/2020/05/24/%E6%8A%A5%E9%94%99%EF%BC%9Aorg-thymeleaf-exceptions-TemplateInputException-Error-resolving-template-xxx/</url>
+      <content type="html"><![CDATA[<ul>
+<li>问题：今天使用SpringBoot做秒杀系统的时候，出现org.thymeleaf.exceptions.TemplateInputException: Error resolving template的错误。</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p>分析：debug两小时，才发现是自己粗心把SeckillApiController里面的注释@RestController误写成@Repository。导致controller无法返回 JSON 对象，这种情况下返回的数据thymeleaf模板无法解析，直接报错。</p>
+</li>
+<li><p>代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span> <span class="comment">//此处误写为@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">seckillApiController</span> <span class="keyword">extends</span> <span class="title">BaseApiController</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">public</span> ISeckillService seckillService;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RequestMapping</span>(value=<span class="string">"seckill/&#123;courseNo&#125;"</span>,method=RequestMethod.GET)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Result&lt;Orders&gt; <span class="title">seckill</span><span class="params">(User user, @PathVariable String courseNo)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(user == <span class="keyword">null</span> ) &#123;</span><br><span class="line">			<span class="keyword">return</span> Result.failure();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> seckillService.seckillFlow(user, courseNo);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决方法：改为@RestController 或者 加上@Controller的同时，在相应方法上加上@ResponseBody。</p>
+</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> debug </tag>
+            
+            <tag> SpringBoot </tag>
+            
+            <tag> Thymeleaf </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CentOS下使用yum安装失败，提示Cannot retrieve metalink for repository: epel/x86_64]]></title>
       <url>/2020/05/19/CentOS%E4%B8%8B%E4%BD%BF%E7%94%A8yum%E5%AE%89%E8%A3%85%E5%A4%B1%E8%B4%A5%EF%BC%8C%E6%8F%90%E7%A4%BACannot-retrieve-metalink-for-repository-epel-x86-64/</url>
       <content type="html"><![CDATA[<ul>
@@ -6198,9 +6230,9 @@ LEFT JOIN phone ON book.card=phone.card;</code></pre><img src="/2019/10/07/MySQL
         
         <tags>
             
-            <tag> SQL </tag>
-            
             <tag> 教程 </tag>
+            
+            <tag> SQL </tag>
             
             <tag> MySQL </tag>
             
